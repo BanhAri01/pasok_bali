@@ -1,58 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Pasok Bali
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
 
-## About Laravel
+Pasok Bali membantu hotel, restoran, kafe, villa, dan katering di Bali **mengukur sendiri** kepatuhan terhadap Peraturan Gubernur Bali No. 99 Tahun 2018 tentang pemasaran dan pemanfaatan produk pertanian, perikanan, dan industri lokal Bali.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Pengguna cukup memotret nota belanja. AI membaca nota, mengenali istilah pasar dan bahasa Bali (misalnya *kesuna*, *bawang barak*, *taluh*), menyeragamkan satuan ke kilogram, lalu Pasok Bali menghitung persentase produk lokal per kelompok kuota. Bila kuota belum terpenuhi, aplikasi menyarankan petani, peternak, dan nelayan lokal, mensimulasikan kenaikan persentasenya, dan menyiapkan pesan permintaan pasokan lewat WhatsApp.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat pengawasan pemerintah.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Problem & Target User
 
-## Learning Laravel
+**Masalah.** Pergub Bali No. 99/2018 meminta usaha akomodasi dan kuliner menyerap produk lokal Bali dalam kuota minimal per kelompok. Di lapangan, belanja dapur tercatat di nota yang tidak seragam (struk toko, nota tulisan tangan kios pasar, faktur pemasok) dengan istilah dan satuan yang beragam (ikat, krat, tray, ekor). Menghitung persentase volume lokal secara manual di spreadsheet memakan waktu, dan usaha sering tidak tahu pemasok lokal mana yang bisa mengisi kekurangan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Pengguna.**
+1. Pemilik dan staf belanja hotel, restoran, kafe, villa, dan katering skala kecil–menengah di Bali (pengguna utama).
+2. Pemasok lokal (petani, peternak, nelayan, industri rumahan) yang mendaftar dan menjawab permintaan lewat WhatsApp tanpa memasang aplikasi.
+3. Admin platform yang memverifikasi pemasok dan mengatur angka kuota.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Key Features
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **Baca nota dengan AI**: unggah foto nota (JPG/PNG/WEBP), AI mengekstrak pemasok, tanggal, dan baris barang (nama, jumlah, satuan, harga) ke layar koreksi. Jika AI tidak tersedia, formulir isian manual tetap bisa dipakai.
+- **Pengelompokan barang dan konversi satuan**: nama barang mentah dicocokkan ke kamus produk (88 produk, 210 istilah termasuk istilah pasar Bali), lalu satuan dikonversi ke kg. Koreksi yang disetujui pengguna disimpan sebagai istilah khusus usaha itu, sehingga nota berikutnya dikenali tanpa memanggil AI.
+- **Dasbor kepatuhan**: persentase lokal per kelompok (pertanian, peternakan, perikanan, industri lokal) dibandingkan kuota, dengan **label tingkat bukti**: terverifikasi admin, pernyataan pemasok, atau asal belum diketahui.
+- **Rekomendasi pemasok lokal**: produk luar Bali yang paling banyak dibeli, pemasok lokal yang cocok, simulasi kenaikan persentase, dan draf pesan WhatsApp yang ditulis AI.
+- **Pendaftaran pemasok lewat WhatsApp**: pemasok mengetik `DAFTAR …` dengan bahasa bebas, AI menyusun datanya, lalu pemasok mengonfirmasi dengan `YA`. Pemasok menjawab permintaan pasokan dengan `1` (terima) atau `2` (tolak).
+- **Simulator WA**: mencoba alur pemasok langsung dari web tanpa nomor WhatsApp sungguhan.
+- **Laporan bulanan**: tabel per kelompok dan ringkasan AI, siap dicetak atau disimpan sebagai PDF lewat browser.
+- **Akun demo sekali klik**: sandbox per pengunjung berisi data fiktif, dihapus otomatis setelah 48 jam.
+- **Panel admin**: verifikasi pemasok dan pengaturan angka kuota.
 
-## Agentic Development
+## Tech Stack
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Lapisan | Teknologi |
+|---|---|
+| Frontend | Blade, Tailwind CSS 4, Alpine.js 3, Vite |
+| Backend | PHP 8.3+, Laravel 13 |
+| Database | SQLite (lokal) / MySQL atau MariaDB (produksi) |
+| AI | Google Gemini (`gemini-flash-latest`) lewat endpoint kompatibel OpenAI; cadangan opsional Anthropic Claude (`claude-haiku-5-5`) |
+| WhatsApp | Fonnte (opsional; tanpa token, pesan dicatat ke log dan dapat dicoba lewat Simulator WA) |
+| Pengujian | Pest 5 |
+| Hosting | [ISI ARI] |
 
-```bash
-composer require laravel/boost --dev
+## AI Implementation
 
-php artisan boost:install
+| Tahap | Peran AI | Masukan ke AI | Jika AI gagal |
+|---|---|---|---|
+| Baca nota | Model vision mengekstrak pemasok, tanggal, dan baris barang ke JSON terstruktur | Foto nota + daftar produk kamus | Nota ditandai *perlu dicek*, isian manual |
+| Kelompokkan barang | Memetakan nama mentah (termasuk istilah Bali/pasar) ke produk kamus dan kelompok Pergub, beserta konversi satuan | Nama barang yang tidak ditemukan di kamus | Barang dibiarkan tanpa produk dan ditandai untuk dikoreksi |
+| Pendaftaran pemasok | Mengurai pesan WhatsApp bebas menjadi nama, kabupaten, produk, kapasitas, harga, dan asal produksi | Teks pesan pemasok | Pengurai pola sederhana (regex) |
+| Draf pesan pasokan | Menulis pesan WhatsApp sopan dengan salam Bali | Nama usaha, pemasok, produk, jumlah per minggu | Templat pesan baku |
+| Ringkasan laporan | Merangkum angka kepatuhan bulanan menjadi 3–5 kalimat | Angka hasil perhitungan saja | Ringkasan otomatis berbasis aturan |
+
+Prinsip yang dipakai:
+- **Angka kepatuhan tidak dihitung oleh AI.** AI hanya membaca dan mengelompokkan; persentase dihitung deterministik dari data yang sudah disetujui pengguna.
+- **Manusia tetap memutuskan.** Setiap nota melewati layar koreksi sebelum masuk hitungan.
+- **Belajar dari koreksi.** Istilah yang disetujui disimpan per usaha untuk mengurangi panggilan AI berikutnya.
+- **Keluaran terstruktur.** Semua panggilan meminta JSON sesuai skema, lalu divalidasi ulang di server.
+- **Hemat dan aman.** Ada batas panggilan harian per usaha dan global; setiap panggilan dicatat di tabel `ai_calls` (fitur, model, durasi, status) tanpa menyimpan isi permintaan. Teks dari nota atau pesan diperlakukan sebagai data, bukan perintah.
+
+## Architecture / Data Flow
+
+```
+Pengguna (browser) ──> Laravel (Blade + Alpine)
+                          │
+                          ├─ Unggah foto ─> penyimpanan privat ─> Job ProcessReceipt
+                          │                                         ├─> AI vision: baca nota (JSON)
+                          │                                         ├─> Kamus produk + AI: kelompokkan & konversi kg
+                          │                                         └─> Pencocokan pemasok
+                          │
+                          ├─ Layar koreksi ─> setujui ─> Database (terisolasi per usaha)
+                          │
+                          ├─ ComplianceCalculator (tanpa AI) ─> Dasbor & laporan (+ ringkasan AI)
+                          │
+                          └─ RecommendationEngine ─> draf AI ─> WhatsApp (Fonnte / log)
+
+Pemasok (WhatsApp) ──> /webhook/wa/{rahasia} ──> SupplierBot ──> AI pengurai pendaftaran ──> Database
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Data tiap usaha dipisahkan dengan *global scope* `business_id` dan middleware yang berjalan sebelum *route model binding*; isolasi ini diuji di `tests/Feature/IsolationTest.php`.
 
-## Contributing
+## Installation / Run Instructions
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Kebutuhan: PHP 8.3+ (ekstensi `pdo_sqlite`, `fileinfo`), Composer, Node.js 20+.
 
-## Code of Conduct
+```bash
+git clone <url-repo> pasok-bali
+cd pasok-bali
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+npm run build
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Buka `http://localhost:8000`, lalu klik **Coba demo**.
 
-## Security Vulnerabilities
+Variabel lingkungan penting (lihat `.env.example`):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Variabel | Fungsi |
+|---|---|
+| `PASOK_AI_KEY` | Kunci API Gemini (atau Anthropic bila `PASOK_AI_DRIVER=anthropic`). Tanpa kunci, aplikasi tetap jalan dengan isian manual. |
+| `PASOK_AI_DRIVER` | `openai` (Gemini lewat endpoint kompatibel OpenAI) atau `anthropic` |
+| `PASOK_AI_MODEL` | Opsional, mengganti model bawaan |
+| `PASOK_WA_DRIVER` | `log` (bawaan) atau `fonnte` |
+| `FONNTE_TOKEN`, `FONNTE_DEVICE` | Kredensial Fonnte bila memakai WhatsApp sungguhan |
+| `PASOK_WEBHOOK_SECRET` | Rahasia di URL webhook `/webhook/wa/{rahasia}` |
+| `PASOK_DEMO` | `true` untuk mengaktifkan tombol Coba demo |
+| `PASOK_ADMIN_EMAIL` | Bila diisi, seeder membuat akun admin dan menampilkan sandi awal di terminal |
 
-## License
+Perawatan terjadwal (hapus sandbox demo kedaluwarsa dan foto nota lama) berjalan lewat `php artisan schedule:run` yang dipanggil cron setiap menit di server produksi.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Menjalankan tes:
+
+```bash
+php artisan test
+```
+
+## Deployment URL
+
+[ISI ARI]
+
+## Demo Account
+
+Tidak perlu akun. Klik **Coba demo** di halaman depan untuk membuat sandbox pribadi berisi data fiktif (berlaku 48 jam, maksimal 15 sandbox per alamat IP per hari).
+
+## Known Limitations
+
+- Semua data di repositori dan mode demo adalah **data fiktif**. Aplikasi belum diuji dengan nota atau usaha sungguhan, dan akurasi pembacaan nota oleh AI belum diukur secara formal.
+- Angka kuota mengikuti pengaturan admin (bawaan 30% untuk pertanian, peternakan, dan perikanan, serta 20% untuk industri lokal) dan perlu dicocokkan dengan teks resmi Pergub Bali No. 99/2018 sebelum dipakai untuk pelaporan resmi.
+- Status "lokal" bergantung pada data pemasok: label *pernyataan* berarti berdasarkan pengakuan pemasok, belum diverifikasi di lapangan.
+- Konversi satuan non-baku (ikat, sisir, ekor) memakai perkiraan berat rata-rata dari kamus.
+- Kualitas pembacaan bergantung pada kejelasan foto; tulisan tangan yang buram perlu dikoreksi manual.
+- Pengiriman WhatsApp sungguhan membutuhkan akun Fonnte; tanpa itu dipakai Simulator WA.
+- Laporan PDF memakai fitur cetak browser, belum berupa berkas PDF yang dibuat server.
+
+## Third-party Resources / Credits
+
+Lihat [docs/DISCLOSURE.md](docs/DISCLOSURE.md) untuk daftar lengkap teknologi, model AI, pustaka, aset, dan alat bantu pengembangan.
+
+## Team Members
+
+| Nama | Peran |
+|---|---|
+| [ISI ARI] | [ISI ARI] |
