@@ -1,0 +1,782 @@
+[
+    {
+        "file": "nota-01-kios-pasar-wayan.png",
+        "jenis_nota": "tulisan_tangan",
+        "supplier_name": "Kios Pasar Pagi Bu Wayan (Contoh Fiktif)",
+        "receipt_date": "2026-10-25",
+        "total": 326500,
+        "items": [
+            {
+                "name": "Kesuna",
+                "product_name": "Bawang putih",
+                "category": "hortikultura",
+                "quantity": 2,
+                "unit": "kg",
+                "quantity_kg": 2.0,
+                "unit_price": 38000,
+                "total_price": 76000
+            },
+            {
+                "name": "Bawang barak",
+                "product_name": "Bawang merah",
+                "category": "hortikultura",
+                "quantity": 3,
+                "unit": "kg",
+                "quantity_kg": 3.0,
+                "unit_price": 32000,
+                "total_price": 96000
+            },
+            {
+                "name": "Tabia krinyi",
+                "product_name": "Cabai rawit",
+                "category": "hortikultura",
+                "quantity": 5,
+                "unit": "ons",
+                "quantity_kg": 0.5,
+                "unit_price": 4500,
+                "total_price": 22500
+            },
+            {
+                "name": "Kangkong",
+                "product_name": "Kangkung",
+                "category": "hortikultura",
+                "quantity": 8,
+                "unit": "ikat",
+                "quantity_kg": 2.0,
+                "unit_price": 4000,
+                "total_price": 32000
+            },
+            {
+                "name": "Bayem",
+                "product_name": "Bayam",
+                "category": "hortikultura",
+                "quantity": 6,
+                "unit": "ikat",
+                "quantity_kg": 1.5,
+                "unit_price": 4000,
+                "total_price": 24000
+            },
+            {
+                "name": "Biu",
+                "product_name": "Pisang",
+                "category": "hortikultura",
+                "quantity": 2,
+                "unit": "sisir",
+                "quantity_kg": 3.0,
+                "unit_price": 18000,
+                "total_price": 36000
+            },
+            {
+                "name": "Nyuh",
+                "product_name": "Kelapa",
+                "category": "perkebunan",
+                "quantity": 5,
+                "unit": "buah",
+                "quantity_kg": 4.0,
+                "unit_price": 8000,
+                "total_price": 40000
+            }
+        ]
+    },
+    {
+        "file": "nota-02-peternakan-taluh-mekar.png",
+        "jenis_nota": "faktur_pemasok",
+        "supplier_name": "Peternakan Taluh Mekar (contoh)",
+        "receipt_date": "2026-10-26",
+        "total": 584000,
+        "items": [
+            {
+                "name": "Taluh siap",
+                "product_name": "Telur ayam ras",
+                "category": "peternakan",
+                "quantity": 4,
+                "unit": "tray",
+                "quantity_kg": 7.2,
+                "unit_price": 48000,
+                "total_price": 192000
+            },
+            {
+                "name": "Taluh bebek",
+                "product_name": "Telur bebek",
+                "category": "peternakan",
+                "quantity": 2,
+                "unit": "tray",
+                "quantity_kg": 4.2,
+                "unit_price": 75000,
+                "total_price": 150000
+            },
+            {
+                "name": "Taluh siap kampung",
+                "product_name": "Telur ayam kampung",
+                "category": "peternakan",
+                "quantity": 30,
+                "unit": "butir",
+                "quantity_kg": 1.35,
+                "unit_price": 2800,
+                "total_price": 84000
+            },
+            {
+                "name": "Taluh puyuh",
+                "product_name": "Telur puyuh",
+                "category": "peternakan",
+                "quantity": 2,
+                "unit": "pack",
+                "quantity_kg": 0.6,
+                "unit_price": 14000,
+                "total_price": 28000
+            },
+            {
+                "name": "Madu bali",
+                "product_name": "Madu murni",
+                "category": "peternakan",
+                "quantity": 2,
+                "unit": "botol",
+                "quantity_kg": 0.98,
+                "unit_price": 65000,
+                "total_price": 130000
+            }
+        ]
+    },
+    {
+        "file": "nota-03-toko-sembako-dewata.png",
+        "jenis_nota": "toko_cetak",
+        "supplier_name": "Toko Sembako Dewata (Contoh Fiktif)",
+        "receipt_date": "2026-10-27",
+        "total": 818000,
+        "items": [
+            {
+                "name": "Baas",
+                "product_name": "Beras",
+                "category": "tanaman_pangan",
+                "quantity": 1,
+                "unit": "karung",
+                "quantity_kg": 25.0,
+                "unit_price": 360000,
+                "total_price": 360000
+            },
+            {
+                "name": "Baas barak",
+                "product_name": "Beras merah",
+                "category": "tanaman_pangan",
+                "quantity": 5,
+                "unit": "kg",
+                "quantity_kg": 5.0,
+                "unit_price": 19000,
+                "total_price": 95000
+            },
+            {
+                "name": "Tlr",
+                "product_name": "Telur ayam ras",
+                "category": "peternakan",
+                "quantity": 2,
+                "unit": "tray",
+                "quantity_kg": 3.6,
+                "unit_price": 48000,
+                "total_price": 96000
+            },
+            {
+                "name": "Bw mrh",
+                "product_name": "Bawang merah",
+                "category": "hortikultura",
+                "quantity": 2,
+                "unit": "kg",
+                "quantity_kg": 2.0,
+                "unit_price": 32000,
+                "total_price": 64000
+            },
+            {
+                "name": "Bw pth",
+                "product_name": "Bawang putih",
+                "category": "hortikultura",
+                "quantity": 1.5,
+                "unit": "kg",
+                "quantity_kg": 1.5,
+                "unit_price": 38000,
+                "total_price": 57000
+            },
+            {
+                "name": "Uyah",
+                "product_name": "Garam",
+                "category": "industri",
+                "quantity": 4,
+                "unit": "pack",
+                "quantity_kg": 1.0,
+                "unit_price": 6500,
+                "total_price": 26000
+            },
+            {
+                "name": "Gula bali",
+                "product_name": "Gula aren",
+                "category": "industri",
+                "quantity": 3,
+                "unit": "kg",
+                "quantity_kg": 3.0,
+                "unit_price": 40000,
+                "total_price": 120000
+            }
+        ]
+    },
+    {
+        "file": "nota-04-kelompok-tani-pucak.png",
+        "jenis_nota": "faktur_pemasok",
+        "supplier_name": "Kelompok Tani Sayur Pucak (contoh)",
+        "receipt_date": "2026-10-28",
+        "total": 569500,
+        "items": [
+            {
+                "name": "Kol",
+                "product_name": "Kubis",
+                "category": "hortikultura",
+                "quantity": 6,
+                "unit": "buah",
+                "quantity_kg": 6.0,
+                "unit_price": 7000,
+                "total_price": 42000
+            },
+            {
+                "name": "Wrtl",
+                "product_name": "Wortel",
+                "category": "hortikultura",
+                "quantity": 8,
+                "unit": "kg",
+                "quantity_kg": 8.0,
+                "unit_price": 12000,
+                "total_price": 96000
+            },
+            {
+                "name": "Ktg",
+                "product_name": "Kentang",
+                "category": "hortikultura",
+                "quantity": 10,
+                "unit": "kg",
+                "quantity_kg": 10.0,
+                "unit_price": 15000,
+                "total_price": 150000
+            },
+            {
+                "name": "Tmt",
+                "product_name": "Tomat",
+                "category": "hortikultura",
+                "quantity": 5,
+                "unit": "kg",
+                "quantity_kg": 5.0,
+                "unit_price": 11000,
+                "total_price": 55000
+            },
+            {
+                "name": "Caisim",
+                "product_name": "Sawi hijau",
+                "category": "hortikultura",
+                "quantity": 10,
+                "unit": "ikat",
+                "quantity_kg": 3.0,
+                "unit_price": 3000,
+                "total_price": 30000
+            },
+            {
+                "name": "Selada keriting",
+                "product_name": "Selada",
+                "category": "hortikultura",
+                "quantity": 4,
+                "unit": "kg",
+                "quantity_kg": 4.0,
+                "unit_price": 25000,
+                "total_price": 100000
+            },
+            {
+                "name": "Brokoli hijau",
+                "product_name": "Brokoli",
+                "category": "hortikultura",
+                "quantity": 3,
+                "unit": "kg",
+                "quantity_kg": 3.0,
+                "unit_price": 28000,
+                "total_price": 84000
+            },
+            {
+                "name": "Bw daun",
+                "product_name": "Daun bawang",
+                "category": "hortikultura",
+                "quantity": 5,
+                "unit": "ikat",
+                "quantity_kg": 0.5,
+                "unit_price": 2500,
+                "total_price": 12500
+            }
+        ]
+    },
+    {
+        "file": "nota-05-kios-bumbu-komang.png",
+        "jenis_nota": "tulisan_tangan",
+        "supplier_name": "Kios Bumbu & Rempah Bu Komang (Contoh Fiktif)",
+        "receipt_date": "2026-10-29",
+        "total": 202500,
+        "items": [
+            {
+                "name": "Jae",
+                "product_name": "Jahe",
+                "category": "hortikultura",
+                "quantity": 1.5,
+                "unit": "kg",
+                "quantity_kg": 1.5,
+                "unit_price": 28000,
+                "total_price": 42000
+            },
+            {
+                "name": "Kunir",
+                "product_name": "Kunyit",
+                "category": "hortikultura",
+                "quantity": 1,
+                "unit": "kg",
+                "quantity_kg": 1.0,
+                "unit_price": 18000,
+                "total_price": 18000
+            },
+            {
+                "name": "Isen",
+                "product_name": "Lengkuas",
+                "category": "hortikultura",
+                "quantity": 1,
+                "unit": "kg",
+                "quantity_kg": 1.0,
+                "unit_price": 16000,
+                "total_price": 16000
+            },
+            {
+                "name": "Cekuh",
+                "product_name": "Kencur",
+                "category": "hortikultura",
+                "quantity": 5,
+                "unit": "ons",
+                "quantity_kg": 0.5,
+                "unit_price": 3500,
+                "total_price": 17500
+            },
+            {
+                "name": "Sereh",
+                "product_name": "Serai",
+                "category": "hortikultura",
+                "quantity": 5,
+                "unit": "ikat",
+                "quantity_kg": 1.0,
+                "unit_price": 3000,
+                "total_price": 15000
+            },
+            {
+                "name": "Bongkot",
+                "product_name": "Kecombrang",
+                "category": "hortikultura",
+                "quantity": 4,
+                "unit": "ikat",
+                "quantity_kg": 2.0,
+                "unit_price": 10000,
+                "total_price": 40000
+            },
+            {
+                "name": "Juuk lemo",
+                "product_name": "Jeruk limau",
+                "category": "hortikultura",
+                "quantity": 1,
+                "unit": "kg",
+                "quantity_kg": 1.0,
+                "unit_price": 24000,
+                "total_price": 24000
+            },
+            {
+                "name": "Tingkih",
+                "product_name": "Kemiri",
+                "category": "perkebunan",
+                "quantity": 2,
+                "unit": "pack",
+                "quantity_kg": 0.5,
+                "unit_price": 15000,
+                "total_price": 30000
+            }
+        ]
+    },
+    {
+        "file": "nota-06-ternak-sari-merta.png",
+        "jenis_nota": "faktur_pemasok",
+        "supplier_name": "Ternak Sari Merta (contoh)",
+        "receipt_date": "2026-10-30",
+        "total": 2085000,
+        "items": [
+            {
+                "name": "Be celeng",
+                "product_name": "Daging babi",
+                "category": "peternakan",
+                "quantity": 8,
+                "unit": "kg",
+                "quantity_kg": 8.0,
+                "unit_price": 75000,
+                "total_price": 600000
+            },
+            {
+                "name": "Be siap",
+                "product_name": "Daging ayam",
+                "category": "peternakan",
+                "quantity": 10,
+                "unit": "ekor",
+                "quantity_kg": 12.0,
+                "unit_price": 45000,
+                "total_price": 450000
+            },
+            {
+                "name": "Siap kampung",
+                "product_name": "Ayam kampung",
+                "category": "peternakan",
+                "quantity": 4,
+                "unit": "ekor",
+                "quantity_kg": 4.0,
+                "unit_price": 85000,
+                "total_price": 340000
+            },
+            {
+                "name": "Be bebek",
+                "product_name": "Daging bebek",
+                "category": "peternakan",
+                "quantity": 3,
+                "unit": "ekor",
+                "quantity_kg": 4.5,
+                "unit_price": 70000,
+                "total_price": 210000
+            },
+            {
+                "name": "Be sampi",
+                "product_name": "Daging sapi",
+                "category": "peternakan",
+                "quantity": 3,
+                "unit": "kg",
+                "quantity_kg": 3.0,
+                "unit_price": 125000,
+                "total_price": 375000
+            },
+            {
+                "name": "Urutan",
+                "product_name": "Urutan Bali",
+                "category": "industri",
+                "quantity": 2,
+                "unit": "pack",
+                "quantity_kg": 1.0,
+                "unit_price": 55000,
+                "total_price": 110000
+            }
+        ]
+    },
+    {
+        "file": "nota-07-kios-ikan-segara.png",
+        "jenis_nota": "tulisan_tangan",
+        "supplier_name": "Nelayan Segara Asri (contoh)",
+        "receipt_date": "2026-10-31",
+        "total": 1070000,
+        "items": [
+            {
+                "name": "Be tongkol",
+                "product_name": "Ikan tongkol",
+                "category": "perikanan",
+                "quantity": 12,
+                "unit": "ekor",
+                "quantity_kg": 6.0,
+                "unit_price": 16000,
+                "total_price": 192000
+            },
+            {
+                "name": "Kakap merah",
+                "product_name": "Ikan kakap",
+                "category": "perikanan",
+                "quantity": 4,
+                "unit": "kg",
+                "quantity_kg": 4.0,
+                "unit_price": 85000,
+                "total_price": 340000
+            },
+            {
+                "name": "Cumi",
+                "product_name": "Cumi-cumi",
+                "category": "perikanan",
+                "quantity": 3,
+                "unit": "kg",
+                "quantity_kg": 3.0,
+                "unit_price": 70000,
+                "total_price": 210000
+            },
+            {
+                "name": "Udg",
+                "product_name": "Udang",
+                "category": "perikanan",
+                "quantity": 2,
+                "unit": "kg",
+                "quantity_kg": 2.0,
+                "unit_price": 95000,
+                "total_price": 190000
+            },
+            {
+                "name": "Lemuru",
+                "product_name": "Ikan lemuru",
+                "category": "perikanan",
+                "quantity": 5,
+                "unit": "kg",
+                "quantity_kg": 5.0,
+                "unit_price": 18000,
+                "total_price": 90000
+            },
+            {
+                "name": "Bulung",
+                "product_name": "Rumput laut",
+                "category": "perikanan",
+                "quantity": 4,
+                "unit": "pack",
+                "quantity_kg": 2.0,
+                "unit_price": 12000,
+                "total_price": 48000
+            }
+        ]
+    },
+    {
+        "file": "nota-08-grosir-sumber-makmur.png",
+        "jenis_nota": "toko_cetak",
+        "supplier_name": "Grosir Sumber Makmur (contoh)",
+        "receipt_date": "2026-11-01",
+        "total": 752000,
+        "items": [
+            {
+                "name": "Telur",
+                "product_name": "Telur ayam ras",
+                "category": "peternakan",
+                "quantity": 3,
+                "unit": "tray",
+                "quantity_kg": 5.4,
+                "unit_price": 47000,
+                "total_price": 141000
+            },
+            {
+                "name": "Kesuna",
+                "product_name": "Bawang putih",
+                "category": "hortikultura",
+                "quantity": 4,
+                "unit": "kg",
+                "quantity_kg": 4.0,
+                "unit_price": 38000,
+                "total_price": 152000
+            },
+            {
+                "name": "Migor",
+                "product_name": "Minyak goreng sawit",
+                "category": "industri",
+                "quantity": 5,
+                "unit": "liter",
+                "quantity_kg": 4.5,
+                "unit_price": 18000,
+                "total_price": 90000
+            },
+            {
+                "name": "Gula putih",
+                "product_name": "Gula pasir",
+                "category": "industri",
+                "quantity": 10,
+                "unit": "kg",
+                "quantity_kg": 10.0,
+                "unit_price": 17500,
+                "total_price": 175000
+            },
+            {
+                "name": "Terigu",
+                "product_name": "Tepung terigu",
+                "category": "industri",
+                "quantity": 5,
+                "unit": "kg",
+                "quantity_kg": 5.0,
+                "unit_price": 12000,
+                "total_price": 60000
+            },
+            {
+                "name": "Kcp",
+                "product_name": "Kecap manis",
+                "category": "industri",
+                "quantity": 3,
+                "unit": "botol",
+                "quantity_kg": 2.16,
+                "unit_price": 18000,
+                "total_price": 54000
+            },
+            {
+                "name": "Air galon",
+                "product_name": "Air minum kemasan",
+                "category": "industri",
+                "quantity": 4,
+                "unit": "galon",
+                "quantity_kg": 76.0,
+                "unit_price": 20000,
+                "total_price": 80000
+            }
+        ]
+    },
+    {
+        "file": "nota-09-kios-sayur-bali-kadek.png",
+        "jenis_nota": "tulisan_tangan",
+        "supplier_name": "Kios Jukut & Buah Kadek (Contoh Fiktif)",
+        "receipt_date": "2026-11-01",
+        "total": 285000,
+        "items": [
+            {
+                "name": "Paku",
+                "product_name": "Sayur paku",
+                "category": "hortikultura",
+                "quantity": 6,
+                "unit": "ikat",
+                "quantity_kg": 1.2,
+                "unit_price": 4000,
+                "total_price": 24000
+            },
+            {
+                "name": "Ares",
+                "product_name": "Batang pisang muda",
+                "category": "hortikultura",
+                "quantity": 2,
+                "unit": "ikat",
+                "quantity_kg": 2.0,
+                "unit_price": 12000,
+                "total_price": 24000
+            },
+            {
+                "name": "Pusuh biu",
+                "product_name": "Jantung pisang",
+                "category": "hortikultura",
+                "quantity": 4,
+                "unit": "buah",
+                "quantity_kg": 2.0,
+                "unit_price": 6000,
+                "total_price": 24000
+            },
+            {
+                "name": "Tuung",
+                "product_name": "Terong",
+                "category": "hortikultura",
+                "quantity": 3,
+                "unit": "kg",
+                "quantity_kg": 3.0,
+                "unit_price": 10000,
+                "total_price": 30000
+            },
+            {
+                "name": "Jipang",
+                "product_name": "Labu siam",
+                "category": "hortikultura",
+                "quantity": 8,
+                "unit": "buah",
+                "quantity_kg": 2.0,
+                "unit_price": 3000,
+                "total_price": 24000
+            },
+            {
+                "name": "Gedang",
+                "product_name": "Pepaya",
+                "category": "hortikultura",
+                "quantity": 3,
+                "unit": "buah",
+                "quantity_kg": 4.5,
+                "unit_price": 15000,
+                "total_price": 45000
+            },
+            {
+                "name": "Manas",
+                "product_name": "Nanas",
+                "category": "hortikultura",
+                "quantity": 3,
+                "unit": "buah",
+                "quantity_kg": 3.6,
+                "unit_price": 14000,
+                "total_price": 42000
+            },
+            {
+                "name": "Kuud",
+                "product_name": "Kelapa muda",
+                "category": "perkebunan",
+                "quantity": 6,
+                "unit": "buah",
+                "quantity_kg": 9.0,
+                "unit_price": 12000,
+                "total_price": 72000
+            }
+        ]
+    },
+    {
+        "file": "nota-10-toko-olahan-abian.png",
+        "jenis_nota": "toko_cetak",
+        "supplier_name": "Kopi Abian Asri (contoh)",
+        "receipt_date": "2026-11-02",
+        "total": 698000,
+        "items": [
+            {
+                "name": "Kopi bali",
+                "product_name": "Kopi bubuk",
+                "category": "industri",
+                "quantity": 8,
+                "unit": "pack",
+                "quantity_kg": 2.0,
+                "unit_price": 40000,
+                "total_price": 320000
+            },
+            {
+                "name": "Base genep",
+                "product_name": "Base genep",
+                "category": "industri",
+                "quantity": 6,
+                "unit": "pack",
+                "quantity_kg": 1.5,
+                "unit_price": 15000,
+                "total_price": 90000
+            },
+            {
+                "name": "Lengis nyuh",
+                "product_name": "Minyak kelapa",
+                "category": "industri",
+                "quantity": 5,
+                "unit": "botol",
+                "quantity_kg": 2.76,
+                "unit_price": 28000,
+                "total_price": 140000
+            },
+            {
+                "name": "Tahu putih",
+                "product_name": "Tahu",
+                "category": "industri",
+                "quantity": 4,
+                "unit": "pack",
+                "quantity_kg": 2.0,
+                "unit_price": 10000,
+                "total_price": 40000
+            },
+            {
+                "name": "Tmp",
+                "product_name": "Tempe",
+                "category": "industri",
+                "quantity": 6,
+                "unit": "pack",
+                "quantity_kg": 1.5,
+                "unit_price": 6000,
+                "total_price": 36000
+            },
+            {
+                "name": "Sera",
+                "product_name": "Terasi",
+                "category": "industri",
+                "quantity": 2,
+                "unit": "pack",
+                "quantity_kg": 0.5,
+                "unit_price": 12000,
+                "total_price": 24000
+            },
+            {
+                "name": "Taluh uyah",
+                "product_name": "Telur asin",
+                "category": "industri",
+                "quantity": 2,
+                "unit": "pack",
+                "quantity_kg": 0.84,
+                "unit_price": 24000,
+                "total_price": 48000
+            }
+        ]
+    }
+]
