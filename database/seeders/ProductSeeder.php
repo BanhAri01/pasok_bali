@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
-    public const AMBIGUOUS_UNITS = ['krat'];
+    public const AMBIGUOUS_UNITS = ['peti'];
 
     public const BASE = [
         ['Beras', 'tanaman_pangan', 'kg', 1, ['karung' => 25], ['baas', 'bras', 'beras putih', 'beras lokal']],
@@ -62,8 +62,8 @@ class ProductSeeder extends Seeder
         ['Kopi biji', 'perkebunan', 'kg', 1, [], ['kopi beras', 'green bean', 'biji kopi']],
         ['Biji kakao', 'perkebunan', 'kg', 1, [], ['kakao', 'coklat biji']],
         ['Cengkeh', 'perkebunan', 'kg', 1, [], ['cengkih']],
-        ['Telur ayam ras', 'peternakan', 'kg', 1, ['butir' => 0.06, 'tray' => 1.8], ['telur', 'telor', 'tlr', 'taluh', 'taluh siap', 'telur ayam', 'telur negeri']],
-        ['Telur bebek', 'peternakan', 'kg', 1, ['butir' => 0.07, 'tray' => 2.1], ['taluh bebek', 'telor bebek', 'tlr bebek']],
+        ['Telur ayam ras', 'peternakan', 'kg', 1, ['butir' => 0.06, 'tray' => 1.8, 'krat' => 1.8], ['telur', 'telor', 'tlr', 'taluh', 'taluh siap', 'telur ayam', 'telur negeri']],
+        ['Telur bebek', 'peternakan', 'kg', 1, ['butir' => 0.07, 'tray' => 2.1, 'krat' => 2.1], ['taluh bebek', 'telor bebek', 'tlr bebek']],
         ['Daging ayam', 'peternakan', 'kg', 1, ['ekor' => 1.2], ['ayam', 'ayam potong', 'be siap', 'ayam broiler', 'dada ayam', 'paha ayam']],
         ['Ayam kampung', 'peternakan', 'kg', 1, ['ekor' => 1], ['siap kampung', 'ayam kmpg']],
         ['Daging bebek', 'peternakan', 'kg', 1, ['ekor' => 1.5], ['bebek', 'be bebek']],

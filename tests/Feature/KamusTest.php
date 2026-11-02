@@ -11,13 +11,16 @@ it('memuat alias tambahan dari produk.json untuk produk bawaan', function () {
         ->and(ProductAlias::query()->where('alias', 'tabia')->value('product_id'))->toBe($cabai->id);
 });
 
-it('mempertahankan satuan bawaan dan tidak mengonversi krat yang ambigu', function () {
+it('menghitung krat telur sebagai 30 butir dan tidak menebak isi peti', function () {
     $telur = Product::query()->where('name', 'Telur ayam ras')->sole();
+    $kampung = Product::query()->where('name', 'Telur ayam kampung')->sole();
     $converter = app(UnitConverter::class);
 
     expect($telur->base_unit)->toBe('kg')
         ->and($converter->toKg($telur, 2, 'tray'))->toBe([3.6, false])
-        ->and($converter->toKg($telur, 1, 'krat'))->toBe([null, false])
+        ->and($converter->toKg($telur, 2, 'krt'))->toBe([3.6, false])
+        ->and($converter->toKg($kampung, 1, 'krat'))->toBe([1.35, false])
+        ->and($converter->toKg($telur, 1, 'peti'))->toBe([null, false])
         ->and($converter->toKg($telur, 1, 'peti', 15.0))->toBe([15.0, true]);
 });
 

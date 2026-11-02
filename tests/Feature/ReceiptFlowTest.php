@@ -25,7 +25,7 @@ it('membaca nota dengan AI lalu mengelompokkan, mengonversi satuan, dan menentuk
         'nota' => readNota([
             ['name' => 'Taluh', 'quantity' => 10, 'unit' => 'kg', 'total_price' => 270000, 'confidence' => 0.95],
             ['name' => 'Kangkong', 'quantity' => 8, 'unit' => 'ikt', 'total_price' => 40000, 'confidence' => 0.9],
-            ['name' => 'Telur bebek asin spesial', 'quantity' => 2, 'unit' => 'krat', 'total_price' => 500000, 'confidence' => 0.5],
+            ['name' => 'Telur bebek asin spesial', 'quantity' => 2, 'unit' => 'peti', 'total_price' => 500000, 'confidence' => 0.5],
             ['name' => 'Gas elpiji', 'quantity' => 1, 'unit' => 'tabung', 'total_price' => 25000, 'confidence' => 0.9],
         ]),
         'kelompok' => fn () => ['items' => [
