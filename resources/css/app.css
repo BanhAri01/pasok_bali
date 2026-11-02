@@ -1,29 +1,125 @@
 @import 'tailwindcss';
+@import './fonts/fonts.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
-    --font-display: ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
-    --color-santan: #fbf6ea;
+    --color-santan: #faf4e6;
     --color-kertas: #ffffff;
-    --color-tinta: #1d2a22;
-    --color-abu: #6b7468;
-    --color-garis: #e6dfcd;
+    --color-tinta: #17231c;
+    --color-abu: #526056;
+    --color-garis: #e2d9c5;
 
-    --color-daun: #1f6b3e;
-    --color-daun-tua: #144a2a;
-    --color-daun-muda: #e3f0e4;
+    --color-daun: #1b663a;
+    --color-daun-tua: #103f23;
+    --color-daun-muda: #e2f2e6;
 
-    --color-kunyit: #f2b705;
-    --color-kunyit-muda: #fdf1c7;
+    --color-kunyit: #f0b400;
+    --color-kunyit-muda: #fef0c2;
 
-    --color-terakota: #c2502c;
-    --color-terakota-muda: #f9e1d8;
+    --color-terakota: #b84320;
+    --color-terakota-muda: #fce3da;
+
+    --radius-kartu: 1rem;
+    --radius-tombol: 0.75rem;
+
+    --shadow-kartu: 0 2px 6px -1px rgb(23 35 28 / 0.05), 0 1px 2px -1px rgb(23 35 28 / 0.04);
+    --shadow-angkat: 0 14px 28px -8px rgb(16 63 35 / 0.14), 0 4px 10px -2px rgb(16 63 35 / 0.06);
 }
 
 [x-cloak] {
     display: none !important;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    :focus-visible {
+        outline: 3px solid var(--color-kunyit);
+        outline-offset: 2px;
+    }
+}
+
+@utility angka-tabel {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+@layer components {
+    /* Styled native <progress> following modern-web-guidance 'progress' pattern */
+    progress.ui-progress {
+        --progress-bar-radius: 9999px;
+        --progress-bar-track: var(--color-santan);
+        --progress-bar-fill: var(--color-daun);
+        appearance: none;
+        border: 0 solid;
+        overflow: clip;
+        width: 100%;
+        height: 0.75rem;
+        border-radius: var(--progress-bar-radius);
+        background: var(--progress-bar-track);
+        box-shadow: inset 0 1px 2px rgb(23 35 28 / 0.08);
+    }
+
+    progress.ui-progress::-webkit-progress-bar {
+        background: transparent;
+    }
+
+    progress.ui-progress::-webkit-progress-value {
+        background: var(--progress-bar-fill);
+        border-radius: var(--progress-bar-radius);
+        transition: inline-size 0.3s ease-out;
+    }
+
+    progress.ui-progress::-moz-progress-bar {
+        background: var(--progress-bar-fill);
+        border-radius: var(--progress-bar-radius);
+        transition: inline-size 0.3s ease-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        progress.ui-progress::-webkit-progress-value {
+            transition: none;
+        }
+
+        progress.ui-progress::-moz-progress-bar {
+            transition: none;
+        }
+    }
+
+    /* Elemen khas: secarik nota belanja pasar dengan gerigi perforasi halus */
+    .nota-pasar {
+        position: relative;
+        background-color: var(--color-kertas);
+        background-image: repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 31px,
+            rgb(226 217 197 / 0.45) 31px,
+            rgb(226 217 197 / 0.45) 32px
+        );
+        box-shadow: var(--shadow-angkat);
+    }
+
+    /* Papan pasar hijau daun pisang tua */
+    .papan-daun {
+        background-color: var(--color-daun-tua);
+        background-image:
+            radial-gradient(ellipse at 85% 0%, rgb(240 180 0 / 0.14), transparent 55%),
+            radial-gradient(ellipse at 10% 100%, rgb(27 102 58 / 0.45), transparent 60%);
+        color: var(--color-kertas);
+    }
 }
