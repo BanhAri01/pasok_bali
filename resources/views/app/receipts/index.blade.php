@@ -1,7 +1,7 @@
 <x-app.layout title="Nota">
     <div class="flex flex-wrap items-end justify-between gap-4">
         <h1 class="font-display text-3xl font-black text-daun-tua">Nota belanja</h1>
-        <a href="{{ route('receipts.create') }}" class="rounded-xl bg-daun px-5 py-3 font-bold text-kertas hover:bg-daun-tua">+ Foto nota</a>
+        <a href="{{ route('receipts.create') }}" class="rounded bg-tinta px-5 py-3 font-bold text-kertas hover:bg-taum">+ Foto nota</a>
     </div>
 
     <nav class="mt-4 flex flex-wrap gap-2 text-sm">
@@ -10,7 +10,7 @@
         @endforeach
     </nav>
 
-    <div class="mt-4 overflow-x-auto rounded-2xl border border-garis bg-kertas">
+    <div class="mt-4 overflow-x-auto border-2 border-tinta bg-kertas">
         <table class="w-full min-w-[640px] text-sm">
             <thead class="bg-santan text-left text-abu">
                 <tr>
@@ -28,7 +28,7 @@
                         <td class="px-4 py-3">{{ $receipt->supplier?->name ?? $receipt->supplier_name_raw ?? '–' }}@unless ($receipt->supplier_id)<span class="ml-1 text-xs text-abu">(belum terdaftar)</span>@endunless</td>
                         <td class="px-4 py-3">{{ $receipt->items_count }} @if ($receipt->review_count)<span class="text-xs font-semibold text-terakota">· {{ $receipt->review_count }} perlu dicek</span>@endif</td>
                         <td class="px-4 py-3 text-right whitespace-nowrap">{{ \App\Support\Rupiah::format($receipt->total) }}</td>
-                        <td class="px-4 py-3"><span @class(['rounded-full px-2.5 py-0.5 text-xs font-semibold', 'bg-daun-muda text-daun-tua' => $receipt->status === 'disetujui', 'bg-kunyit-muda text-tinta' => $receipt->status !== 'disetujui'])>{{ $receipt->statusLabel() }}</span></td>
+                        <td class="px-4 py-3"><span @class(['rounded-full px-2.5 py-0.5 text-xs font-semibold', 'bg-kunyit text-tinta' => $receipt->status === 'disetujui', 'bg-kunyit-muda text-tinta' => $receipt->status !== 'disetujui'])>{{ $receipt->statusLabel() }}</span></td>
                     </tr>
                 @empty
                     <tr><td colspan="5" class="px-4 py-8 text-center text-abu">Belum ada nota.</td></tr>

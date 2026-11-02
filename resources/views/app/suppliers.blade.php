@@ -3,13 +3,13 @@
     <p class="mt-1 text-abu">Petani, peternak, nelayan, dan UMKM yang terdaftar. Label hijau berarti sudah diverifikasi admin; kuning berarti berdasarkan pernyataan pemasok.</p>
 
     <form method="GET" class="mt-4 flex flex-wrap gap-2">
-        <select name="kategori" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm" onchange="this.form.submit()" aria-label="Kelompok">
+        <select name="kategori" class="rounded border-2 border-tinta bg-kertas px-3 py-2 text-sm" onchange="this.form.submit()" aria-label="Kelompok">
             <option value="">Semua kelompok</option>
             @foreach (config('pasok.categories') as $key => $label)
                 <option value="{{ $key }}" @selected($category === $key)>{{ $label }}</option>
             @endforeach
         </select>
-        <select name="kabupaten" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm" onchange="this.form.submit()" aria-label="Kabupaten">
+        <select name="kabupaten" class="rounded border-2 border-tinta bg-kertas px-3 py-2 text-sm" onchange="this.form.submit()" aria-label="Kabupaten">
             <option value="">Semua kabupaten</option>
             @foreach (config('pasok.regencies') as $name)
                 <option value="{{ $name }}" @selected($regency === $name)>{{ $name }}</option>
@@ -19,7 +19,7 @@
 
     <div class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         @forelse ($suppliers as $supplier)
-            <article class="rounded-2xl border border-garis bg-kertas p-5">
+            <article class="border-2 border-tinta bg-kertas p-5">
                 <div class="flex items-start justify-between gap-2">
                     <h2 class="font-display text-lg font-bold leading-snug">{{ $supplier->name }}</h2>
                     <span @class(['shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold', 'bg-daun text-kertas' => $supplier->isVerified(), 'bg-kunyit-muda ring-1 ring-kunyit' => ! $supplier->isVerified()])>{{ $supplier->isVerified() ? 'Terverifikasi' : 'Pernyataan' }}</span>
@@ -41,10 +41,10 @@
 
     <div class="mt-4">{{ $suppliers->links() }}</div>
 
-    <aside class="mt-8 rounded-2xl bg-daun p-6 text-kertas">
+    <aside class="mt-8 bg-tinta p-6 text-kertas">
         <h2 class="font-display text-xl font-extrabold text-kunyit">Ajak pemasok Anda bergabung</h2>
         <p class="mt-1">Pemasok cukup mengirim WhatsApp ke nomor Pasok Bali, misalnya:</p>
-        <p class="mt-2 rounded-xl bg-daun-tua px-4 py-3 font-mono text-sm">DAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari</p>
+        <p class="mt-2 rounded bg-daun-tua px-4 py-3 font-mono text-sm">DAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari</p>
         <a href="{{ route('simulator.index') }}" class="mt-3 inline-block font-bold text-kunyit underline">Coba alurnya di Simulator WA →</a>
     </aside>
 </x-app.layout>

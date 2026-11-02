@@ -1,7 +1,7 @@
 @props(['size' => 40, 'tone' => 'gelap', 'wordmark' => true])
 
 @php
-    $roof = $tone === 'terang' ? 'var(--color-kertas)' : 'var(--color-daun-tua)';
+    $roof = $tone === 'terang' ? 'var(--color-kertas)' : 'var(--color-tinta)';
     $wood = $tone === 'terang' ? 'var(--color-kertas)' : 'var(--color-tinta)';
     $mid = $tone === 'terang' ? 'var(--color-daun-tua)' : 'var(--color-kertas)';
 @endphp
@@ -19,6 +19,6 @@
         <rect x="10" y="38" width="28" height="2.2" fill="{{ $wood }}"/>
     </svg>
     @if ($wordmark)
-        <span @class(['font-display text-[1.45rem] leading-none tracking-tight', 'text-daun-tua' => $tone !== 'terang', 'text-kertas' => $tone === 'terang'])>Pasok Bali</span>
+        <span @class(['font-display text-[1.6rem] leading-none', 'text-tinta' => $tone !== 'terang', 'text-kertas' => $tone === 'terang'])>Pasok Bali</span>
     @endif
 </span>

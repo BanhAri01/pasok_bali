@@ -41,7 +41,7 @@
             @if ($business)
                 <nav class="hidden items-center gap-1 lg:flex">
                     @foreach ($nav as [$route, $label, $pattern])
-                        <a href="{{ route($route) }}" @class(['rounded-lg px-3 py-2 text-sm font-semibold transition', 'bg-daun-muda text-daun-tua' => request()->routeIs($pattern), 'text-abu hover:bg-santan hover:text-tinta' => ! request()->routeIs($pattern)])>{{ $label }}</a>
+                        <a href="{{ route($route) }}" @class(['rounded px-3 py-2 text-sm font-semibold transition', 'bg-kunyit text-tinta' => request()->routeIs($pattern), 'text-abu hover:bg-santan hover:text-tinta' => ! request()->routeIs($pattern)])>{{ $label }}</a>
                     @endforeach
                 </nav>
             @endif
@@ -50,11 +50,11 @@
                 @auth
                     <form method="POST" action="{{ route('logout') }}" class="hidden sm:block">
                         @csrf
-                        <button class="rounded-lg px-3 py-2 text-sm font-semibold text-abu hover:text-terakota">Keluar</button>
+                        <button class="rounded px-3 py-2 text-sm font-semibold text-abu hover:text-terakota">Keluar</button>
                     </form>
                 @endauth
                 @if ($business)
-                    <button type="button" class="rounded-lg border border-garis px-3 py-2 text-sm font-semibold lg:hidden" @click="buka = !buka" :aria-expanded="buka">Menu</button>
+                    <button type="button" class="rounded border-2 border-tinta px-3 py-2 text-sm font-semibold lg:hidden" @click="buka = !buka" :aria-expanded="buka">Menu</button>
                 @endif
             </div>
         </div>
@@ -62,11 +62,11 @@
         @if ($business)
             <nav class="border-t border-garis px-4 py-2 lg:hidden" x-show="buka" x-cloak>
                 @foreach ($nav as [$route, $label, $pattern])
-                    <a href="{{ route($route) }}" @class(['block rounded-lg px-3 py-2 text-sm font-semibold', 'bg-daun-muda text-daun-tua' => request()->routeIs($pattern)])>{{ $label }}</a>
+                    <a href="{{ route($route) }}" @class(['block rounded px-3 py-2 text-sm font-semibold', 'bg-kunyit text-tinta' => request()->routeIs($pattern)])>{{ $label }}</a>
                 @endforeach
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-terakota">Keluar</button>
+                    <button class="block w-full rounded px-3 py-2 text-left text-sm font-semibold text-terakota">Keluar</button>
                 </form>
             </nav>
         @endif
@@ -74,11 +74,11 @@
 
     <main class="mx-auto max-w-6xl px-4 py-6 sm:py-8">
         @if (session('status'))
-            <div class="mb-5 rounded-xl border border-daun/30 bg-daun-muda px-4 py-3 text-sm font-medium text-daun-tua" role="status">{{ session('status') }}</div>
+            <div class="mb-5 rounded border border-daun/30 bg-daun-muda px-4 py-3 text-sm font-medium text-daun-tua" role="status">{{ session('status') }}</div>
         @endif
 
         @if ($errors->any())
-            <div class="mb-5 rounded-xl border border-terakota/30 bg-terakota-muda px-4 py-3 text-sm text-terakota" role="alert">
+            <div class="mb-5 rounded border border-terakota/30 bg-terakota-muda px-4 py-3 text-sm text-terakota" role="alert">
                 <ul class="list-inside list-disc space-y-1">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>

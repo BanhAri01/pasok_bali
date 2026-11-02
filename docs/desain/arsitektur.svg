@@ -3,48 +3,48 @@
   <desc id="deskripsi-arsitektur">Diagram alur sistem Pasok Bali dari Pengguna ke Frontend, Backend Laravel 13, Database terisolasi per usaha, Layanan AI Gemini atau Claude, Hasil Kepatuhan Pergub Bali 99/2018, serta jalur komunikasi dua arah WhatsApp Pemasok Lokal.</desc>
   <defs>
     <style>
-      .f-judul { font-family: 'Gloock', Georgia, 'Times New Roman', serif; font-weight: 400; }
+      .f-judul { font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif; font-weight: 760; font-stretch: 78%; }
       .f-sans { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-      .teks-tinta { fill: #1d1915; }
-      .teks-abu { fill: #6b6459; }
-      .teks-kertas { fill: #fbfaf7; }
-      .teks-daun { fill: #1b3a1e; }
-      .teks-terakota { fill: #a3221b; }
+      .teks-tinta { fill: #1a1612; }
+      .teks-abu { fill: #675e51; }
+      .teks-kertas { fill: #fffcf5; }
+      .teks-daun { fill: #23401e; }
+      .teks-terakota { fill: #c2381f; }
       .teks-kunyit { fill: #7a5812; }
-      .kotak-kertas { fill: #fbfaf7; stroke: #dcd6cb; stroke-width: 1.5; }
-      .kotak-daun { fill: #e2eadb; stroke: #2d5a2f; stroke-width: 1.75; }
-      .kotak-daun-tua { fill: #1b3a1e; stroke: #1b3a1e; stroke-width: 1.5; }
-      .kotak-kunyit { fill: #f3e6c4; stroke: #c2922f; stroke-width: 1.75; }
-      .kotak-terakota { fill: #f4ddd8; stroke: #a3221b; stroke-width: 1.75; }
-      .kotak-tinta { fill: #1d1915; stroke: #c2922f; stroke-width: 1.5; }
-      .panah-utama { stroke: #1d1915; stroke-width: 2.2; fill: none; }
-      .panah-ai { stroke: #a3221b; stroke-width: 2.2; stroke-dasharray: 5 4; fill: none; }
-      .panah-wa { stroke: #2d5a2f; stroke-width: 2.2; fill: none; }
-      .panah-hasil { stroke: #c2922f; stroke-width: 2.4; fill: none; }
+      .kotak-kertas { fill: #fffcf5; stroke: #d6cbb7; stroke-width: 1.5; }
+      .kotak-daun { fill: #dfead0; stroke: #3b6a33; stroke-width: 1.75; }
+      .kotak-daun-tua { fill: #23401e; stroke: #23401e; stroke-width: 1.5; }
+      .kotak-kunyit { fill: #f8e4ad; stroke: #e0a526; stroke-width: 1.75; }
+      .kotak-terakota { fill: #f6d8cd; stroke: #c2381f; stroke-width: 1.75; }
+      .kotak-tinta { fill: #1a1612; stroke: #e0a526; stroke-width: 1.5; }
+      .panah-utama { stroke: #1a1612; stroke-width: 2.2; fill: none; }
+      .panah-ai { stroke: #c2381f; stroke-width: 2.2; stroke-dasharray: 5 4; fill: none; }
+      .panah-wa { stroke: #3b6a33; stroke-width: 2.2; fill: none; }
+      .panah-hasil { stroke: #e0a526; stroke-width: 2.4; fill: none; }
     </style>
     <marker id="m-tinta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#1d1915"/>
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#1a1612"/>
     </marker>
     <marker id="m-terakota" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#a3221b"/>
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#c2381f"/>
     </marker>
     <marker id="m-daun" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#2d5a2f"/>
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#3b6a33"/>
     </marker>
     <marker id="m-kunyit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#c2922f"/>
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#e0a526"/>
     </marker>
   </defs>
 
-  <rect x="0" y="0" width="1200" height="780" fill="#f1efea"/>
+  <rect x="0" y="0" width="1200" height="780" fill="#f2ece0"/>
 
-  <rect x="0" y="0" width="400" height="8" fill="#a3221b"/>
-  <rect x="400" y="0" width="400" height="8" fill="#fbfaf7"/>
-  <rect x="800" y="0" width="400" height="8" fill="#1d1915"/>
-  <rect x="0" y="8" width="1200" height="3" fill="#c2922f"/>
+  <rect x="0" y="0" width="400" height="8" fill="#c2381f"/>
+  <rect x="400" y="0" width="400" height="8" fill="#fffcf5"/>
+  <rect x="800" y="0" width="400" height="8" fill="#1a1612"/>
+  <rect x="0" y="8" width="1200" height="3" fill="#e0a526"/>
 
   <text x="36" y="46" class="f-judul teks-tinta" font-size="24">Arsitektur Teknis &amp; Alur Data Pasok Bali</text>
-  <text x="36" y="68" class="f-sans teks-abu" font-size="13" font-weight="500">Alur terpadu pengukuran mandiri Pergub Bali No. 99/2018 (User → Frontend → Backend → Database → AI/API → Result) dan jalur WhatsApp pemasok lokal</text>
+  <text x="36" y="68" class="f-sans teks-abu" font-size="13" font-weight="500">User → Frontend → Backend → Database → AI/API → Result, ditambah jalur WhatsApp pemasok lokal</text>
 
   <g transform="translate(820, 26)">
     <rect x="0" y="0" width="344" height="46" rx="6" class="kotak-kertas"/>
@@ -60,9 +60,9 @@
 
   <g transform="translate(36, 92)">
     <rect x="0" y="0" width="185" height="390" rx="8" class="kotak-kertas"/>
-    <rect x="0" y="0" width="185" height="38" rx="8" fill="#1d1915"/>
-    <rect x="0" y="26" width="185" height="12" fill="#1d1915"/>
-    <circle cx="22" cy="19" r="10" fill="#c2922f"/>
+    <rect x="0" y="0" width="185" height="38" rx="8" fill="#1a1612"/>
+    <rect x="0" y="26" width="185" height="12" fill="#1a1612"/>
+    <circle cx="22" cy="19" r="10" fill="#e0a526"/>
     <text x="22" y="23" text-anchor="middle" class="f-sans teks-tinta" font-size="11" font-weight="800">1</text>
     <text x="40" y="24" class="f-sans teks-kertas" font-size="13" font-weight="700">User (Pengguna)</text>
 
@@ -90,9 +90,9 @@
 
   <g transform="translate(245, 92)">
     <rect x="0" y="0" width="205" height="390" rx="8" class="kotak-kertas"/>
-    <rect x="0" y="0" width="205" height="38" rx="8" fill="#a3221b"/>
-    <rect x="0" y="26" width="205" height="12" fill="#a3221b"/>
-    <circle cx="22" cy="19" r="10" fill="#fbfaf7"/>
+    <rect x="0" y="0" width="205" height="38" rx="8" fill="#c2381f"/>
+    <rect x="0" y="26" width="205" height="12" fill="#c2381f"/>
+    <circle cx="22" cy="19" r="10" fill="#fffcf5"/>
     <text x="22" y="23" text-anchor="middle" class="f-sans teks-terakota" font-size="11" font-weight="800">2</text>
     <text x="40" y="24" class="f-sans teks-kertas" font-size="13" font-weight="700">Frontend (Web UI)</text>
 
@@ -122,9 +122,9 @@
 
   <g transform="translate(474, 92)">
     <rect x="0" y="0" width="248" height="390" rx="8" class="kotak-kertas"/>
-    <rect x="0" y="0" width="248" height="38" rx="8" fill="#1d1915"/>
-    <rect x="0" y="26" width="248" height="12" fill="#1d1915"/>
-    <circle cx="22" cy="19" r="10" fill="#c2922f"/>
+    <rect x="0" y="0" width="248" height="38" rx="8" fill="#1a1612"/>
+    <rect x="0" y="26" width="248" height="12" fill="#1a1612"/>
+    <circle cx="22" cy="19" r="10" fill="#e0a526"/>
     <text x="22" y="23" text-anchor="middle" class="f-sans teks-tinta" font-size="11" font-weight="800">3</text>
     <text x="40" y="24" class="f-sans teks-kertas" font-size="13" font-weight="700">Backend (Laravel 13 / PHP 8.3+)</text>
 
@@ -156,9 +156,9 @@
 
   <g transform="translate(746, 92)">
     <rect x="0" y="0" width="208" height="186" rx="8" class="kotak-kertas"/>
-    <rect x="0" y="0" width="208" height="36" rx="8" fill="#2d5a2f"/>
-    <rect x="0" y="24" width="208" height="12" fill="#2d5a2f"/>
-    <circle cx="22" cy="18" r="10" fill="#fbfaf7"/>
+    <rect x="0" y="0" width="208" height="36" rx="8" fill="#3b6a33"/>
+    <rect x="0" y="24" width="208" height="12" fill="#3b6a33"/>
+    <circle cx="22" cy="18" r="10" fill="#fffcf5"/>
     <text x="22" y="22" text-anchor="middle" class="f-sans teks-daun" font-size="11" font-weight="800">4</text>
     <text x="40" y="23" class="f-sans teks-kertas" font-size="12.5" font-weight="700">Database &amp; Storage</text>
 
@@ -175,9 +175,9 @@
 
   <g transform="translate(746, 296)">
     <rect x="0" y="0" width="208" height="186" rx="8" class="kotak-kertas"/>
-    <rect x="0" y="0" width="208" height="36" rx="8" fill="#a3221b"/>
-    <rect x="0" y="24" width="208" height="12" fill="#a3221b"/>
-    <circle cx="22" cy="18" r="10" fill="#fbfaf7"/>
+    <rect x="0" y="0" width="208" height="36" rx="8" fill="#c2381f"/>
+    <rect x="0" y="24" width="208" height="12" fill="#c2381f"/>
+    <circle cx="22" cy="18" r="10" fill="#fffcf5"/>
     <text x="22" y="22" text-anchor="middle" class="f-sans teks-terakota" font-size="11" font-weight="800">5</text>
     <text x="40" y="23" class="f-sans teks-kertas" font-size="12.5" font-weight="700">AI / API Eksternal</text>
 
@@ -194,9 +194,9 @@
 
   <g transform="translate(978, 92)">
     <rect x="0" y="0" width="186" height="390" rx="8" class="kotak-tinta"/>
-    <rect x="0" y="0" width="186" height="38" rx="8" fill="#c2922f"/>
-    <rect x="0" y="26" width="186" height="12" fill="#c2922f"/>
-    <circle cx="22" cy="19" r="10" fill="#1d1915"/>
+    <rect x="0" y="0" width="186" height="38" rx="8" fill="#e0a526"/>
+    <rect x="0" y="26" width="186" height="12" fill="#e0a526"/>
+    <circle cx="22" cy="19" r="10" fill="#1a1612"/>
     <text x="22" y="23" text-anchor="middle" class="f-sans teks-kertas" font-size="11" font-weight="800">6</text>
     <text x="40" y="24" class="f-sans teks-tinta" font-size="13" font-weight="800">Result (Keluaran)</text>
 
@@ -230,9 +230,9 @@
 
   <g transform="translate(36, 514)">
     <rect x="0" y="0" width="1128" height="232" rx="10" class="kotak-daun"/>
-    <rect x="0" y="0" width="1128" height="38" rx="10" fill="#1b3a1e"/>
-    <rect x="0" y="26" width="1128" height="12" fill="#1b3a1e"/>
-    <circle cx="24" cy="19" r="10" fill="#c2922f"/>
+    <rect x="0" y="0" width="1128" height="38" rx="10" fill="#23401e"/>
+    <rect x="0" y="26" width="1128" height="12" fill="#23401e"/>
+    <circle cx="24" cy="19" r="10" fill="#e0a526"/>
     <text x="24" y="23" text-anchor="middle" class="f-sans teks-tinta" font-size="10.5" font-weight="800">WA</text>
     <text x="44" y="24" class="f-sans teks-kertas" font-size="13.5" font-weight="700">Jalur Inklusif Pemasok Lokal Bali (WhatsApp Dua Arah &amp; Simulator Web — Tanpa Instal Aplikasi)</text>
 

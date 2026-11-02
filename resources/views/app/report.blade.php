@@ -3,11 +3,11 @@
         <h1 class="font-display text-3xl font-black text-daun-tua">Laporan bulanan</h1>
         <div class="flex flex-wrap items-center gap-3">
             <x-app.month-picker :month="$month" route="report" />
-            <button type="button" onclick="window.print()" class="rounded-xl bg-daun px-5 py-2.5 font-bold text-kertas hover:bg-daun-tua">Cetak / simpan PDF</button>
+            <button type="button" onclick="window.print()" class="rounded bg-tinta px-5 py-2.5 font-bold text-kertas hover:bg-taum">Cetak / simpan PDF</button>
         </div>
     </div>
 
-    <article class="mt-6 rounded-2xl border border-garis bg-kertas p-6 print:border-0 print:p-0">
+    <article class="mt-6 border-2 border-tinta bg-kertas p-6 print:border-0 print:p-0">
         <header class="border-b border-garis pb-4">
             <p class="text-sm font-semibold text-daun">Laporan mandiri kepatuhan produk lokal · Pergub Bali No. 99 Tahun 2018</p>
             <h2 class="font-display text-2xl font-black">{{ $business->name }}</h2>

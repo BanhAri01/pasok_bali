@@ -11,7 +11,7 @@
     };
 @endphp
 
-<article {{ $attributes->class(['rounded-2xl border border-garis bg-kertas p-5']) }}>
+<article {{ $attributes->class(['border-2 border-tinta bg-kertas p-5']) }}>
     <div class="flex items-start justify-between gap-3">
         <h3 class="font-display text-base font-bold leading-snug">{{ $group['label'] }}</h3>
         <span class="shrink-0 rounded-full px-2.5 py-1 text-xs font-bold {{ $tone[0] }} {{ $tone[1] }}">{{ $tone[2] }}</span>
@@ -37,7 +37,7 @@
     </dl>
 
     @if ($group['status'] === 'kurang')
-        <p class="mt-3 rounded-xl bg-terakota-muda px-3 py-2 text-sm text-terakota">Perlu tambahan sekitar <strong>{{ \App\Support\Rupiah::number($group['gap_kg']) }} kg</strong> produk lokal Bali bulan ini.</p>
+        <p class="mt-3 rounded bg-terakota-muda px-3 py-2 text-sm text-terakota">Perlu tambahan sekitar <strong>{{ \App\Support\Rupiah::number($group['gap_kg']) }} kg</strong> produk lokal Bali bulan ini.</p>
     @endif
 
     @if ($group['unmeasured'] > 0)

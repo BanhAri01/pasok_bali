@@ -14,7 +14,7 @@
 | Template / Boilerplate | Kerangka aplikasi baru Laravel 13 (`laravel new`). Semua halaman aplikasi, sistem desain, dan landing page dibuat tim. |
 | AI Coding Assistant | Claude Code (Anthropic, model Claude Opus 5.5) dan Google Gemini melalui Antigravity, dipakai untuk membantu menulis kode, tes, desain, dan dokumentasi. Seluruh kode diuji (`php artisan test`) dan ditinjau oleh tim. |
 | Pre-existing Components | Pola gateway AI (pembatas anggaran, pencatatan panggilan, driver kompatibel OpenAI/Anthropic) dan modul pengirim WhatsApp Fonnte diadaptasi dari proyek tim sebelumnya, **Harlok**. Selain itu semua fitur dibangun baru untuk kompetisi ini. |
-| Third-party Assets / Credits | Huruf Bricolage Grotesque dan Plus Jakarta Sans (SIL Open Font License 1.1, dibundel lokal dari paket @fontsource). Ikon dan ilustrasi komoditas berupa SVG buatan tim. Layanan pihak ketiga: Google Gemini API, Anthropic API (opsional), Fonnte WhatsApp API (opsional). |
+| Third-party Assets / Credits | Huruf Bricolage Grotesque dan Plus Jakarta Sans (SIL Open Font License 1.1, dibundel lokal dari paket @fontsource). Arah visual terinspirasi palet pigmen lukisan Kamasan dan warna Tridatu Bali. Ikon dan ilustrasi komoditas berupa SVG buatan tim. Layanan pihak ketiga: Google Gemini API, Anthropic API (opsional), Fonnte WhatsApp API (opsional). |
 
 ## Data yang dikirim ke layanan AI
 

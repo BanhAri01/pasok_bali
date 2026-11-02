@@ -7,9 +7,9 @@
             <div class="mt-6 flex flex-wrap gap-3">
                 <form method="POST" action="{{ route('demo') }}">
                     @csrf
-                    <button class="rounded-xl bg-daun px-5 py-3 font-bold text-kertas hover:bg-daun-tua">Coba demo</button>
+                    <button class="rounded bg-tinta px-5 py-3 font-bold text-kertas hover:bg-taum">Coba demo</button>
                 </form>
-                <a href="{{ route('register') }}" class="rounded-xl border-2 border-daun px-5 py-3 font-bold text-daun hover:bg-daun-muda">Daftarkan usaha</a>
+                <a href="{{ route('register') }}" class="rounded border-2 border-daun px-5 py-3 font-bold text-daun hover:bg-daun-muda">Daftarkan usaha</a>
                 <a href="{{ route('login') }}" class="px-2 py-3 font-semibold text-abu hover:text-tinta">Masuk</a>
             </div>
             @error('demo')
@@ -18,7 +18,7 @@
         </div>
         <ol class="space-y-3">
             @foreach ([['Foto nota', 'Nota cetak, tulisan tangan pasar, atau faktur pemasok dibaca AI menjadi daftar barang.'], ['Hitung kuota', 'Barang dikelompokkan sesuai Pergub, satuan diseragamkan ke kg, asal Bali dicek dari data pemasok.'], ['Sambungkan pemasok lokal', 'Jika kuota kurang, Pasok Bali menyarankan petani, peternak, dan nelayan Bali lalu mengirim permintaan lewat WhatsApp.']] as $i => [$title, $text])
-                <li class="flex gap-4 rounded-2xl border border-garis bg-kertas p-5">
+                <li class="flex gap-4 border-2 border-tinta bg-kertas p-5">
                     <span class="grid size-10 shrink-0 place-items-center rounded-full bg-kunyit font-black">{{ $i + 1 }}</span>
                     <span>
                         <span class="block font-display text-lg font-bold">{{ $title }}</span>

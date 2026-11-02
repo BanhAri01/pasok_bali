@@ -85,7 +85,7 @@ Pasok Bali menggunakan **Google Gemini (`gemini-flash-latest`)** melalui endpoin
 
 ### A. Fitur Inti (MVP — Berjalan Penuh Saat Submit)
 1. **Pembaca Nota AI Vision & 10 Nota Contoh Fiktif:** Unggah foto nota (`JPG`/`PNG`/`WEBP`) ke penyimpanan privat atau coba langsung 10 gambar nota fiktif (tulisan tangan pasar, struk toko, faktur pemasok) dengan pemrosesan latar belakang (`ProcessReceipt`).
-2. **Kamus Produk Bali & Konversi Satuan ke Kilogram:** Mencakup 124 produk di 6 kategori Pergub, 511 alias istilah pasar/bahasa Bali, dan konversi 19 satuan umum ke `kg` (`UnitConverter`), ditambah layar koreksi pengguna.
+2. **Kamus Produk Bali & Konversi Satuan ke Kilogram:** Mencakup 124 produk dalam 6 kategori yang dipetakan ke 4 kelompok kuota Pergub, 511 alias istilah pasar/bahasa Bali, dan konversi satuan pasar ke `kg` per produk (`UnitConverter`, 19 satuan umum dikenali), ditambah layar koreksi pengguna.
 3. **Dasbor Kepatuhan 4 Kelompok & Label Tingkat Bukti:** Menghitung capaian Pertanian (30%), Peternakan (30%), Perikanan (30%), dan Industri Lokal (20%) dengan meter progres dua lapis (terverifikasi vs pernyataan pemasok).
 4. **Rekomendasi Pemasok, Simulasi Kuota, & Draf WA:** Menyajikan produk luar Bali terbesar, kandidat pemasok lokal Bali, simulasi persentase baru setelah peralihan pasokan, dan pengiriman pesan WA.
 5. **Bot WhatsApp Pemasok & Simulator WA di Web:** Pendaftaran pemasok lewat chat (`DAFTAR ...` → `YA`) dan balasan permintaan pasokan (`1` / `2`), dapat diuji langsung di halaman `/simulator-wa` tanpa nomor telepon nyata.
@@ -126,7 +126,7 @@ Pasok Bali menjembatani kesenjangan antara aturan kuota Pergub Bali No. 99/2018 
 |---|---|---|
 | **Pencatatan Nota** | Ketik ulang baris demi baris dari nota kertas | Foto nota (tulisan tangan/cetak) diekstrak AI ke layar koreksi |
 | **Istilah Pasar & Bahasa Bali** | Harus diseragamkan manual oleh staf (*kesuna*, *taluh*, *bw mrh*) | Otomatis mengenali 511 alias ke 124 produk + belajar dari koreksi usaha |
-| **Konversi Satuan ke `kg`** | Buat rumus manual untuk *ikat*, *tray*, *krat*, *ekor*, *sisir* | Konversi otomatis 19 satuan ke `kg`; satuan ambigu (*peti*) ditandai untuk dicek |
+| **Konversi Satuan ke `kg`** | Buat rumus manual untuk *ikat*, *tray*, *krat*, *ekor*, *sisir* | Konversi otomatis ke `kg` sesuai produk; satuan ambigu (*peti*) ditandai untuk dicek |
 | **Tingkat Bukti Lokal** | Tidak membedakan klaim sepihak vs pemasok terverifikasi | Label bukti jelas: **Terverifikasi** (hijau), **Pernyataan** (kuning), **Belum Diketahui** (abu) |
 | **Tindak Lanjut Kuota Kurang** | Berhenti di tabel laporan; cari pemasok sendiri di luar sistem | Rekomendasi pemasok lokal Bali + **simulasi kenaikan %** + kirim pesan WA |
 | **Keterlibatan Petani/Peternak** | Tidak terhubung dengan produsen lokal | Pemasok mendaftar & menerima pesanan cukup lewat WhatsApp tanpa instal aplikasi |
@@ -155,7 +155,7 @@ Selaras dengan [`docs/DISCLOSURE.md`](../DISCLOSURE.md), berikut pengungkapan le
 |---|---|
 | **Framework & Stack** | Backend: PHP 8.3+, Laravel 13. Frontend: Blade, Tailwind CSS 4, Alpine.js 3, Vite 8. Database: SQLite / MySQL / MariaDB. Pengujian: Pest 5 (27 tes, 171 *assertions*). |
 | **Model & Metode AI** | Google Gemini `gemini-flash-latest` via endpoint kompatibel OpenAI (*vision* + JSON Schema); cadangan opsional Anthropic Claude `claude-haiku-5-5`. Perhitungan kuota dan rekomendasi bersifat deterministik (bukan AI). |
-| **Dataset & Aset** | Kamus 124 produk & 511 alias (`ProductSeeder.php`, `database/data/produk.json`), 19 satuan (`satuan.json`), 10 nota fiktif + `kunci.json` (`database/data/nota-demo/`). Huruf lokal `@fontsource/gloock`, `bricolage-grotesque`, dan `plus-jakarta-sans` (SIL OFL 1.1). Ilustrasi & diagram SVG buatan tim. |
+| **Dataset & Aset** | Kamus 124 produk & 511 alias (`ProductSeeder.php`, `database/data/produk.json`), 19 satuan (`satuan.json`), 10 nota fiktif + `kunci.json` (`database/data/nota-demo/`). Huruf lokal Bricolage Grotesque dan Plus Jakarta Sans dari @fontsource (SIL OFL 1.1). Ilustrasi & diagram SVG buatan tim. |
 | **Komponen Pra-eksisting** | Pola *gateway* AI (pembatas anggaran, log `ai_calls`, *driver* OpenAI/Anthropic) dan pengirim WA Fonnte diadaptasi dari proyek tim sebelumnya (**Harlok**). Seluruh fitur Pasok Bali lainnya dibangun baru untuk kompetisi ini. |
 | **AI Coding Assistant** | Claude Code (Anthropic, Claude Opus 5.5) dan Google Gemini (Antigravity) digunakan membantu penulisan kode, tes, desain, data demo, dan dokumentasi, seluruhnya diuji dan ditinjau tim. |
 
