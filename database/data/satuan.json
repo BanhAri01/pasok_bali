@@ -1,0 +1,192 @@
+[
+    {
+        "satuan": "kg",
+        "nama": "Kilogram",
+        "satuan_normalisasi": "kg",
+        "alias_nota": ["kg", "kgs", "kilo", "kilogram", "kilogr", "kl"],
+        "jenis": "pasti",
+        "nilai_kg_bawaan": 1.0,
+        "rentang_wajar": "1 kg",
+        "catatan": "Satuan dasar utama perhitungan volume kepatuhan Pergub Bali No. 99/2018."
+    },
+    {
+        "satuan": "ons",
+        "nama": "Ons (Hektogram)",
+        "satuan_normalisasi": "ons",
+        "alias_nota": ["ons", "on"],
+        "jenis": "pasti",
+        "nilai_kg_bawaan": 0.1,
+        "rentang_wajar": "0,1 kg (100 gram)",
+        "catatan": "Di pasar tradisional Indonesia dan Bali, 1 ons sama dengan 100 gram (0,1 kg). Umum dipakai untuk bumbu dapur, cabai rawit, dan rempah kering."
+    },
+    {
+        "satuan": "gram",
+        "nama": "Gram",
+        "satuan_normalisasi": "gram",
+        "alias_nota": ["g", "gr", "grm", "gram"],
+        "jenis": "pasti",
+        "nilai_kg_bawaan": 0.001,
+        "rentang_wajar": "0,001 kg",
+        "catatan": "Satuan berat metrik untuk rempah bernilai tinggi (vanili, cengkeh, lada) atau kemasan ritel dapur."
+    },
+    {
+        "satuan": "liter",
+        "nama": "Liter",
+        "satuan_normalisasi": "liter",
+        "alias_nota": ["l", "lt", "ltr", "liter", "litre"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": 1.0,
+        "rentang_wajar": "0,90–1,40 kg per liter",
+        "catatan": "Dikonversi ke kilogram menggunakan massa jenis produk (kg_per_satuan_dasar), misalnya minyak goreng sawit ±0,90 kg/liter, minyak kelapa ±0,92 kg/liter, susu segar ±1,03 kg/liter, kecap manis ±1,20 kg/liter, dan madu ±1,40 kg/liter."
+    },
+    {
+        "satuan": "ml",
+        "nama": "Mililiter",
+        "satuan_normalisasi": "ml",
+        "alias_nota": ["ml", "mili", "mililiter"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": 0.001,
+        "rentang_wajar": "0,001 liter",
+        "catatan": "Dikonversi sebesar 1/1000 liter dikalikan kg_per_satuan_dasar produk cair."
+    },
+    {
+        "satuan": "butir",
+        "nama": "Butir",
+        "satuan_normalisasi": "butir",
+        "alias_nota": ["btr", "butir", "bj", "biji", "btir"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,01–0,80 kg per butir",
+        "catatan": "Satuan dasar untuk telur (telur ayam ras ±0,06 kg/butir, telur ayam kampung ±0,045 kg/butir, telur bebek ±0,07 kg/butir, telur puyuh ±0,01 kg/butir) serta terkadang dipakai untuk kelapa kupas (±0,80 kg)."
+    },
+    {
+        "satuan": "ikat",
+        "nama": "Ikat pasar",
+        "satuan_normalisasi": "ikat",
+        "alias_nota": ["ikt", "ikat", "iket"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,05–1,00 kg per ikat",
+        "catatan": "Berat satu ikat di pasar tradisional Bali bervariasi menurut komoditas: kangkung/bayam/kacang panjang rata-rata 0,25 kg, sawi hijau ±0,30 kg, serai ±0,20 kg, daun bawang ±0,10 kg, dan daun bumbu (seledri, kemangi, daun jeruk, daun salam) ±0,05 kg."
+    },
+    {
+        "satuan": "ikat kecil",
+        "nama": "Ikat kecil (eceran pasar)",
+        "satuan_normalisasi": "ikatkecil",
+        "alias_nota": ["ikat kecil", "ikt kecil", "ikt kcl"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,03–0,15 kg per ikat kecil",
+        "catatan": "Ikatan eceran di kios pasar pagi (biasanya setengah dari ikat pengepul/grosir sayur). Karena ukurannya tidak baku antar pedagang, konversi pastinya ditandai perlu pemeriksaan bila tidak disertai timbangan."
+    },
+    {
+        "satuan": "karung",
+        "nama": "Karung (Sak / Zak)",
+        "satuan_normalisasi": "karung",
+        "alias_nota": ["krg", "karung", "sak", "zak"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "10–50 kg per karung",
+        "catatan": "Beras, tepung terigu, kentang, dan wortel umumnya 25 kg per karung; gula pasir dan kedelai grosir 50 kg per karung; bawang merah/putih jaring ±20 kg; es batu kristal 10 kg."
+    },
+    {
+        "satuan": "krat",
+        "nama": "Krat (Peti / Egg crate)",
+        "satuan_normalisasi": "krat",
+        "alias_nota": ["krt", "krat", "peti"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "30 butir telur (±1,8 kg) atau 10–20 kg buah/ikan",
+        "catatan": "Dalam perdagangan telur di Bali, '1 krat' pada nota dapur kerap merujuk pada 1 rak/tray isi 30 butir (±1,8 kg untuk telur ayam ras, ±2,1 kg untuk telur bebek). Namun pada grosir peternak besar, 'peti' kayu/plastik bisa berisi 10–15 kg, dan pada buah/tomat/ikan krat plastik berisi 15–20 kg."
+    },
+    {
+        "satuan": "tray",
+        "nama": "Tray (Rak telur)",
+        "satuan_normalisasi": "tray",
+        "alias_nota": ["try", "tray", "trai", "rak"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "30 butir telur ayam/bebek (±1,8–2,1 kg) atau 90 butir telur puyuh (±0,9 kg)",
+        "catatan": "Satu tray karton/plastik standar berisi 30 butir telur ayam ras (30 × 0,06 kg = 1,8 kg) atau telur bebek (30 × 0,07 kg = 2,1 kg)."
+    },
+    {
+        "satuan": "pack",
+        "nama": "Pack (Bungkus / Pak)",
+        "satuan_normalisasi": "pack",
+        "alias_nota": ["pak", "pack", "pck", "pk", "bungkus", "bks", "pax"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,10–5,00 kg per pack",
+        "catatan": "Kemasan plastik atau mika supermarket/pemasok: jamur, cabai, stroberi, kopi bubuk, garam, dan kerupuk umumnya 0,25 kg (250 g); tepung beras/tahu 0,5 kg; daging potong beku 1 kg."
+    },
+    {
+        "satuan": "btl",
+        "nama": "Botol",
+        "satuan_normalisasi": "botol",
+        "alias_nota": ["btl", "botol"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,34–1,00 liter per botol",
+        "catatan": "Botol kaca/plastik standar Bali (minyak kelapa lengis tanusan, arak Bali, brem, kecap manis, air mineral sedang) umumnya berukuran 600 ml (0,6 liter)."
+    },
+    {
+        "satuan": "dus",
+        "nama": "Dus (Kardus / Karton / Box)",
+        "satuan_normalisasi": "dus",
+        "alias_nota": ["dus", "ds", "box", "kardus", "karton"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "4–20 kg per dus",
+        "catatan": "Air minum kemasan dus gelas/botol rata-rata ±14,4 liter (24 × 600 ml); mi kering 4 kg; tepung maizena karton 12 kg."
+    },
+    {
+        "satuan": "ekor",
+        "nama": "Ekor",
+        "satuan_normalisasi": "ekor",
+        "alias_nota": ["ekr", "ekor", "ek"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,15–2,50 kg per ekor",
+        "catatan": "Unggas dan hasil perikanan utuh: ayam potong karkas rata-rata 1,2 kg, ayam kampung 1,0 kg, bebek 1,5 kg, ikan tongkol ±0,5 kg, ikan nila ±0,3 kg, ikan lele ±0,15 kg."
+    },
+    {
+        "satuan": "sisir",
+        "nama": "Sisir (Pisang)",
+        "satuan_normalisasi": "sisir",
+        "alias_nota": ["sisir", "ssr"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "1,2–2,0 kg per sisir",
+        "catatan": "Khusus buah pisang (rata-rata 1,5 kg per sisir untuk pisang kepok/raja/ambon)."
+    },
+    {
+        "satuan": "buah",
+        "nama": "Buah (Pcs / Biji satuan)",
+        "satuan_normalisasi": "buah",
+        "alias_nota": ["bh", "buah", "pcs", "pc", "biji2", "unit"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "0,05–4,00 kg per buah",
+        "catatan": "Digunakan untuk sayur/buah utuh (kubis ±1 kg, pepaya ±1,5 kg, nanas ±1,2 kg, semangka ±4 kg, kelapa muda ±1,5 kg, kelapa tua ±0,8 kg) dan tahu/tempe satuan."
+    },
+    {
+        "satuan": "jerigen",
+        "nama": "Jerigen",
+        "satuan_normalisasi": "jerigen",
+        "alias_nota": ["jrg", "jerigen", "jirigen"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "5–18 liter per jerigen",
+        "catatan": "Minyak goreng sawit horeka umumnya dijual dalam jerigen 18 liter (±16,2 kg); minyak kelapa dan kecap/saus isi ulang umumnya jerigen 5 liter."
+    },
+    {
+        "satuan": "galon",
+        "nama": "Galon",
+        "satuan_normalisasi": "galon",
+        "alias_nota": ["galon", "gln"],
+        "jenis": "tergantung_produk",
+        "nilai_kg_bawaan": null,
+        "rentang_wajar": "19 liter per galon",
+        "catatan": "Galon standar air minum isi ulang di Indonesia berukuran 19 liter (19 kg)."
+    }
+]

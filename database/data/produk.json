@@ -1,0 +1,1924 @@
+[
+    {
+        "nama": "Beras",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "baas",
+            "bras",
+            "beras putih",
+            "beras lokal",
+            "beras subak",
+            "beras c4",
+            "beras pandan wangi"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 5
+        }
+    },
+    {
+        "nama": "Beras merah",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "baas barak",
+            "beras mrh",
+            "beras merah jatiluwih"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 2
+        }
+    },
+    {
+        "nama": "Beras ketan hitam",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "injin",
+            "ketan hitam",
+            "ketan ireng",
+            "baas injin"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Jagung",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "jagung manis",
+            "jgg",
+            "jagung kulit",
+            "jagung kupas",
+            "sweet corn"
+        ],
+        "konversi": {
+            "buah": 0.25,
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Singkong",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kesela",
+            "ketela pohon",
+            "ubi kayu",
+            "ketela",
+            "cassava"
+        ],
+        "konversi": {
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Ubi jalar",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kesela bun",
+            "ubi",
+            "ketela rambat",
+            "ubi ungu",
+            "ubi madu",
+            "sweet potato"
+        ],
+        "konversi": {
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Talas",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "keladi",
+            "umbi talas",
+            "taro"
+        ],
+        "konversi": {
+            "buah": 0.6,
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Kacang tanah",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kc tanah",
+            "kacang tanah kupas",
+            "peanut"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Kedelai",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kacang kedelai",
+            "kedele",
+            "edamame"
+        ],
+        "konversi": {
+            "karung": 50,
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Kacang hijau",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kacang ijo",
+            "kc hijau",
+            "kc ijo",
+            "mung bean"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Kacang undis",
+        "kategori": "tanaman_pangan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "undis",
+            "kacang gude",
+            "kacang hitam bali"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Bawang merah",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bawang barak",
+            "bw merah",
+            "bw mrh",
+            "bwg merah",
+            "bawang mrh",
+            "brambang",
+            "shallot"
+        ],
+        "konversi": {
+            "ikat": 0.5,
+            "karung": 20
+        }
+    },
+    {
+        "nama": "Bawang putih",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kesuna",
+            "bw putih",
+            "bw pth",
+            "bwg putih",
+            "bawang pth",
+            "garlic",
+            "kesuna bali"
+        ],
+        "konversi": {
+            "ikat": 0.5,
+            "karung": 20
+        }
+    },
+    {
+        "nama": "Bawang bombay",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bombay",
+            "bw bombay",
+            "bwg bombay",
+            "onion"
+        ],
+        "konversi": {
+            "buah": 0.15,
+            "karung": 20
+        }
+    },
+    {
+        "nama": "Cabai rawit",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cabe rawit",
+            "cbe rawit",
+            "tabia",
+            "tabia kerinyi",
+            "tabia krinyi",
+            "tabia cenik",
+            "lombok rawit",
+            "cabai kecil"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Cabai merah besar",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cabe merah",
+            "cabe besar",
+            "cabai merah",
+            "tabia gede",
+            "tabia lombok",
+            "cbe merah",
+            "lombok besar"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Cabai merah keriting",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cabe keriting",
+            "cabai keriting",
+            "cbe keriting",
+            "cbe krtg"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Tomat",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tomat merah",
+            "tmt",
+            "tomat sayur",
+            "tomato"
+        ],
+        "konversi": {
+            "krat": 20
+        }
+    },
+    {
+        "nama": "Kentang",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "ktg",
+            "kentang granola",
+            "kentang bedugul",
+            "potato"
+        ],
+        "konversi": {
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Wortel",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "wotel",
+            "wortle",
+            "wrtl",
+            "carrot",
+            "wortel baby"
+        ],
+        "konversi": {
+            "ikat": 0.5,
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Kubis",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kol",
+            "kobis",
+            "kol putih",
+            "cabbage"
+        ],
+        "konversi": {
+            "buah": 1
+        }
+    },
+    {
+        "nama": "Sawi hijau",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "sawi",
+            "caisim",
+            "sawi manis",
+            "sawi bakso"
+        ],
+        "konversi": {
+            "ikat": 0.3
+        }
+    },
+    {
+        "nama": "Sawi putih",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "petsai",
+            "sawi ptih",
+            "chinese cabbage"
+        ],
+        "konversi": {
+            "buah": 1
+        }
+    },
+    {
+        "nama": "Kangkung",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kangkong",
+            "kangkung cabut",
+            "kangkung air"
+        ],
+        "konversi": {
+            "ikat": 0.25
+        }
+    },
+    {
+        "nama": "Bayam",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bayem",
+            "bayam hijau",
+            "bayam cabut",
+            "spinach"
+        ],
+        "konversi": {
+            "ikat": 0.25
+        }
+    },
+    {
+        "nama": "Sayur paku",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "paku",
+            "pakis",
+            "sayur pakis",
+            "jukut paku",
+            "pucuk paku"
+        ],
+        "konversi": {
+            "ikat": 0.2
+        }
+    },
+    {
+        "nama": "Daun singkong",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "don kesela",
+            "pucuk singkong",
+            "daun ubi",
+            "daun ketela"
+        ],
+        "konversi": {
+            "ikat": 0.25
+        }
+    },
+    {
+        "nama": "Buncis",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bncs",
+            "baby buncis",
+            "buncis muda",
+            "green beans"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Kacang panjang",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kc panjang",
+            "kc pjg",
+            "kacang pjg",
+            "long bean"
+        ],
+        "konversi": {
+            "ikat": 0.25
+        }
+    },
+    {
+        "nama": "Tauge",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "toge",
+            "kecambah",
+            "cambah",
+            "bean sprout"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Terong",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "terung",
+            "trg",
+            "tuung",
+            "terong ungu",
+            "terong bulat",
+            "eggplant"
+        ],
+        "konversi": {
+            "buah": 0.2
+        }
+    },
+    {
+        "nama": "Mentimun",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "timun",
+            "ketimun",
+            "cucumber",
+            "kyuri",
+            "timun jepang"
+        ],
+        "konversi": {
+            "buah": 0.2
+        }
+    },
+    {
+        "nama": "Labu siam",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "jipang",
+            "manisa",
+            "labu jipang",
+            "chayote"
+        ],
+        "konversi": {
+            "buah": 0.25
+        }
+    },
+    {
+        "nama": "Labu kuning",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "waluh",
+            "labu parang",
+            "pumpkin",
+            "butternut pumpkin"
+        ],
+        "konversi": {
+            "buah": 2
+        }
+    },
+    {
+        "nama": "Nangka muda",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "nangka sayur",
+            "tewel",
+            "gori",
+            "nangka lawar"
+        ],
+        "konversi": {
+            "buah": 2.5,
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Batang pisang muda",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "ares",
+            "ares biu",
+            "gedebong pisang"
+        ],
+        "konversi": {
+            "ikat": 1,
+            "buah": 1
+        }
+    },
+    {
+        "nama": "Jantung pisang",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "pusuh biu",
+            "pusuh",
+            "ontong pisang"
+        ],
+        "konversi": {
+            "buah": 0.5
+        }
+    },
+    {
+        "nama": "Selada",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "lettuce",
+            "selada keriting",
+            "selada hijau",
+            "head lettuce",
+            "romaine lettuce"
+        ],
+        "konversi": {
+            "ikat": 0.25,
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Brokoli",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "brocoli",
+            "brokoli hijau",
+            "broccoli"
+        ],
+        "konversi": {
+            "buah": 0.4
+        }
+    },
+    {
+        "nama": "Daun bawang",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bawang daun",
+            "bw daun",
+            "loncang",
+            "spring onion",
+            "leek",
+            "bawang prei"
+        ],
+        "konversi": {
+            "ikat": 0.1
+        }
+    },
+    {
+        "nama": "Seledri",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "sledri",
+            "daun seledri",
+            "celery"
+        ],
+        "konversi": {
+            "ikat": 0.05
+        }
+    },
+    {
+        "nama": "Daun kemangi",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kemangi",
+            "basil",
+            "sweet basil",
+            "daun basil"
+        ],
+        "konversi": {
+            "ikat": 0.05,
+            "pack": 0.1
+        }
+    },
+    {
+        "nama": "Jahe",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "jae",
+            "jahe gajah",
+            "jahe emprit",
+            "jahe merah",
+            "ginger"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Kunyit",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kunir",
+            "kunyit basah",
+            "turmeric"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Lengkuas",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "laos",
+            "isen",
+            "galangal"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Kencur",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cekuh",
+            "aromatic ginger"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Serai",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "sereh",
+            "sere",
+            "lemongrass"
+        ],
+        "konversi": {
+            "ikat": 0.2
+        }
+    },
+    {
+        "nama": "Daun jeruk",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "daun limau",
+            "daun jeruk purut",
+            "don juuk purut",
+            "kaffir lime leaf"
+        ],
+        "konversi": {
+            "ikat": 0.05
+        }
+    },
+    {
+        "nama": "Daun pandan",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "don pandan",
+            "pandan wangi",
+            "pandan leaf"
+        ],
+        "konversi": {
+            "ikat": 0.1
+        }
+    },
+    {
+        "nama": "Kecombrang",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bongkot",
+            "kecicang",
+            "honje",
+            "bunga kecombrang",
+            "torch ginger"
+        ],
+        "konversi": {
+            "buah": 0.15,
+            "ikat": 0.5
+        }
+    },
+    {
+        "nama": "Jeruk limau",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "lemo",
+            "juuk lemo",
+            "juuk lengis",
+            "jeruk sambal",
+            "limau sambal"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Jeruk nipis",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "juuk nipis",
+            "limau",
+            "jeruk pecel",
+            "lime"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Jeruk",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "juuk",
+            "jeruk manis",
+            "jeruk kintamani",
+            "jeruk siam",
+            "orange"
+        ],
+        "konversi": {
+            "krat": 20
+        }
+    },
+    {
+        "nama": "Pisang",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "biu",
+            "pisang kepok",
+            "pisang raja",
+            "pisang ambon",
+            "pisang cavendish",
+            "banana"
+        ],
+        "konversi": {
+            "sisir": 1.5
+        }
+    },
+    {
+        "nama": "Pepaya",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "gedang",
+            "papaya",
+            "pepaya california"
+        ],
+        "konversi": {
+            "buah": 1.5
+        }
+    },
+    {
+        "nama": "Semangka",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "watermelon",
+            "semangka merah",
+            "semangka non biji"
+        ],
+        "konversi": {
+            "buah": 4
+        }
+    },
+    {
+        "nama": "Nanas",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "manas",
+            "nenas",
+            "pineapple",
+            "nanas madu"
+        ],
+        "konversi": {
+            "buah": 1.2
+        }
+    },
+    {
+        "nama": "Salak",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "salak bali",
+            "salak gula pasir",
+            "salak sibetan",
+            "snake fruit"
+        ],
+        "konversi": {
+            "krat": 15
+        }
+    },
+    {
+        "nama": "Mangga",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "poh",
+            "mangga harum manis",
+            "mangga manalagi",
+            "mango"
+        ],
+        "konversi": {
+            "buah": 0.35
+        }
+    },
+    {
+        "nama": "Alpukat",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "avocado",
+            "apokat",
+            "alpukat mentega"
+        ],
+        "konversi": {
+            "buah": 0.3
+        }
+    },
+    {
+        "nama": "Buah naga",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "dragon fruit",
+            "buah naga merah"
+        ],
+        "konversi": {
+            "buah": 0.45
+        }
+    },
+    {
+        "nama": "Stroberi",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "strawberry",
+            "stroberi bedugul"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Jamur tiram",
+        "kategori": "hortikultura",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "jamur",
+            "oyster mushroom",
+            "jamur putih"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Kelapa",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "nyuh",
+            "kelapa tua",
+            "klp",
+            "kelapa parut"
+        ],
+        "konversi": {
+            "buah": 0.8,
+            "butir": 0.8
+        }
+    },
+    {
+        "nama": "Kelapa muda",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kuud",
+            "nyuh muda",
+            "degan",
+            "young coconut"
+        ],
+        "konversi": {
+            "buah": 1.5,
+            "butir": 1.5
+        }
+    },
+    {
+        "nama": "Kopi biji",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kopi beras",
+            "green bean",
+            "biji kopi",
+            "kopi arabika kintamani",
+            "kopi robusta pupuan"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Biji kakao",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kakao",
+            "coklat biji",
+            "cacao bean"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Cengkeh",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cengkih",
+            "bunga cengkeh",
+            "cloves"
+        ],
+        "konversi": {
+            "pack": 0.1
+        }
+    },
+    {
+        "nama": "Lada putih",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "mica putih",
+            "merica putih",
+            "merica",
+            "mica",
+            "sahang",
+            "white pepper"
+        ],
+        "konversi": {
+            "pack": 0.1
+        }
+    },
+    {
+        "nama": "Lada hitam",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "mica selem",
+            "merica hitam",
+            "black pepper"
+        ],
+        "konversi": {
+            "pack": 0.1
+        }
+    },
+    {
+        "nama": "Ketumbar biji",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "ketumbar",
+            "ktmbr",
+            "coriander seed"
+        ],
+        "konversi": {
+            "pack": 0.1
+        }
+    },
+    {
+        "nama": "Kemiri",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tingkih",
+            "kemiri kupas",
+            "candlenut"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Cabai jawa",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tabia bun",
+            "cabe jawa",
+            "cabe puyang",
+            "long pepper"
+        ],
+        "konversi": {
+            "pack": 0.1
+        }
+    },
+    {
+        "nama": "Asam jawa",
+        "kategori": "perkebunan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "celagi",
+            "lunak",
+            "asem jawa",
+            "asem",
+            "tamarind"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Telur ayam ras",
+        "kategori": "peternakan",
+        "satuan_dasar": "butir",
+        "kg_per_satuan_dasar": 0.06,
+        "alias": [
+            "telur",
+            "telor",
+            "tlr",
+            "taluh",
+            "taluh siap",
+            "telur ayam",
+            "telur negeri"
+        ],
+        "konversi": {
+            "krat": 30,
+            "tray": 30
+        }
+    },
+    {
+        "nama": "Telur ayam kampung",
+        "kategori": "peternakan",
+        "satuan_dasar": "butir",
+        "kg_per_satuan_dasar": 0.045,
+        "alias": [
+            "taluh siap kampung",
+            "telur kampung",
+            "telor kampung",
+            "tlr kampung",
+            "free range egg"
+        ],
+        "konversi": {
+            "krat": 30,
+            "tray": 30,
+            "pack": 10
+        }
+    },
+    {
+        "nama": "Telur bebek",
+        "kategori": "peternakan",
+        "satuan_dasar": "butir",
+        "kg_per_satuan_dasar": 0.07,
+        "alias": [
+            "taluh bebek",
+            "telor bebek",
+            "tlr bebek",
+            "duck egg"
+        ],
+        "konversi": {
+            "krat": 30,
+            "tray": 30
+        }
+    },
+    {
+        "nama": "Telur puyuh",
+        "kategori": "peternakan",
+        "satuan_dasar": "butir",
+        "kg_per_satuan_dasar": 0.01,
+        "alias": [
+            "taluh puyuh",
+            "telor puyuh",
+            "tlr puyuh",
+            "quail egg"
+        ],
+        "konversi": {
+            "krat": 90,
+            "tray": 90,
+            "pack": 30
+        }
+    },
+    {
+        "nama": "Daging ayam",
+        "kategori": "peternakan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "ayam",
+            "ayam potong",
+            "be siap",
+            "ayam broiler",
+            "dada ayam",
+            "paha ayam",
+            "fillet ayam",
+            "sayap ayam"
+        ],
+        "konversi": {
+            "ekor": 1.2
+        }
+    },
+    {
+        "nama": "Ayam kampung",
+        "kategori": "peternakan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "siap kampung",
+            "ayam kmpg",
+            "ayam pejantan"
+        ],
+        "konversi": {
+            "ekor": 1
+        }
+    },
+    {
+        "nama": "Daging bebek",
+        "kategori": "peternakan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bebek",
+            "be bebek",
+            "bebek potong",
+            "duck meat"
+        ],
+        "konversi": {
+            "ekor": 1.5
+        }
+    },
+    {
+        "nama": "Daging babi",
+        "kategori": "peternakan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "babi",
+            "be celeng",
+            "celeng",
+            "daging celeng",
+            "samcan",
+            "babi has",
+            "iga babi",
+            "pork belly",
+            "pork loin"
+        ],
+        "konversi": {
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Daging sapi",
+        "kategori": "peternakan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "sapi",
+            "be sampi",
+            "daging sampi",
+            "has dalam",
+            "tenderloin",
+            "sirloin",
+            "iga sapi",
+            "buntut sapi"
+        ],
+        "konversi": {
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Susu sapi segar",
+        "kategori": "peternakan",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 1.03,
+        "alias": [
+            "susu segar",
+            "susu murni",
+            "fresh milk"
+        ],
+        "konversi": {
+            "botol": 1,
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Madu murni",
+        "kategori": "peternakan",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 1.4,
+        "alias": [
+            "madu",
+            "madu bali",
+            "madu kele",
+            "madu klanceng",
+            "honey"
+        ],
+        "konversi": {
+            "botol": 0.35
+        }
+    },
+    {
+        "nama": "Ikan tongkol",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tongkol",
+            "be tongkol",
+            "tkl",
+            "pindang tongkol"
+        ],
+        "konversi": {
+            "ekor": 0.5
+        }
+    },
+    {
+        "nama": "Ikan tuna",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tuna",
+            "tuna loin",
+            "yellowfin tuna",
+            "be tuna"
+        ],
+        "konversi": {
+            "ekor": 2.5
+        }
+    },
+    {
+        "nama": "Ikan cakalang",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cakalang",
+            "skipjack"
+        ],
+        "konversi": {
+            "ekor": 1.2
+        }
+    },
+    {
+        "nama": "Ikan kakap",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kakap",
+            "kakap merah",
+            "snapper",
+            "red snapper",
+            "kakap putih",
+            "barramundi"
+        ],
+        "konversi": {
+            "ekor": 0.8
+        }
+    },
+    {
+        "nama": "Ikan kerapu",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kerapu",
+            "grouper",
+            "kerapu macan"
+        ],
+        "konversi": {
+            "ekor": 0.7
+        }
+    },
+    {
+        "nama": "Ikan lemuru",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "lemuru",
+            "ikan sarden",
+            "kucingan"
+        ],
+        "konversi": {
+            "krat": 15
+        }
+    },
+    {
+        "nama": "Ikan mahi-mahi",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "mahi mahi",
+            "lemadang",
+            "ikan lemadang"
+        ],
+        "konversi": {
+            "ekor": 2
+        }
+    },
+    {
+        "nama": "Ikan tenggiri",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tenggiri",
+            "tengiri",
+            "spanish mackerel"
+        ],
+        "konversi": {
+            "ekor": 1.5
+        }
+    },
+    {
+        "nama": "Ikan nila",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "nila",
+            "mujair",
+            "ikan mujair",
+            "be mujair",
+            "tilapia"
+        ],
+        "konversi": {
+            "ekor": 0.3
+        }
+    },
+    {
+        "nama": "Ikan lele",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "lele",
+            "be lele",
+            "catfish"
+        ],
+        "konversi": {
+            "ekor": 0.15
+        }
+    },
+    {
+        "nama": "Ikan gurame",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "gurame",
+            "gurami",
+            "ikan gurami"
+        ],
+        "konversi": {
+            "ekor": 0.6
+        }
+    },
+    {
+        "nama": "Udang",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "udang vaname",
+            "udang windu",
+            "udg",
+            "prawn",
+            "shrimp"
+        ],
+        "konversi": {
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Cumi-cumi",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "cumi",
+            "sotong",
+            "squid",
+            "calamari"
+        ],
+        "konversi": {
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Kepiting",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kepiting bakau",
+            "crab",
+            "rajungan"
+        ],
+        "konversi": {
+            "ekor": 0.35
+        }
+    },
+    {
+        "nama": "Rumput laut",
+        "kategori": "perikanan",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bulung",
+            "bulung boni",
+            "bulung rambut",
+            "agar laut",
+            "seaweed"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Minyak kelapa",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 0.92,
+        "alias": [
+            "lengis nyuh",
+            "lengis tanusan",
+            "minyak klp",
+            "vco",
+            "coconut oil"
+        ],
+        "konversi": {
+            "botol": 0.6,
+            "jerigen": 5
+        }
+    },
+    {
+        "nama": "Minyak goreng sawit",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 0.9,
+        "alias": [
+            "minyak goreng",
+            "migor",
+            "minyak sawit",
+            "bimoli",
+            "myk goreng"
+        ],
+        "konversi": {
+            "jerigen": 18,
+            "pack": 2,
+            "botol": 1
+        }
+    },
+    {
+        "nama": "Santan kelapa",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 1.01,
+        "alias": [
+            "santan",
+            "santen",
+            "coconut milk",
+            "coconut cream"
+        ],
+        "konversi": {
+            "pack": 0.2,
+            "botol": 1
+        }
+    },
+    {
+        "nama": "Gula pasir",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "gula",
+            "gula putih",
+            "gls"
+        ],
+        "konversi": {
+            "karung": 50,
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Gula aren",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "gula bali",
+            "gula merah",
+            "gula kelapa",
+            "gula juruh",
+            "palm sugar"
+        ],
+        "konversi": {
+            "pack": 0.5,
+            "botol": 0.6
+        }
+    },
+    {
+        "nama": "Garam",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "uyah",
+            "garam laut",
+            "garam bali",
+            "garam amed",
+            "garam kusamba",
+            "sea salt"
+        ],
+        "konversi": {
+            "pack": 0.25,
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Terasi",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "sera",
+            "terasi udang",
+            "belacan",
+            "shrimp paste"
+        ],
+        "konversi": {
+            "pack": 0.25,
+            "buah": 0.05
+        }
+    },
+    {
+        "nama": "Kopi bubuk",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "kopi",
+            "kopi bali",
+            "kopi giling",
+            "kopi sangrai",
+            "roasted coffee"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Arak Bali",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 0.95,
+        "alias": [
+            "arak",
+            "arak tradisional"
+        ],
+        "konversi": {
+            "botol": 0.6
+        }
+    },
+    {
+        "nama": "Brem Bali",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "brem"
+        ],
+        "konversi": {
+            "botol": 0.6
+        }
+    },
+    {
+        "nama": "Tepung terigu",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "terigu",
+            "tepung",
+            "wheat flour"
+        ],
+        "konversi": {
+            "karung": 25,
+            "pack": 1
+        }
+    },
+    {
+        "nama": "Tepung beras",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tepung baas",
+            "rice flour"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Tepung tapioka",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tapioka",
+            "tepung kanji",
+            "kanji",
+            "aci",
+            "tapioca starch"
+        ],
+        "konversi": {
+            "pack": 0.5,
+            "karung": 25
+        }
+    },
+    {
+        "nama": "Kecap manis",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 1.2,
+        "alias": [
+            "kecap",
+            "kcp",
+            "sweet soy sauce"
+        ],
+        "konversi": {
+            "botol": 0.6,
+            "jerigen": 5
+        }
+    },
+    {
+        "nama": "Tahu",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tahu putih",
+            "tahu goreng",
+            "tahu kuning",
+            "tofu"
+        ],
+        "konversi": {
+            "buah": 0.05,
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Tempe",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "tmp",
+            "tempe papan",
+            "tempe daun"
+        ],
+        "konversi": {
+            "buah": 0.25,
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Roti",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "roti tawar",
+            "bread",
+            "roti bun"
+        ],
+        "konversi": {
+            "buah": 0.08,
+            "pack": 0.4
+        }
+    },
+    {
+        "nama": "Kerupuk",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "krupuk",
+            "kerupuk udang",
+            "kerupuk kulit",
+            "rambak"
+        ],
+        "konversi": {
+            "pack": 0.25,
+            "kaleng": 1
+        }
+    },
+    {
+        "nama": "Base genep",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "bumbu bali",
+            "base gede",
+            "bumbu genep",
+            "bumbu rajang"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Urutan Bali",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "urutan",
+            "urutan babi",
+            "sosis bali"
+        ],
+        "konversi": {
+            "pack": 0.5
+        }
+    },
+    {
+        "nama": "Ikan asin",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "gerang",
+            "be gerang",
+            "ikan teri",
+            "teri nasi",
+            "teri medan"
+        ],
+        "konversi": {
+            "pack": 0.25
+        }
+    },
+    {
+        "nama": "Telur asin",
+        "kategori": "industri",
+        "satuan_dasar": "butir",
+        "kg_per_satuan_dasar": 0.07,
+        "alias": [
+            "taluh uyah",
+            "telor asin",
+            "salted egg"
+        ],
+        "konversi": {
+            "krat": 30,
+            "tray": 30,
+            "pack": 6
+        }
+    },
+    {
+        "nama": "Air minum kemasan",
+        "kategori": "industri",
+        "satuan_dasar": "liter",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "air mineral",
+            "aqua",
+            "air galon",
+            "amdk"
+        ],
+        "konversi": {
+            "galon": 19,
+            "botol": 0.6,
+            "dus": 14.4
+        }
+    },
+    {
+        "nama": "Es batu",
+        "kategori": "industri",
+        "satuan_dasar": "kg",
+        "kg_per_satuan_dasar": 1,
+        "alias": [
+            "es",
+            "es balok",
+            "es kristal",
+            "ice cube"
+        ],
+        "konversi": {
+            "karung": 10,
+            "pack": 1
+        }
+    }
+]
