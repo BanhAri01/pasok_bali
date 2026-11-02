@@ -10,6 +10,8 @@ use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
+    public const AMBIGUOUS_UNITS = ['krat'];
+
     public const BASE = [
         ['Beras', 'tanaman_pangan', 'kg', 1, ['karung' => 25], ['baas', 'bras', 'beras putih', 'beras lokal']],
         ['Beras merah', 'tanaman_pangan', 'kg', 1, [], ['baas barak', 'beras mrh']],
@@ -117,7 +119,22 @@ class ProductSeeder extends Seeder
                     continue;
                 }
 
-                if ($rows->contains(fn ($row) => Text::key($row['name']) === Text::key($item['nama']))) {
+                $kgPerBase = (float) ($item['kg_per_satuan_dasar'] ?? 1) ?: 1;
+                $conversions = collect($item['konversi'] ?? [])
+                    ->filter(fn ($value, $unit) => is_numeric($value) && $value > 0 && ! in_array(Text::unit($unit), self::AMBIGUOUS_UNITS, true))
+                    ->mapWithKeys(fn ($value, $unit) => [Text::unit($unit) => (float) $value]);
+                $aliases = array_values(array_filter((array) ($item['alias'] ?? []), 'is_string'));
+                $index = $rows->search(fn ($row) => Text::key($row['name']) === Text::key($item['nama']));
+
+                if ($index !== false) {
+                    $row = $rows[$index];
+                    $row['aliases'] = array_merge($row['aliases'], $aliases);
+                    $row['conversions'] = $conversions
+                        ->map(fn ($value) => round($value * $kgPerBase / $row['kg_per_base'], 4))
+                        ->merge($row['conversions'])
+                        ->all();
+                    $rows[$index] = $row;
+
                     continue;
                 }
 
@@ -125,9 +142,9 @@ class ProductSeeder extends Seeder
                     'name' => mb_substr($item['nama'], 0, 80),
                     'category' => $item['kategori'],
                     'base_unit' => in_array($item['satuan_dasar'] ?? 'kg', ['kg', 'liter', 'butir'], true) ? $item['satuan_dasar'] : 'kg',
-                    'kg_per_base' => (float) ($item['kg_per_satuan_dasar'] ?? 1) ?: 1,
-                    'conversions' => collect($item['konversi'] ?? [])->filter(fn ($value) => is_numeric($value) && $value > 0)->mapWithKeys(fn ($value, $unit) => [Text::unit($unit) => (float) $value])->all(),
-                    'aliases' => array_values(array_filter((array) ($item['alias'] ?? []), 'is_string')),
+                    'kg_per_base' => $kgPerBase,
+                    'conversions' => $conversions->all(),
+                    'aliases' => $aliases,
                 ]);
             }
         }
