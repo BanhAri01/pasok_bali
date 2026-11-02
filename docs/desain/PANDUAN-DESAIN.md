@@ -1,91 +1,113 @@
-# Panduan Desain Pasok Bali
+# Panduan Desain Pasok Bali (Gaya Pigmen Kamasan)
 
-Dokumen ini menjadi acuan visual dan komponen antarmuka **Pasok Bali** (Bali DigiFest 2026 — *AI Web Innovation Challenge*). Arah visual mengangkat nuansa **pasar tradisional & hasil bumi Bali**: hijau daun pisang, kuning kunyit/janur, terakota bata Bali, dan latar santan hangat, dipadukan dengan estetika **nota belanja pasar** yang rapi dan mudah dipahami pengelola dapur hotel/restoran maupun pemasok lokal.
-
----
-
-## 1. Prinsip Utama Desain
-
-1. **Bumi & Pasar Bali (Bukan Bawaan Biru-Abu Tailwind):** Seluruh permukaan menggunakan palet hangat (`santan`, `kertas`, `garis`) dengan aksen berani hijau daun pisang (`daun`, `daun-tua`), kuning kunyit (`kunyit`), dan bata terakota (`terakota`).
-2. **Tanpa Label Huruf Kapital (`uppercase`):** Seluruh teks, badge, dan subjudul menggunakan *sentence case* yang ramah dibaca. Hindari penggunaan `uppercase tracking-widest` di atas judul.
-3. **Satu Elemen Khas Utama:** Komposisi **"Secarik Nota Pasar & Papan Daun Serapan"** (`.nota-pasar` di dalam `.papan-daun`) yang menggambarkan perjalanan selembar nota belanja dapur menjadi angka kepatuhan Pergub Bali No. 99/2018.
-4. **Kejujuran Tingkat Bukti:** Setiap angka serapan lokal wajib membedakan antara lokal **terverifikasi** (hijau `daun`), lokal **pernyataan pemasok** (kuning `kunyit`), **asal belum diketahui** (abu `santan`), dan **luar Bali / campuran** (`terakota`).
-5. **Mandiri Tanpa CDN:** Seluruh huruf (`Bricolage Grotesque` dan `Plus Jakarta Sans`) serta ilustrasi SVG komoditas dibundel secara lokal di dalam repositori.
+Dokumen ini menjadi acuan visual dan komponen antarmuka **Pasok Bali** (Bali DigiFest 2026 — *AI Web Innovation Challenge*). Arah visual mengangkat **palet pigmen lukisan klasik Kamasan (Klungkung, Bali)** yang berpadu dengan garis tinta hitam tegas (`2px`), sudut siku/tegas (`0.25rem`), blok warna bidang datar tanpa bayangan kabur, serta tipografi variabel yang dipadatkan.
 
 ---
 
-## 2. Token Warna (`resources/css/app.css`)
+## 1. Prinsip Utama & Larangan Desain
 
-Nama token di `@theme` dipertahankan agar selaras dengan seluruh halaman aplikasi:
+### Prinsip Utama
+1. **Pigmen Lukisan Kamasan & Bidang Warna Berani:** Mengangkat warna pigmen mineral/alami khas lukisan wayang Kamasan—kuning *atal* (`kunyit`), merah oker *pere* (`terakota`), biru nila *taum* (`taum`), jelaga *mangsi* (`tinta`), hijau daun (`daun`), dan kain blacu/ulon (`santan` & `kertas`). Halaman dibuka langsung di atas bidang kuning *atal* (`bg-kunyit`), bukan latar putih/krem pucat.
+2. **Garis Kontur Mangsi 2px (`border-2 border-tinta`):** Sebagaimana lukisan Kamasan membingkai setiap figur dengan garis kontur tinta hitam (*nyawi*), seluruh kartu, nota, pita blok kuota, dan kotak input dibingkai dengan garis `2px solid var(--color-tinta)` tanpa bayangan lembut (*drop shadow* kabur).
+3. **Sudut Tegas (`0.25rem` / `rounded`):** Kartu dan tombol memakai radius kecil yang tegas (`--radius-kartu: 0.25rem`, `--radius-tombol: 0.25rem`), bukan kartu membulat besar (`rounded-2xl`) atau tombol pil (`rounded-full`).
+4. **Tipografi Display Padat & Kontras Ukuran Ekstrem:** Judul menggunakan `Bricolage Grotesque Variable` yang dipadatkan (`font-stretch: 78%`, `font-weight: 760`, `letter-spacing: -0.025em`) dengan ukuran besar dan rapat (`leading-[0.84]` hingga `leading-[0.92]`).
+5. **Satu Interaksi Khas di Halaman Depan:** Komponen **Nota Dagang Men Sari** yang interaktif di halaman depan: pengunjung dapat mengetuk baris istilah pasar Bali (*kesuna*, *bawang barak*, *tabia*, *taluh*, *be siap*, *be tongkol*, *uyah*, *migor*) dan melihat 4 blok kuota Pergub di bawahnya bergerak secara langsung.
+6. **Mandiri Tanpa CDN:** Seluruh berkas huruf (`.woff2`) dan aset SVG dibundel lokal di dalam repositori.
 
-| Token CSS / Kelas Tailwind | Nilai Hex | Peran & Kegunaan | Kontras WCAG |
+### Larangan Visual (Wajib Dihindari)
+- **DILARANG memakai klise "krem hangat + huruf serif editorial"** (seperti Gloock/Playfair di atas latar krem pucat) yang terasa seperti templat generik AI.
+- **DILARANG memakai kartu membulat besar (`rounded-xl` / `rounded-2xl`) dengan bayangan abu-abu lembut (`shadow-md` / `shadow-lg`).** Gunakan `rounded` dan `border-2 border-tinta`.
+- **DILARANG memakai label huruf kapital kecil di atas judul** (`uppercase tracking-widest text-xs` atau *eyebrow badge* pil). Gunakan kalimat biasa (*sentence case*).
+- **DILARANG menaruh ikon panah dekoratif di dalam tombol utama** (seperti `Coba demo →` atau ikon SVG panah di samping teks tombol). Tulis label tombol secara lugas: `Coba demo`, `Coba dengan dapur contoh`, `Daftarkan usaha`.
+
+---
+
+## 2. Palet Warna Pigmen Kamasan (`resources/css/app.css`)
+
+Seluruh token didefinisikan pada blok `@theme` di `resources/css/app.css`:
+
+| Token CSS / Kelas Tailwind | Nilai Hex | Pigmen Kamasan & Makna Visual | Kegunaan Utama |
 |---|---|---|---|
-| `--color-santan` (`bg-santan`) | `#FAF4E6` | Latar utama halaman (nuansa santan / anyaman lontar hangat) | Latar dasar |
-| `--color-kertas` (`bg-kertas`) | `#FFFFFF` | Permukaan kartu, tabel, formulir, dan kertas nota | Latar kartu |
-| `--color-tinta` (`text-tinta`) | `#17231C` | Teks utama arang-hutan gelap di atas `santan`, `kertas`, dan `kunyit` | **15,2 : 1** di atas `kertas` (AAA) |
-| `--color-abu` (`text-abu`) | `#526056` | Teks sekunder, keterangan satuan, dan label pendukung | **5,5 : 1** di atas `santan` (AA) |
-| `--color-garis` (`border-garis`) | `#E2D9C5` | Garis tepi kartu, pembatas baris tabel, dan garis nota | Pembatas struktural |
-| `--color-daun` (`bg-daun`, `text-daun`) | `#1B663A` | Aksi utama (tombol primer), bar kuota terverifikasi, status patuh | **6,9 : 1** dengan `kertas` (AA) |
-| `--color-daun-tua` (`bg-daun-tua`, `text-daun-tua`) | `#103F23` | Judul utama, hover tombol primer, dan latar `.papan-daun` | **11,5 : 1** dengan `kertas` (AAA) |
-| `--color-daun-muda` (`bg-daun-muda`) | `#E2F2E6` | Latar pill navigasi aktif, badge memenuhi kuota, dan sorotan lembut | Dipasangkan dengan `text-daun-tua` |
-| `--color-kunyit` (`bg-kunyit`, `ring-kunyit`) | `#F0B400` | Aksen perhatian, bar lokal pernyataan pemasok, nomor langkah, fokus keyboard | **10,6 : 1** dengan `tinta` (AAA) |
-| `--color-kunyit-muda` (`bg-kunyit-muda`) | `#FEF0C2` | Latar kartu rekomendasi berdampak, pita pengumuman demo, badge pernyataan | Dipasangkan dengan `text-tinta` |
-| `--color-terakota` (`text-terakota`, `bg-terakota`) | `#B84320` | Status kurang kuota, peringatan koreksi, dan barang luar Bali | **5,3 : 1** di atas `kertas` (AA) |
-| `--color-terakota-muda` (`bg-terakota-muda`) | `#FCE3DA` | Latar pesan kekurangan kuota (gap kg) dan alert validasi | Dipasangkan dengan `text-terakota` |
+| `--color-kunyit` (`bg-kunyit`) | `#e0a526` | **Atal** (kuning batu oker/kunyit) | Latar panggung pembuka (hero landing), penanda pernyataan pemasok, pita navigasi aktif |
+| `--color-kunyit-muda` (`bg-kunyit-muda`) | `#f8e4ad` | **Atal Muda** | Sorotan baris nota saat disentuh/dibaca, kartu rekomendasi, pita pemberitahuan mode demo |
+| `--color-terakota` (`bg-terakota`, `text-terakota`) | `#c2381f` | **Pere / Gincu** (merah tanah/sinabar) | Blok kuota Peternakan, pita penutup ajakan (CTA), status kurang kuota, barang luar Bali |
+| `--color-terakota-muda` (`bg-terakota-muda`) | `#f6d8cd` | **Pere Muda** | Latar pesan kekurangan kuota (`gap_kg`), badge luar Bali, dan kotak peringatan kesalahan |
+| `--color-taum` (`bg-taum`, `text-taum`) | `#24305b` | **Taum** (biru nila/indigo daun taum) | Blok kuota Perikanan, bagian pemasok WhatsApp, tombol aksi sekunder (`Baca semua`), hover tombol utama, outline fokus |
+| `--color-taum-muda` (`bg-taum-muda`) | `#dde1ef` | **Taum Muda** | Permukaan aksen biru nila lembut dan pembagi halus |
+| `--color-daun` (`bg-daun`, `text-daun`) | `#3b6a33` | **Hijau Daun / Gadang** (campuran atal & taum) | Blok kuota Pertanian, bar progres lokal terverifikasi, badge status patuh |
+| `--color-daun-tua` (`bg-daun-tua`, `text-daun-tua`) | `#23401e` | **Hijau Tua** | Judul halaman dalam aplikasi dan teks status patuh di atas latar terang |
+| `--color-daun-muda` (`bg-daun-muda`) | `#dfead0` | **Hijau Muda** | Latar notifikasi berhasil dan pesan masuk pada Simulator WA |
+| `--color-tinta` (`bg-tinta`, `text-tinta`, `border-tinta`) | `#1a1612` | **Mangsi** (hitam jelaga lampu minyak) | Teks utama, garis kontur `2px` pada seluruh kartu/tabel/tombol, tombol aksi utama, blok kuota Industri lokal |
+| `--color-kertas` (`bg-kertas`, `text-kertas`) | `#fffcf5` | **Kain Ulon / Kapur** (putih gading terang) | Permukaan kertas nota (`.nota-pasar`), kartu konten, tabel, dan teks di atas latar gelap |
+| `--color-santan` (`bg-santan`) | `#f2ece0` | **Kain Blacu Mentah** | Latar dasar halaman tubuh (`<body>`) dan latar trek meter kuota |
+| `--color-abu` (`text-abu`) | `#675e51` | **Abu Tanah Liat** | Teks sekunder, keterangan satuan, dan catatan kaki |
+| `--color-garis` (`border-garis`, `bg-garis`) | `#d6cbb7` | **Garis Tenun** | Garis pembagi baris internal tabel dan penanda asal barang yang belum diketahui |
 
 ---
 
-## 3. Tipografi Lokal (`resources/css/fonts/`)
+## 3. Tipografi Lokal (`resources/css/app.css`)
 
-Huruf diambil dari paket `@fontsource-variable` dalam format `.woff2` (`latin` dan `latin-ext`) yang disimpan langsung di `resources/css/fonts/` dan dimuat melalui `resources/css/fonts/fonts.css`:
+Seluruh huruf dimuat secara lokal dari paket `@fontsource-variable` (tanpa CDN eksternal):
 
-- **Huruf Judul & Angka (`--font-display` / `font-display`):**
-  - Keluarga: **`Bricolage Grotesque`** (`font-weight: 200..900`).
-  - Karakter: Tegas, hangat, dan memiliki kepribadian papan pasar modern untuk judul halaman (`text-3xl`/`text-4xl`/`text-5xl font-black`), subjudul (`font-extrabold`/`font-bold`), serta angka persentase kuota.
-- **Huruf Teks Bacaan & Antarmuka (`--font-sans` / `font-sans`):**
-  - Keluarga: **`Plus Jakarta Sans`** (`font-weight: 200..800`).
-  - Karakter: Sangat jernih pada ukuran kecil (`text-xs`, `text-sm`) untuk tabel rincian nota, formulir koreksi, dan pesan simulasi WhatsApp.
-- **Utilitas Angka (`angka-tabel`):**
-  - Kelas `@utility angka-tabel` menerapkan `font-family: var(--font-display)` dan `font-variant-numeric: tabular-nums` agar deretan angka berat (`kg`), harga (`Rp`), dan persentase (`%`) sejajar lurus secara vertikal.
+1. **Huruf Judul & Angka (`--font-display` / `.font-display`):**
+   - Keluarga: `'Bricolage Grotesque Variable'`, dibundel lewat `@import '@fontsource-variable/bricolage-grotesque/standard.css'`.
+   - Pengaturan kustom di `.font-display`:
+     ```css
+     .font-display {
+         font-stretch: 78%;
+         font-weight: 760;
+         letter-spacing: -0.025em;
+     }
+     ```
+   - Dipakai pada judul hero (`text-[clamp(3.6rem,10vw,9.5rem)] leading-[0.84]`), judul bagian (`text-[clamp(2.6rem,5.5vw,4.8rem)] leading-[0.92]`), nama istilah Bali di nota (`font-display text-xl`), serta angka persentase kuota (`font-display text-7xl leading-none angka-tabel`).
+2. **Huruf Bacaan & Antarmuka (`--font-sans` / `font-sans`):**
+   - Keluarga: `'Plus Jakarta Sans'` (`resources/css/fonts/fonts.css`).
+   - Dipakai untuk paragraf penjelasan, tabel nota, formulir koreksi, dan percakapan WhatsApp.
+3. **Utilitas Angka Tabel (`angka-tabel`):**
+   - Menerapkan `font-variant-numeric: tabular-nums` agar angka berat (`kg`), harga (`Rp`), dan persentase (`%`) sejajar lurus secara vertikal.
 
 ---
 
-## 4. Radius, Bayangan, dan Kelas Khas
+## 4. Garis Kontur, Sudut, dan Utilitas Khas
 
 Didefinisikan di `resources/css/app.css`:
 
-- **Radius:**
-  - `--radius-kartu: 1rem` (`16px` / `rounded-2xl`) untuk kartu konten, daftar nota, dan meter kuota.
-  - `--radius-tombol: 0.75rem` (`12px` / `rounded-xl`) untuk tombol aksi dan kotak input.
-- **Bayangan:**
-  - `--shadow-kartu`: `0 2px 6px -1px rgb(23 35 28 / 0.05), 0 1px 2px -1px rgb(23 35 28 / 0.04)` — bayangan tipis bernuansa hijau-arang untuk kartu di atas latar `santan`.
-  - `--shadow-angkat`: `0 14px 28px -8px rgb(16 63 35 / 0.14), 0 4px 10px -2px rgb(16 63 35 / 0.06)` — bayangan tegas untuk papan sorotan utama.
-- **Kelas Permukaan Khas (`@layer components`):**
-  - `.nota-pasar`: Kartu kertas putih dengan garis-garis horizontal tipis menyerupai buku nota pasar (`repeating-linear-gradient` setiap `32px`).
-  - `.papan-daun`: Panel hijau daun pisang tua (`--color-daun-tua`) dengan pendar hangat kuning kunyit dan daun di sudutnya.
-  - `progress.ui-progress`: Styling elemen `<progress>` native lintas peramban (`::-webkit-progress-value` dan `::-moz-progress-bar` dipisahkan agar aturan CSS tidak diabaikan peramban).
+- **Sudut Tegas:**
+  - `--radius-kartu: 0.25rem` (`4px` / kelas `rounded`)
+  - `--radius-tombol: 0.25rem` (`4px` / kelas `rounded`)
+- **Garis Kontur Pengganti Bayangan:**
+  - `--shadow-kartu: 0 0 0 1.5px var(--color-tinta)`
+  - `--shadow-angkat: 0 0 0 2px var(--color-tinta)`
+  - `@utility garis-tebal` → `border: 2px solid var(--color-tinta)`
+- **Kelas Komponen CSS:**
+  - `.nota-pasar`: `background-color: var(--color-kertas); border: 2px solid var(--color-tinta);`
+  - `.papan-daun`: `background-color: var(--color-taum); color: var(--color-kertas);`
+  - `@utility tridatu`: pita tiga jalur vertikal (`terakota`, `kertas`, `tinta`) setinggi `h-1` atau `h-2` sebagai pembatas header/footer.
+- **Fokus Keyboard:**
+  - `:focus-visible` menggunakan `outline: 3px solid var(--color-taum); outline-offset: 2px;`.
 
 ---
 
 ## 5. Komponen Blade Dasar (`resources/views/components/ui/`)
 
+> **Catatan:** Komponen `<x-ui.logo>` (`resources/views/components/ui/logo.blade.php`) menampilkan ikon lumbung padi Bali (*jineng*) beserta teks `Pasok Bali` dan tidak boleh diubah strukturnya.
+
 ### 5.1. Tombol (`<x-ui.button>`)
 File: `resources/views/components/ui/button.blade.php`
 
-Merender `<button>` secara bawaan, atau `<a>` bila prop `href` diisi.
+Menggunakan sudut `rounded`, teks `font-semibold`, tanpa bayangan, dan tanpa ikon panah.
 
 - **Props:**
-  - `variant`: `'primary'` (bawaan, hijau daun), `'kunyit'` (kuning kunyit teks tinta), `'secondary'` (garis tepi hijau daun), `'subtle'` (kertas garis halus), `'terakota'` (merah bata), `'ghost'`.
-  - `size`: `'sm'`, `'md'` (bawaan), `'lg'`.
-  - `type`: `'button'` (bawaan), `'submit'`.
-  - `href`: URL tujuan bila berupa tautan.
+  - `variant`: `'primary'` (bawaan: `bg-tinta text-kertas hover:bg-taum`), `'daun'` (`bg-daun text-kertas hover:bg-daun-tua`), `'taum'` (`bg-taum text-kertas hover:bg-tinta`), `'kunyit'` (`border-2 border-tinta bg-kunyit text-tinta hover:bg-kunyit-muda`), `'secondary'` / `'outline'` / `'garis'` (`border-2 border-tinta bg-transparent text-tinta hover:bg-tinta hover:text-kertas`), `'subtle'` / `'halus'` (`border-2 border-tinta bg-kertas text-tinta hover:bg-santan`), `'terakota'` (`bg-terakota text-kertas hover:bg-tinta`), `'ghost'`.
+  - `size`: `'sm'` (`px-3.5 py-2 text-xs`), `'md'` (bawaan `px-5 py-3 text-sm`), `'lg'` (`px-7 py-4 text-base`).
+  - `href`: bila diisi akan merender elemen `<a>`, bila kosong merender `<button>`.
 
 **Contoh pemakaian:**
 ```blade
 <form method="POST" action="{{ route('demo') }}">
     @csrf
     <x-ui.button type="submit" variant="primary" size="lg">
-        Coba demo
+        Coba dengan dapur contoh
     </x-ui.button>
 </form>
 
@@ -99,16 +121,18 @@ Merender `<button>` secara bawaan, atau `<a>` bila prop `href` diisi.
 ### 5.2. Kartu (`<x-ui.card>`)
 File: `resources/views/components/ui/card.blade.php`
 
+Seluruh varian kartu menggunakan sudut `rounded` (`0.25rem`), bingkai `border-2 border-tinta`, dan tanpa bayangan kabur.
+
 - **Props:**
-  - `variant`: `'default'` (kertas putih + border garis), `'santan'` (latar santan), `'kunyit'` (latar kunyit muda + border kunyit 2px), `'terakota'`, `'daun'` (papan daun tua teks terang), `'nota'` (efek kertas nota bergaris).
-  - `padding`: `'none'`, `'sm'` (`p-4`), `'md'` (bawaan `p-5 sm:p-6`), `'lg'` (`p-6 sm:p-8`).
-  - `as`: tag HTML pembungkus (`'div'`, `'article'`, `'section'`, `'aside'`, `'li'`).
+  - `variant`: `'default'` (`bg-kertas text-tinta`), `'santan'` (`bg-santan text-tinta`), `'kunyit'` / `'sorot'` (`bg-kunyit-muda text-tinta`), `'terakota'` (`bg-terakota-muda text-tinta`), `'daun'` (`bg-daun text-kertas`), `'taum'` / `'papan'` (`bg-taum text-kertas`), `'nota'` (`nota-pasar text-tinta`).
+  - `padding`: `'none'`, `'sm'` (`p-4`), `'md'` (`p-5 sm:p-6`), `'lg'` (`p-6 sm:p-8`).
+  - `as`: `'div'`, `'article'`, `'section'`, `'aside'`, `'li'`.
 
 **Contoh pemakaian:**
 ```blade
 <x-ui.card variant="kunyit" padding="md" as="article">
-    <h3 class="font-display text-lg font-bold">Langkah paling berdampak</h3>
-    <p class="mt-1 text-sm">Beralih ke pemasok telur lokal di Tabanan menaikkan kuota peternakan ke 34%.</p>
+    <p class="text-sm font-semibold text-abu">Peternakan</p>
+    <p class="mt-1 font-display text-lg">Telur ayam ras: 30 kg bulan ini belum dari pemasok lokal</p>
 </x-ui.card>
 ```
 
@@ -117,12 +141,11 @@ File: `resources/views/components/ui/card.blade.php`
 ### 5.3. Badge Tingkat Bukti (`<x-ui.evidence-badge>`)
 File: `resources/views/components/ui/evidence-badge.blade.php`
 
-Menampilkan tingkat kejelasan asal komoditas dengan tiga warna utama (hijau, kuning, abu) serta varian terakota untuk luar Bali/campuran.
+Menampilkan status kejelasan asal barang dengan sudut `rounded`, garis `border-2 border-tinta`, dan kotak penanda warna persegi (`size-2 border border-tinta`).
 
 - **Props:**
-  - `level`: `'hijau'` (`terverifikasi`), `'kuning'` (`pernyataan`), `'abu'` (`belum_diketahui`), atau `'luar'` / `'campuran'`.
+  - `level`: `'hijau'` (`terverifikasi`), `'kuning'` (`pernyataan`), `'abu'` (`belum_diketahui`), `'luar'`, `'campuran'`.
   - Atau kombinasi `origin` (`'bali'`, `'luar'`, `'campuran'`, `'belum_diketahui'`) dan `evidence` (`'terverifikasi'`, `'pernyataan'`, `'belum_diketahui'`).
-  - `label`: teks kustom opsional.
 
 **Contoh pemakaian:**
 ```blade
@@ -136,46 +159,41 @@ Menampilkan tingkat kejelasan asal komoditas dengan tiga warna utama (hijau, kun
 ### 5.4. Meter Persentase Kuota (`<x-ui.quota-meter>`)
 File: `resources/views/components/ui/quota-meter.blade.php`
 
-Menampilkan capaian serapan lokal per kelompok Pergub Bali No. 99/2018 lengkap dengan ikon komoditas, angka persentase besar, progress bar dua lapis (**hijau** untuk lokal terverifikasi, **kuning** untuk lokal pernyataan pemasok), garis vertikal batas kuota (`30%` atau `20%`), serta rincian berat (`kg`).
-
-- **Props:**
-  - `group`: array kelompok dari `ComplianceCalculator` (`label`, `percent`, `verified_percent`, `quota`, `status`, `total_kg`, `verified_kg`, `declared_kg`, `outside_kg`, `unknown_kg`, `gap_kg`, `unmeasured`), **ATAU**
-  - Props mandiri: `label`, `commodity` (`'sayur'`, `'beras'`, `'telur'`, `'ikan'`, `'kopi'`), `percent`, `verifiedPercent`, `quota`, `status` (`'patuh'`, `'kurang'`, `'kosong'`), `gapKg`, `compact` (`true`/`false`).
+Menampilkan kartu capaian kuota per kelompok Pergub Bali No. 99/2018 dengan bingkai `rounded border-2 border-tinta bg-kertas p-5`, angka persentase `.font-display`, dan batang progres siku berbingkai `border-2 border-tinta` dua lapis (`bg-daun` untuk lokal terverifikasi dan `bg-kunyit` untuk lokal pernyataan pemasok).
 
 **Contoh pemakaian:**
 ```blade
-{{-- Dengan data langsung dari ComplianceCalculator --}}
 <x-ui.quota-meter :group="$group" />
-
-{{-- Mode ringkas untuk peragaan --}}
-<x-ui.quota-meter
-    label="Peternakan"
-    commodity="telur"
-    :percent="18"
-    :verifiedPercent="10"
-    :quota="30"
-    status="kurang"
-    :gapKg="12"
-    :compact="true"
-/>
 ```
 
 ---
 
-### 5.5. Ilustrasi SVG Komoditas Bali (`<x-ui.commodity-icon>`)
-File: `resources/views/components/ui/commodity-icon.blade.php`
+## 6. Contoh Pola Layout dari Halaman Depan (`landing/index.blade.php`)
 
-Ilustrasi vektor ringan komoditas utama yang diatur dalam Pergub Bali No. 99/2018:
-- `telur`: Telur di atas krat peternak lokal (`peternakan`)
-- `sayur`: Daun pisang & sayuran segar (`hortikultura`)
-- `beras`: Bulir padi subak Bali (`tanaman_pangan`)
-- `ikan`: Ikan laut segar pesisir Bali (`perikanan`)
-- `kopi`: Biji kopi & olahan lokal (`perkebunan` / `industri`)
-- `nota`: Secarik nota belanja pasar
+### 6.1. Pita 4 Blok Kuota Berbingkai Mangsi
+Empat kelompok kuota Pergub ditampilkan sebagai grid bidang warna penuh (`bg-daun`, `bg-terakota`, `bg-taum`, `bg-tinta`) yang dibatasi garis `border-tinta` `2px`:
 
-**Contoh pemakaian:**
 ```blade
-<x-ui.commodity-icon name="telur" size="md" />
-<x-ui.commodity-icon name="sayur" size="sm" />
-<x-ui.commodity-icon name="ikan" size="lg" />
+<div class="grid border-y-2 border-tinta sm:grid-cols-2 lg:grid-cols-4" aria-live="polite">
+    <div class="bg-daun border-tinta px-5 py-7 text-kertas sm:px-8 lg:border-r-2">
+        <div class="flex items-baseline justify-between gap-3">
+            <h2 class="font-semibold">Pertanian</h2>
+            <p class="text-sm text-kertas/75">kuota 30%</p>
+        </div>
+        <p class="mt-3 font-display text-7xl leading-none angka-tabel">67%</p>
+    </div>
+</div>
+```
+
+### 6.2. Daftar Tingkat Bukti dengan Balok Warna Samping
+Pada bagian `#bukti`, setiap tingkat bukti menggunakan kotak warna vertikal di sisi kiri (`grid-cols-[3.5rem_1fr] border-2 border-tinta bg-kertas`):
+
+```blade
+<li class="grid grid-cols-[3.5rem_1fr] border-2 border-tinta bg-kertas">
+    <span class="bg-daun border-r-2 border-tinta" aria-hidden="true"></span>
+    <div class="px-5 py-4">
+        <p class="font-semibold">Terverifikasi</p>
+        <p class="mt-1 text-tinta/75">Pemasok sudah diperiksa admin sebagai produsen di Bali.</p>
+    </div>
+</li>
 ```
