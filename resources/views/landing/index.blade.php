@@ -4,666 +4,289 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Ukur sendiri kepatuhan Pergub Bali No. 99/2018 dari foto nota belanja dapur dengan AI, lalu terhubung langsung dengan petani, peternak, dan nelayan lokal Bali lewat WhatsApp.">
-    <title>Pasok Bali · Ukur serapan produk lokal Bali dari nota belanja</title>
+    <meta name="description" content="Ukur sendiri kepatuhan Pergub Bali No. 99/2018 dari foto nota belanja dapur dengan AI, lalu terhubung dengan petani, peternak, dan nelayan lokal Bali lewat WhatsApp.">
+    <meta name="theme-color" content="#1b3a1e">
+    <title>Pasok Bali · Ukur produk lokal Bali dari nota belanja</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-santan font-sans text-tinta antialiased selection:bg-kunyit selection:text-tinta">
-    <div class="border-b border-garis bg-kunyit-muda px-4 py-2 text-center text-xs sm:text-sm font-medium text-tinta">
-        Peragaan <strong>Bali DigiFest 2026</strong> · Seluruh contoh nota, usaha, dan pemasok di mode demo adalah <strong>data fiktif</strong>.
-    </div>
+<body class="min-h-screen bg-santan font-sans text-tinta antialiased selection:bg-kunyit-muda">
+    @php
+        $nota = [
+            ['kesuna', '2 kg', 'Bawang putih', 'Pertanian'],
+            ['taluh', '3 tray', 'Telur ayam ras', 'Peternakan'],
+            ['baas', '1 karung', 'Beras', 'Pertanian'],
+            ['be siap', '4 ekor', 'Daging ayam', 'Peternakan'],
+            ['tabia', '1 kg', 'Cabai rawit', 'Pertanian'],
+            ['uyah', '2 pack', 'Garam', 'Industri lokal'],
+        ];
+        $kamus = [
+            ['kesuna', 'bawang putih'],
+            ['bawang barak', 'bawang merah'],
+            ['taluh', 'telur'],
+            ['baas', 'beras'],
+            ['tabia', 'cabai rawit'],
+            ['biu', 'pisang'],
+            ['nyuh', 'kelapa'],
+            ['be siap', 'daging ayam'],
+            ['be celeng', 'daging babi'],
+            ['gula bali', 'gula aren'],
+            ['uyah', 'garam'],
+            ['arak', 'arak Bali'],
+        ];
+        $kuota = [
+            ['Pertanian', 'Tanaman pangan, hortikultura, dan perkebunan: beras, sayur, buah, kopi, kelapa.', 30],
+            ['Peternakan', 'Telur, daging ayam, daging babi, daging sapi, dan susu.', 30],
+            ['Perikanan', 'Ikan laut, ikan tawar, udang, cumi, dan hasil laut lain.', 30],
+            ['Industri lokal', 'Olahan Bali seperti gula aren, garam, arak, dan minyak kelapa.', 20],
+        ];
+    @endphp
 
-    <header class="sticky top-0 z-30 border-b border-garis bg-santan/95 backdrop-blur-sm" x-data="{ menuTerbuka: false }">
-        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
-            <a href="{{ route('home') }}" class="flex items-center gap-3">
-                <span class="grid size-10 place-items-center rounded-xl bg-daun text-kunyit shadow-xs">
-                    <svg viewBox="0 0 28 28" fill="none" class="size-6" aria-hidden="true">
-                        <path d="M6 21C5.5 12.5 11.2 6 22 5C21.5 15.2 15.8 21.5 6 21Z" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                        <path d="M6 21C11 16 16 11 22 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="19" cy="19" r="3" fill="#FEF0C2"/>
-                    </svg>
-                </span>
-                <span class="leading-tight">
-                    <span class="block font-display text-xl font-extrabold text-daun-tua">Pasok Bali</span>
-                    <span class="block text-xs text-abu">Kepatuhan Pergub Bali No. 99/2018</span>
-                </span>
+    <div class="tridatu h-1.5" aria-hidden="true"></div>
+
+    <header class="relative z-20" x-data="{ buka: false }">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-5 sm:px-8">
+            <a href="{{ route('home') }}" aria-label="Pasok Bali, halaman depan">
+                <x-ui.logo />
             </a>
 
-            <nav class="hidden items-center gap-6 text-sm font-semibold text-abu md:flex" aria-label="Navigasi halaman depan">
-                <a href="#masalah" class="transition hover:text-tinta">Masalah di dapur</a>
-                <a href="#cara-kerja" class="transition hover:text-tinta">Cara kerja</a>
-                <a href="#kuota-pergub" class="transition hover:text-tinta">Kuota Pergub</a>
-                <a href="#untuk-siapa" class="transition hover:text-tinta">Untuk usaha &amp; pemasok</a>
+            <nav class="hidden items-center gap-8 text-[0.95rem] text-abu lg:flex" aria-label="Navigasi halaman depan">
+                <a href="#cara-kerja" class="hover:text-tinta">Cara kerja</a>
+                <a href="#kamus" class="hover:text-tinta">Bahasa pasar</a>
+                <a href="#kuota" class="hover:text-tinta">Kuota Pergub</a>
+                <a href="#pemasok" class="hover:text-tinta">Untuk pemasok</a>
             </nav>
 
-            <div class="flex items-center gap-2.5">
+            <div class="flex items-center gap-2">
                 @auth
-                    <x-ui.button :href="route('dashboard')" variant="primary" size="sm">
-                        Buka dasbor
-                    </x-ui.button>
+                    <a href="{{ route('dashboard') }}" class="rounded-full bg-tinta px-5 py-2.5 text-sm font-semibold text-kertas hover:bg-daun-tua">Buka dasbor</a>
                 @else
-                    <a href="{{ route('login') }}" class="hidden rounded-xl px-3 py-2 text-sm font-semibold text-abu transition hover:bg-kertas hover:text-tinta sm:inline-block">
-                        Masuk
-                    </a>
-                    <a href="{{ route('register') }}" class="hidden rounded-xl border-2 border-daun px-4 py-2 text-sm font-bold text-daun transition hover:bg-daun-muda lg:inline-block">
-                        Daftarkan usaha
-                    </a>
+                    <a href="{{ route('login') }}" class="hidden px-3 py-2 text-sm font-semibold text-abu hover:text-tinta sm:inline-block">Masuk</a>
                     <form method="POST" action="{{ route('demo') }}">
                         @csrf
-                        <x-ui.button type="submit" variant="primary" size="sm">
-                            Coba demo
-                        </x-ui.button>
+                        <button class="rounded-full bg-tinta px-5 py-2.5 text-sm font-semibold text-kertas hover:bg-daun-tua">Coba demo</button>
                     </form>
                 @endauth
-
-                <button
-                    type="button"
-                    class="rounded-xl border border-garis bg-kertas px-3 py-2 text-sm font-semibold text-tinta md:hidden"
-                    @click="menuTerbuka = !menuTerbuka"
-                    :aria-expanded="menuTerbuka"
-                    aria-label="Buka menu navigasi"
-                >
-                    Menu
-                </button>
+                <button type="button" class="ml-1 rounded-full border border-garis px-3 py-2 text-sm font-semibold lg:hidden" @click="buka = !buka" :aria-expanded="buka" aria-controls="menu-ponsel">Menu</button>
             </div>
         </div>
-
-        <nav class="border-t border-garis bg-kertas px-4 py-3 md:hidden" x-show="menuTerbuka" x-cloak aria-label="Menu seluler">
-            <div class="flex flex-col gap-1 text-sm font-semibold">
-                <a href="#masalah" @click="menuTerbuka = false" class="rounded-lg px-3 py-2 text-tinta hover:bg-santan">Masalah di dapur</a>
-                <a href="#cara-kerja" @click="menuTerbuka = false" class="rounded-lg px-3 py-2 text-tinta hover:bg-santan">Cara kerja</a>
-                <a href="#kuota-pergub" @click="menuTerbuka = false" class="rounded-lg px-3 py-2 text-tinta hover:bg-santan">Kuota Pergub</a>
-                <a href="#untuk-siapa" @click="menuTerbuka = false" class="rounded-lg px-3 py-2 text-tinta hover:bg-santan">Untuk usaha &amp; pemasok</a>
+        <nav id="menu-ponsel" x-show="buka" x-cloak class="border-y border-garis bg-kertas px-4 py-3 lg:hidden" aria-label="Menu ponsel">
+            <div class="flex flex-col text-base">
+                <a href="#cara-kerja" class="py-2" @click="buka = false">Cara kerja</a>
+                <a href="#kamus" class="py-2" @click="buka = false">Bahasa pasar</a>
+                <a href="#kuota" class="py-2" @click="buka = false">Kuota Pergub</a>
+                <a href="#pemasok" class="py-2" @click="buka = false">Untuk pemasok</a>
                 @guest
-                    <hr class="my-1 border-garis">
-                    <a href="{{ route('login') }}" class="rounded-lg px-3 py-2 text-tinta hover:bg-santan">Masuk ke akun</a>
-                    <a href="{{ route('register') }}" class="rounded-lg px-3 py-2 text-daun hover:bg-daun-muda">Daftarkan usaha</a>
+                    <a href="{{ route('login') }}" class="py-2">Masuk</a>
+                    <a href="{{ route('register') }}" class="py-2">Daftarkan usaha</a>
                 @endguest
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="mx-auto max-w-6xl px-4 pt-8 pb-14 sm:pt-12 sm:pb-20">
-            <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-8">
-                <div class="lg:col-span-6 lg:pt-2">
-                    <span class="inline-flex items-center gap-2 rounded-full border border-daun/25 bg-daun-muda px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-daun-tua">
-                        <span class="size-2 rounded-full bg-daun"></span>
-                        Untuk hotel, restoran, kafe, villa, dan katering di Bali
-                    </span>
-
-                    <h1 class="mt-4 font-display text-4xl font-black leading-[1.12] tracking-tight text-daun-tua sm:text-5xl">
-                        Foto nota belanja dapur. Tahu langsung berapa persen produk lokal Bali Anda.
-                    </h1>
-
-                    <p class="mt-4 text-base sm:text-lg leading-relaxed text-abu">
-                        Pergub Bali No. 99 Tahun 2018 mewajibkan usaha akomodasi dan kuliner menyerap hasil pertanian, peternakan, perikanan, dan industri lokal Bali. Pasok Bali membaca nota belanja dengan AI, menyeragamkan satuan pasar ke kilogram, lalu menyambungkan dapur Anda dengan pemasok lokal lewat WhatsApp.
-                    </p>
-
-                    <div class="mt-7 flex flex-wrap items-center gap-3">
+        <section class="mx-auto grid max-w-7xl gap-14 px-4 pt-8 pb-20 sm:px-8 lg:grid-cols-12 lg:gap-10 lg:pt-14 lg:pb-28">
+            <div class="lg:col-span-7">
+                <h1 class="font-display text-[clamp(3.1rem,8.2vw,7.6rem)] leading-[0.92] text-daun-tua">
+                    Berapa persen dapur Anda sudah Bali?
+                </h1>
+                <p class="mt-8 max-w-xl text-lg leading-relaxed text-tinta/80">
+                    Foto nota belanja dari pasar, toko, atau pemasok. Pasok Bali membaca istilah seperti <em>kesuna</em> dan <em>taluh</em>, menghitung kuota Pergub Bali No. 99/2018 per kelompok, lalu mempertemukan Anda dengan petani, peternak, dan nelayan Bali.
+                </p>
+                <div class="mt-10 flex flex-wrap items-center gap-3">
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="rounded-full bg-terakota px-7 py-4 text-base font-semibold text-kertas hover:bg-tinta">Buka dasbor</a>
+                    @else
                         <form method="POST" action="{{ route('demo') }}">
                             @csrf
-                            <x-ui.button type="submit" variant="primary" size="lg">
-                                Coba demo
-                                <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
-                                </svg>
-                            </x-ui.button>
+                            <button class="rounded-full bg-terakota px-7 py-4 text-base font-semibold text-kertas hover:bg-tinta">Coba dengan dapur contoh</button>
                         </form>
+                        <a href="{{ route('register') }}" class="rounded-full border border-tinta/25 px-7 py-4 text-base font-semibold hover:border-tinta">Daftarkan usaha</a>
+                    @endauth
+                </div>
+                @error('demo')
+                    <p class="mt-4 text-sm text-terakota" role="alert">{{ $message }}</p>
+                @enderror
+                <p class="mt-5 text-sm text-abu">Demo tanpa daftar, berisi data fiktif, terhapus sendiri setelah 48 jam.</p>
+            </div>
 
-                        <x-ui.button :href="route('register')" variant="secondary" size="lg">
-                            Daftarkan usaha
-                        </x-ui.button>
-
-                        <a href="{{ route('login') }}" class="px-3 py-2 text-sm font-semibold text-abu underline-offset-4 hover:text-tinta hover:underline">
-                            Sudah punya akun? Masuk
-                        </a>
+            <div class="relative lg:col-span-5 lg:pt-6">
+                <div class="nota-pasar mx-auto max-w-md -rotate-[1.5deg] rounded-[3px] px-6 pt-6 pb-8 sm:px-8">
+                    <div class="flex items-baseline justify-between border-b-2 border-dashed border-tinta/20 pb-3">
+                        <p class="font-display text-2xl">Dagang Men Sari</p>
+                        <p class="text-xs text-abu">contoh fiktif</p>
                     </div>
-
-                    @error('demo')
-                        <p class="mt-3 rounded-xl border border-terakota/30 bg-terakota-muda px-4 py-2.5 text-sm font-semibold text-terakota" role="alert">
-                            {{ $message }}
-                        </p>
-                    @enderror
-
-                    <p class="mt-3 text-xs text-abu">
-                        Sekali klik <strong>Coba demo</strong> membuat ruang uji mandiri berisi nota dan pemasok contoh fiktif selama 48 jam — tanpa perlu mengisi formulir pendaftaran.
-                    </p>
-
-                    <div class="mt-8 rounded-2xl border border-garis bg-kertas p-4 shadow-[var(--shadow-kartu)]">
-                        <p class="text-xs font-semibold text-abu">Mengenali istilah pasar tradisional &amp; mengonversi satuan ke kilogram:</p>
-                        <div class="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-5">
-                            <div class="flex items-center gap-2 rounded-xl bg-santan px-2.5 py-2">
-                                <x-ui.commodity-icon name="beras" size="sm" />
-                                <div class="min-w-0 leading-tight">
-                                    <p class="truncate text-xs font-bold text-tinta">Beras &amp; umbi</p>
-                                    <p class="truncate text-[11px] text-abu">karung → kg</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2 rounded-xl bg-santan px-2.5 py-2">
-                                <x-ui.commodity-icon name="sayur" size="sm" />
-                                <div class="min-w-0 leading-tight">
-                                    <p class="truncate text-xs font-bold text-tinta">Sayur &amp; bumbu</p>
-                                    <p class="truncate text-[11px] text-abu">kesuna, ikat → kg</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2 rounded-xl bg-santan px-2.5 py-2">
-                                <x-ui.commodity-icon name="telur" size="sm" />
-                                <div class="min-w-0 leading-tight">
-                                    <p class="truncate text-xs font-bold text-tinta">Telur &amp; daging</p>
-                                    <p class="truncate text-[11px] text-abu">taluh, krat → kg</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2 rounded-xl bg-santan px-2.5 py-2">
-                                <x-ui.commodity-icon name="ikan" size="sm" />
-                                <div class="min-w-0 leading-tight">
-                                    <p class="truncate text-xs font-bold text-tinta">Ikan &amp; laut</p>
-                                    <p class="truncate text-[11px] text-abu">ekor, keranjang</p>
-                                </div>
-                            </div>
-                            <div class="col-span-2 flex items-center gap-2 rounded-xl bg-santan px-2.5 py-2 sm:col-span-1">
-                                <x-ui.commodity-icon name="kopi" size="sm" />
-                                <div class="min-w-0 leading-tight">
-                                    <p class="truncate text-xs font-bold text-tinta">Kopi &amp; olahan</p>
-                                    <p class="truncate text-[11px] text-abu">pack, botol → kg</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ol class="mt-1">
+                        @foreach ($nota as $i => [$istilah, $jumlah, $produk, $kelompok])
+                            <li class="nota-baris animate-baca grid grid-cols-[1fr_auto] items-baseline gap-x-3 py-[0.45rem] px-1" style="animation-delay: {{ 400 + $i * 260 }}ms">
+                                <span class="font-display text-xl leading-snug">{{ $istilah }} <span class="font-sans text-sm text-abu">{{ $jumlah }}</span></span>
+                                <span class="text-right text-xs leading-tight text-tinta/70">{{ $produk }}<br><span class="text-daun">{{ $kelompok }}</span></span>
+                            </li>
+                        @endforeach
+                    </ol>
                 </div>
 
-                <div class="lg:col-span-6">
-                    <div class="papan-daun rounded-3xl p-4 sm:p-6 shadow-[var(--shadow-angkat)]">
-                        <div class="flex flex-wrap items-center justify-between gap-2 pb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="size-2.5 rounded-full bg-kunyit"></span>
-                                <span class="font-display text-sm font-bold text-kertas">Peragaan alur pembacaan nota &amp; kuota</span>
-                            </div>
-                            <span class="rounded-full bg-kunyit px-2.5 py-0.5 text-xs font-bold text-tinta">
-                                Contoh simulasi fiktif
-                            </span>
-                        </div>
-
-                        <div class="nota-pasar rounded-2xl border border-garis p-4 sm:p-5 text-tinta">
-                            <div class="flex items-start justify-between gap-3 border-b border-dashed border-garis pb-3">
-                                <div>
-                                    <p class="font-display text-base font-extrabold text-tinta">Nota Kios Pasar Badung (Contoh)</p>
-                                    <p class="text-xs text-abu">Ditulis tangan · Dibaca AI menjadi baris terstruktur</p>
+                <div class="relative mx-auto -mt-4 max-w-md rotate-[1deg] bg-daun-tua px-6 py-5 text-kertas shadow-[var(--shadow-angkat)] sm:px-8">
+                    <p class="text-sm text-kertas/70">Bulan ini, produk lokal Bali</p>
+                    <dl class="mt-3 space-y-3">
+                        @foreach ([['Pertanian', 42, 30], ['Peternakan', 18, 30]] as $j => [$nama, $persen, $batas])
+                            <div>
+                                <div class="flex items-baseline justify-between">
+                                    <dt class="text-sm">{{ $nama }}</dt>
+                                    <dd class="font-display text-2xl {{ $persen >= $batas ? 'text-kunyit-muda' : 'text-[#f2a49c]' }}">{{ $persen }}%</dd>
                                 </div>
-                                <span class="rounded-lg bg-daun-muda px-2.5 py-1 text-xs font-bold text-daun-tua">
-                                    4 baris terbaca
-                                </span>
+                                <div class="relative mt-1.5 h-1.5 bg-kertas/15">
+                                    <div class="animate-isi absolute inset-y-0 left-0 origin-left {{ $persen >= $batas ? 'bg-kunyit' : 'bg-[#e0685c]' }}" style="width: {{ $persen }}%; animation-delay: {{ 2100 + $j * 200 }}ms"></div>
+                                    <div class="absolute -inset-y-1 w-px bg-kertas" style="left: {{ $batas }}%"></div>
+                                </div>
                             </div>
-
-                            <ul class="mt-3 divide-y divide-garis/70 text-xs sm:text-sm">
-                                <li class="flex items-center justify-between gap-2 py-2">
-                                    <div class="flex items-center gap-2.5 min-w-0">
-                                        <x-ui.commodity-icon name="sayur" size="sm" />
-                                        <div class="min-w-0">
-                                            <p class="truncate font-semibold text-tinta">“Kesuna Bali” <span class="font-normal text-abu">→ Bawang putih</span></p>
-                                            <p class="text-xs text-abu">Hortikultura · 4 ikat diseragamkan ke <strong>2,0 kg</strong></p>
-                                        </div>
-                                    </div>
-                                    <x-ui.evidence-badge origin="bali" evidence="terverifikasi" />
-                                </li>
-                                <li class="flex items-center justify-between gap-2 py-2">
-                                    <div class="flex items-center gap-2.5 min-w-0">
-                                        <x-ui.commodity-icon name="telur" size="sm" />
-                                        <div class="min-w-0">
-                                            <p class="truncate font-semibold text-tinta">“Taluh ayam” <span class="font-normal text-abu">→ Telur ayam ras</span></p>
-                                            <p class="text-xs text-abu">Peternakan · 2 krat diseragamkan ke <strong>3,6 kg</strong></p>
-                                        </div>
-                                    </div>
-                                    <x-ui.evidence-badge origin="bali" evidence="pernyataan" />
-                                </li>
-                                <li class="flex items-center justify-between gap-2 py-2">
-                                    <div class="flex items-center gap-2.5 min-w-0">
-                                        <x-ui.commodity-icon name="ikan" size="sm" />
-                                        <div class="min-w-0">
-                                            <p class="truncate font-semibold text-tinta">“Tongkol segar” <span class="font-normal text-abu">→ Ikan tongkol</span></p>
-                                            <p class="text-xs text-abu">Perikanan · Nelayan Kedonganan · <strong>6,0 kg</strong></p>
-                                        </div>
-                                    </div>
-                                    <x-ui.evidence-badge origin="bali" evidence="terverifikasi" />
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="my-3 flex items-center justify-center gap-2 text-xs font-semibold text-kunyit-muda">
-                            <span class="h-px flex-1 bg-kertas/20"></span>
-                            <span>Dihitung otomatis ke meter kuota Pergub 99/2018</span>
-                            <span class="h-px flex-1 bg-kertas/20"></span>
-                        </div>
-
-                        <div class="grid gap-3 sm:grid-cols-2">
-                            <x-ui.quota-meter
-                                label="Pertanian"
-                                commodity="sayur"
-                                :percent="42"
-                                :verifiedPercent="28"
-                                :quota="30"
-                                status="patuh"
-                                :compact="true"
-                            />
-                            <x-ui.quota-meter
-                                label="Peternakan"
-                                commodity="telur"
-                                :percent="18"
-                                :verifiedPercent="10"
-                                :quota="30"
-                                status="kurang"
-                                :gapKg="12"
-                                :compact="true"
-                            />
-                        </div>
-
-                        <div class="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-kunyit bg-kunyit-muda px-4 py-3 text-tinta">
-                            <div class="min-w-0 flex-1">
-                                <p class="font-display text-sm font-bold text-tinta">
-                                    Peternakan masih 18% (kurang dari kuota 30%)
-                                </p>
-                                <p class="text-xs text-tinta/80">
-                                    Sistem menyarankan peternak telur lokal terdaftar di Bali &amp; menyiapkan draf pesan WhatsApp.
-                                </p>
-                            </div>
-                            <form method="POST" action="{{ route('demo') }}">
-                                @csrf
-                                <button type="submit" class="rounded-xl bg-daun px-3.5 py-2 text-xs font-bold text-kertas hover:bg-daun-tua cursor-pointer">
-                                    Lihat di demo →
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                        @endforeach
+                    </dl>
+                    <p class="mt-4 text-xs text-kertas/60">Garis putih adalah kuota minimal 30%.</p>
                 </div>
             </div>
         </section>
 
-        <section id="masalah" class="border-y border-garis bg-kertas py-14 sm:py-20">
-            <div class="mx-auto max-w-6xl px-4">
-                <div class="max-w-3xl">
-                    <p class="text-sm font-semibold text-terakota">Tantangan pengukuran di dapur usaha</p>
-                    <h2 class="mt-1 font-display text-3xl font-black leading-tight text-daun-tua sm:text-4xl">
-                        Pergub Bali No. 99/2018 sudah berlaku sejak 2019, tetapi kepatuhannya sulit diukur dari hari ke hari.
-                    </h2>
-                    <p class="mt-3 text-base leading-relaxed text-abu">
-                        Banyak hotel, restoran, kafe, dan katering di Bali sebenarnya sudah membeli beras, sayur, telur, ikan, dan kopi dari pasar maupun pemasok sekitar — namun tidak memiliki alat sederhana untuk membuktikan persentase volumenya.
-                    </p>
-                </div>
-
-                <div class="mt-10 grid gap-6 md:grid-cols-3">
-                    <x-ui.card variant="santan" as="article">
-                        <div class="flex items-center gap-3">
-                            <x-ui.commodity-icon name="nota" size="md" />
-                            <h3 class="font-display text-lg font-bold text-tinta">Nota belanja tidak seragam</h3>
-                        </div>
-                        <p class="mt-3 text-sm leading-relaxed text-abu">
-                            Belanja harian dapur datang dalam bentuk struk kasir toko, kuitansi tulisan tangan kios pasar pagi, hingga faktur mingguan. Mengetik ulang semuanya ke tabel bulanan menyita waktu staf.
-                        </p>
-                    </x-ui.card>
-
-                    <x-ui.card variant="santan" as="article">
-                        <div class="flex items-center gap-3">
-                            <x-ui.commodity-icon name="telur" size="md" />
-                            <h3 class="font-display text-lg font-bold text-tinta">Istilah pasar &amp; satuan beragam</h3>
-                        </div>
-                        <p class="mt-3 text-sm leading-relaxed text-abu">
-                            Di nota tertulis <em>“kesuna 4 ikat”</em>, <em>“taluh 2 krat”</em>, atau <em>“bw mrh”</em>, sedangkan kuota Pergub dihitung berdasarkan <strong>berat volume (kilogram)</strong> per kelompok komoditas.
-                        </p>
-                    </x-ui.card>
-
-                    <x-ui.card variant="santan" as="article">
-                        <div class="flex items-center gap-3">
-                            <x-ui.commodity-icon name="sayur" size="md" />
-                            <h3 class="font-display text-lg font-bold text-tinta">Bingung mencari pemasok pengganti</h3>
-                        </div>
-                        <p class="mt-3 text-sm leading-relaxed text-abu">
-                            Saat mengetahui suatu kelompok produk masih di bawah batas kuota, pengelola belanja sering kesulitan menemukan petani, peternak, atau nelayan lokal Bali yang kapasitas mingguannya cocok.
-                        </p>
-                    </x-ui.card>
-                </div>
-            </div>
-        </section>
-
-        <section id="cara-kerja" class="mx-auto max-w-6xl px-4 py-14 sm:py-20">
-            <div class="max-w-3xl">
-                <p class="text-sm font-semibold text-daun">Alur kerja sederhana &amp; terkendali</p>
-                <h2 class="mt-1 font-display text-3xl font-black leading-tight text-daun-tua sm:text-4xl">
-                    Tiga langkah dari foto nota belanja hingga terhubung dengan pemasok lokal.
-                </h2>
-                <p class="mt-3 text-base leading-relaxed text-abu">
-                    AI membantu mempercepat pembacaan nota dan penyusunan draf pesan, sementara keputusan persetujuan data dan perhitungan persentase kepatuhan tetap transparan di tangan usaha Anda.
+        <section id="masalah" class="border-t border-garis bg-kertas">
+            <div class="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-8 lg:grid-cols-12 lg:py-28">
+                <p class="font-display text-[clamp(2rem,3.6vw,3.2rem)] leading-[1.08] lg:col-span-7">
+                    Pergub Bali No. 99/2018 berlaku sejak 2019. Masalahnya, nota dapur ditulis dalam bahasa pasar, bukan dalam persen.
                 </p>
+                <ul class="divide-y divide-garis border-y border-garis lg:col-span-5 lg:self-end">
+                    <li class="py-5">
+                        <p class="font-semibold">Nota tidak pernah seragam</p>
+                        <p class="mt-1 leading-relaxed text-abu">Struk kasir, tulisan tangan kios pasar pagi, dan faktur mingguan pemasok bercampur jadi satu.</p>
+                    </li>
+                    <li class="py-5">
+                        <p class="font-semibold">Satuannya macam-macam</p>
+                        <p class="mt-1 leading-relaxed text-abu">Ikat, tray, karung, ekor. Kuota dihitung dari volume, jadi semuanya harus diseragamkan dulu.</p>
+                    </li>
+                    <li class="py-5">
+                        <p class="font-semibold">Tahu kurang, tapi tidak tahu harus beli ke siapa</p>
+                        <p class="mt-1 leading-relaxed text-abu">Mencari peternak atau nelayan lokal yang sanggup memasok tiap minggu butuh waktu dan kenalan.</p>
+                    </li>
+                </ul>
             </div>
+        </section>
 
-            <ol class="mt-10 grid gap-6 lg:grid-cols-3">
-                <x-ui.card as="li" class="flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="grid size-11 place-items-center rounded-2xl bg-kunyit font-display text-xl font-black text-tinta">
-                                1
-                            </span>
-                            <span class="rounded-full bg-santan px-3 py-1 text-xs font-semibold text-abu ring-1 ring-garis">
-                                Pembaca nota AI + koreksi manusia
-                            </span>
-                        </div>
-                        <h3 class="mt-5 font-display text-xl font-extrabold text-daun-tua">
-                            Foto nota belanja dapur
-                        </h3>
-                        <p class="mt-2 text-sm leading-relaxed text-abu">
-                            Unggah foto nota cetak, kuitansi tulisan tangan kios pasar, atau faktur pemasok. AI mengekstrak nama pemasok, tanggal, serta daftar barang beserta jumlah, satuan, dan harganya ke layar pemeriksaan.
-                        </p>
-                    </div>
-                    <div class="mt-5 rounded-xl bg-santan p-3.5 text-xs text-abu">
-                        <strong class="text-tinta">Tetap jalan walau tanpa AI:</strong> Jika foto buram atau Anda memilih pengisian manual, formulir koreksi tetap siap dipakai kapan saja.
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card as="li" class="flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="grid size-11 place-items-center rounded-2xl bg-kunyit font-display text-xl font-black text-tinta">
-                                2
-                            </span>
-                            <span class="rounded-full bg-santan px-3 py-1 text-xs font-semibold text-abu ring-1 ring-garis">
-                                Kamus produk Bali &amp; konversi kg
-                            </span>
-                        </div>
-                        <h3 class="mt-5 font-display text-xl font-extrabold text-daun-tua">
-                            Hitung kuota &amp; tingkat bukti
-                        </h3>
-                        <p class="mt-2 text-sm leading-relaxed text-abu">
-                            Istilah lokal (seperti <em>kesuna</em>, <em>bawang barak</em>, <em>taluh</em>) dicocokkan ke kamus produk, satuan pasar (<em>krat</em>, <em>ikat</em>, <em>tray</em>, <em>ekor</em>) dikonversi ke kilogram, lalu dihitung persentase lokal per kelompok Pergub.
-                        </p>
-                    </div>
-                    <div class="mt-5 rounded-xl bg-santan p-3.5 text-xs text-abu">
-                        <strong class="text-tinta">Belajar dari koreksi Anda:</strong> Istilah barang baru yang Anda setujui disimpan khusus untuk usaha Anda agar nota berikutnya langsung dikenali.
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card as="li" class="flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="grid size-11 place-items-center rounded-2xl bg-kunyit font-display text-xl font-black text-tinta">
-                                3
-                            </span>
-                            <span class="rounded-full bg-santan px-3 py-1 text-xs font-semibold text-abu ring-1 ring-garis">
-                                Simulasi kuota &amp; WhatsApp
-                            </span>
-                        </div>
-                        <h3 class="mt-5 font-display text-xl font-extrabold text-daun-tua">
-                            Sambungkan pemasok lokal Bali
-                        </h3>
-                        <p class="mt-2 text-sm leading-relaxed text-abu">
-                            Untuk kelompok yang belum mencapai batas kuota, Pasok Bali menampilkan petani, peternak, dan nelayan lokal beserta simulasi kenaikan persentasenya jika Anda mengalihkan pasokan mingguan.
-                        </p>
-                    </div>
-                    <div class="mt-5 rounded-xl bg-santan p-3.5 text-xs text-abu">
-                        <strong class="text-tinta">Langsung ke WhatsApp:</strong> Pesan permintaan pasokan dikirim ke nomor WhatsApp pemasok dan dapat dijawab cukup dengan mengetik angka <strong>1</strong> atau <strong>2</strong>.
-                    </div>
-                </x-ui.card>
+        <section id="cara-kerja" class="mx-auto max-w-7xl px-4 py-20 sm:px-8 lg:py-28">
+            <h2 class="max-w-2xl font-display text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[1.02] text-daun-tua">Dari selembar nota ke pemasok lokal, dalam tiga langkah.</h2>
+            <ol class="mt-14 border-t border-tinta/80">
+                @foreach ([
+                    ['Foto notanya', 'Unggah foto nota cetak, tulisan tangan, atau faktur. AI membaca nama pemasok, tanggal, barang, jumlah, satuan, dan harga. Anda memeriksa dan mengoreksi sebelum disimpan.'],
+                    ['Lihat persennya', 'Istilah pasar dicocokkan ke kamus produk, satuan diubah ke kilogram, lalu persentase lokal dihitung per kelompok. Tiap angka diberi label bukti: terverifikasi, pernyataan pemasok, atau belum diketahui.'],
+                    ['Hubungi pemasok Bali', 'Untuk kelompok yang masih kurang, Pasok Bali menunjukkan pemasok lokal yang cocok, berapa persen yang bisa naik, dan menyiapkan pesan WhatsApp yang tinggal dikirim.'],
+                ] as $n => [$judul, $isi])
+                    <li class="grid gap-4 border-b border-garis py-9 sm:grid-cols-[7rem_1fr] lg:grid-cols-[10rem_22rem_1fr] lg:gap-10">
+                        <span class="font-display text-6xl leading-none text-terakota lg:text-7xl">{{ $n + 1 }}</span>
+                        <h3 class="font-display text-3xl leading-tight">{{ $judul }}</h3>
+                        <p class="max-w-xl text-lg leading-relaxed text-tinta/75 sm:col-start-2 lg:col-start-auto">{{ $isi }}</p>
+                    </li>
+                @endforeach
             </ol>
         </section>
 
-        <section id="kuota-pergub" class="border-y border-garis bg-kertas py-14 sm:py-20">
-            <div class="mx-auto max-w-6xl px-4">
-                <div class="grid items-end justify-between gap-6 lg:grid-cols-12">
-                    <div class="lg:col-span-7">
-                        <p class="text-sm font-semibold text-daun">Acuan pengukuran mandiri</p>
-                        <h2 class="mt-1 font-display text-3xl font-black leading-tight text-daun-tua sm:text-4xl">
-                            Empat kelompok komoditas yang diukur sesuai Pergub Bali No. 99 Tahun 2018
-                        </h2>
-                    </div>
-                    <p class="text-sm leading-relaxed text-abu lg:col-span-5">
-                        Batas kuota disimpan di pengaturan sistem (bukan angka mati di dalam kode) agar dapat disesuaikan dengan teks resmi JDIH Provinsi Bali maupun aturan turunannya.
+        <section id="kamus" class="bg-tinta text-kertas">
+            <div class="mx-auto max-w-7xl px-4 py-20 sm:px-8 lg:py-28">
+                <div class="grid gap-8 lg:grid-cols-12">
+                    <h2 class="font-display text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[1.02] lg:col-span-6">Paham bahasa pasar Bali.</h2>
+                    <p class="max-w-lg text-lg leading-relaxed text-kertas/70 lg:col-span-5 lg:col-start-8 lg:self-end">
+                        Kamus produk sudah mengenal istilah Bali dan singkatan nota. Kalau Anda mengoreksi satu istilah, Pasok Bali mengingatnya untuk nota berikutnya.
                     </p>
                 </div>
-
-                <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <x-ui.card variant="santan" as="article" class="flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between gap-2">
-                                <div class="flex items-center gap-2">
-                                    <x-ui.commodity-icon name="beras" size="md" />
-                                    <x-ui.commodity-icon name="sayur" size="md" />
-                                </div>
-                                <span class="rounded-full bg-daun-muda px-3 py-1 font-display text-sm font-black text-daun-tua angka-tabel">
-                                    Min. 30%
-                                </span>
-                            </div>
-                            <h3 class="mt-4 font-display text-lg font-bold text-tinta">
-                                Tanaman pangan, hortikultura &amp; perkebunan
-                            </h3>
-                            <p class="mt-1.5 text-xs leading-relaxed text-abu">
-                                Beras, umbi-umbian, sayuran daun, buah-buahan segar, bumbu dapur (bawang merah, kesuna, cabai), kelapa, hingga biji kopi dan kakao kebun Bali.
-                            </p>
+                <dl class="mt-14 grid grid-cols-2 border-t border-kertas/20 sm:grid-cols-3 lg:grid-cols-4">
+                    @foreach ($kamus as [$bali, $arti])
+                        <div class="border-b border-kertas/20 py-6 pr-4">
+                            <dt class="font-display text-[clamp(1.6rem,2.6vw,2.4rem)] leading-none text-kunyit">{{ $bali }}</dt>
+                            <dd class="mt-2 text-sm text-kertas/65">{{ $arti }}</dd>
                         </div>
-                        <p class="mt-4 border-t border-garis pt-2.5 text-xs font-semibold text-daun-tua">
-                            Diukur dari volume berat (kg)
-                        </p>
-                    </x-ui.card>
-
-                    <x-ui.card variant="santan" as="article" class="flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between gap-2">
-                                <x-ui.commodity-icon name="telur" size="md" />
-                                <span class="rounded-full bg-daun-muda px-3 py-1 font-display text-sm font-black text-daun-tua angka-tabel">
-                                    Min. 30%
-                                </span>
-                            </div>
-                            <h3 class="mt-4 font-display text-lg font-bold text-tinta">
-                                Peternakan
-                            </h3>
-                            <p class="mt-1.5 text-xs leading-relaxed text-abu">
-                                Telur ayam ras, telur ayam kampung, telur bebek, daging ayam, daging babi, daging sapi Bali, serta hasil peternakan lokal lainnya.
-                            </p>
-                        </div>
-                        <p class="mt-4 border-t border-garis pt-2.5 text-xs font-semibold text-daun-tua">
-                            Diukur dari volume berat (kg)
-                        </p>
-                    </x-ui.card>
-
-                    <x-ui.card variant="santan" as="article" class="flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between gap-2">
-                                <x-ui.commodity-icon name="ikan" size="md" />
-                                <span class="rounded-full bg-daun-muda px-3 py-1 font-display text-sm font-black text-daun-tua angka-tabel">
-                                    Min. 30%
-                                </span>
-                            </div>
-                            <h3 class="mt-4 font-display text-lg font-bold text-tinta">
-                                Perikanan
-                            </h3>
-                            <p class="mt-1.5 text-xs leading-relaxed text-abu">
-                                Ikan tangkap laut Bali (tongkol, tuna, kakap, mahi-mahi), cumi, udang, rumput laut, serta ikan air tawar budidaya lokal.
-                            </p>
-                        </div>
-                        <p class="mt-4 border-t border-garis pt-2.5 text-xs font-semibold text-daun-tua">
-                            Diukur dari volume berat (kg)
-                        </p>
-                    </x-ui.card>
-
-                    <x-ui.card variant="santan" as="article" class="flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between gap-2">
-                                <x-ui.commodity-icon name="kopi" size="md" />
-                                <span class="rounded-full bg-kunyit-muda px-3 py-1 font-display text-sm font-black text-tinta ring-1 ring-kunyit angka-tabel">
-                                    Min. 20%*
-                                </span>
-                            </div>
-                            <h3 class="mt-4 font-display text-lg font-bold text-tinta">
-                                Industri lokal Bali
-                            </h3>
-                            <p class="mt-1.5 text-xs leading-relaxed text-abu">
-                                Garam tradisional (Amed/Kusamba), gula aren, minyak kelapa, tahu, tempe, kopi sangrai kemasan, dan olahan pangan UMKM Bali.
-                            </p>
-                        </div>
-                        <p class="mt-4 border-t border-garis pt-2.5 text-[11px] text-abu">
-                            *Angka kuota mengikuti pengaturan admin; cocokkan selalu dengan teks resmi Pergub Bali No. 99 Tahun 2018.
-                        </p>
-                    </x-ui.card>
-                </div>
-
-                <div class="mt-8 rounded-2xl border border-garis bg-santan p-5 sm:p-6">
-                    <div class="grid items-center gap-6 lg:grid-cols-12">
-                        <div class="lg:col-span-5">
-                            <h3 class="font-display text-xl font-extrabold text-daun-tua">
-                                Kejujuran data: setiap angka dilengkapi tingkat bukti
-                            </h3>
-                            <p class="mt-1.5 text-sm leading-relaxed text-abu">
-                                Pasok Bali tidak mengklaim seluruh barang di nota otomatis terverifikasi. Setiap kilogram produk dipisahkan menurut tingkat kejelasan asalnya:
-                            </p>
-                        </div>
-                        <div class="grid gap-3 sm:grid-cols-3 lg:col-span-7">
-                            <div class="rounded-xl border border-garis bg-kertas p-3.5">
-                                <x-ui.evidence-badge level="hijau" />
-                                <p class="mt-2 text-xs leading-relaxed text-abu">
-                                    Dibeli dari pemasok produksi Bali yang lokasi usahanya sudah diperiksa oleh pengelola platform.
-                                </p>
-                            </div>
-                            <div class="rounded-xl border border-garis bg-kertas p-3.5">
-                                <x-ui.evidence-badge level="kuning" />
-                                <p class="mt-2 text-xs leading-relaxed text-abu">
-                                    Berdasarkan pernyataan mandiri pemasok saat mendaftar lewat WhatsApp atau tanda asal pada koreksi nota.
-                                </p>
-                            </div>
-                            <div class="rounded-xl border border-garis bg-kertas p-3.5">
-                                <x-ui.evidence-badge level="abu" />
-                                <p class="mt-2 text-xs leading-relaxed text-abu">
-                                    Nota dari toko umum atau grosir yang belum diketahui apakah barangnya diproduksi di Bali atau luar Bali.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                </dl>
             </div>
         </section>
 
-        <section id="untuk-siapa" class="mx-auto max-w-6xl px-4 py-14 sm:py-20">
-            <div class="grid gap-8 lg:grid-cols-2">
-                <x-ui.card padding="lg" as="article" class="flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="rounded-full bg-daun-muda px-3.5 py-1 text-xs font-bold text-daun-tua">
-                                Untuk restoran, hotel, kafe &amp; katering
-                            </span>
-                            <x-ui.commodity-icon name="nota" size="sm" />
-                        </div>
-
-                        <h2 class="mt-4 font-display text-2xl font-black text-daun-tua sm:text-3xl">
-                            Rekap belanja lokal tanpa menambah beban pembukuan dapur
-                        </h2>
-
-                        <ul class="mt-5 space-y-3 text-sm leading-relaxed text-tinta">
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 grid size-5 shrink-0 place-items-center rounded-full bg-daun text-xs font-bold text-kertas">✓</span>
-                                <span><strong>Satu tempat untuk semua nota:</strong> Unggah foto nota pasar maupun faktur pemasok, periksa hasil bacaan AI, lalu setujui.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 grid size-5 shrink-0 place-items-center rounded-full bg-daun text-xs font-bold text-kertas">✓</span>
-                                <span><strong>Isolasi data per usaha:</strong> Riwayat nota, harga belanja, dan kamus istilah yang Anda koreksi terkunci rapat hanya untuk akun usaha Anda.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 grid size-5 shrink-0 place-items-center rounded-full bg-daun text-xs font-bold text-kertas">✓</span>
-                                <span><strong>Laporan mandiri siap cetak:</strong> Cetak atau simpan PDF laporan bulanan kepatuhan lengkap dengan rincian berat per pemasok.</span>
-                            </li>
-                        </ul>
+        <section id="kuota" class="mx-auto max-w-7xl px-4 py-20 sm:px-8 lg:py-28">
+            <div class="grid gap-8 lg:grid-cols-12">
+                <h2 class="font-display text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[1.02] text-daun-tua lg:col-span-6">Empat kelompok yang dihitung.</h2>
+                <p class="max-w-lg text-lg leading-relaxed text-tinta/75 lg:col-span-5 lg:col-start-8 lg:self-end">
+                    Persentase dihitung dari volume, bukan dari rupiah. Angka kuota bisa diatur admin dan selalu perlu dicocokkan dengan teks resmi Pergub Bali No. 99 Tahun 2018.
+                </p>
+            </div>
+            <div class="mt-14 grid border-l border-garis sm:grid-cols-2 lg:grid-cols-4">
+                @foreach ($kuota as [$nama, $isi, $min])
+                    <div class="border-y border-r border-garis bg-kertas p-7 sm:-mt-px">
+                        <p class="font-display text-7xl leading-none text-terakota">{{ $min }}<span class="text-4xl">%</span></p>
+                        <h3 class="mt-6 text-lg font-semibold">{{ $nama }}</h3>
+                        <p class="mt-2 leading-relaxed text-abu">{{ $isi }}</p>
                     </div>
+                @endforeach
+            </div>
 
-                    <div class="mt-7 flex flex-wrap items-center gap-3 border-t border-garis pt-5">
-                        <x-ui.button :href="route('register')" variant="primary">
-                            Daftarkan usaha Anda
-                        </x-ui.button>
-                        <form method="POST" action="{{ route('demo') }}">
-                            @csrf
-                            <x-ui.button type="submit" variant="subtle">
-                                Lihat contoh dasbor
-                            </x-ui.button>
-                        </form>
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card variant="kunyit" padding="lg" as="article" class="flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between gap-3">
-                            <span class="rounded-full bg-kertas px-3.5 py-1 text-xs font-bold text-tinta ring-1 ring-kunyit">
-                                Untuk petani, peternak, nelayan &amp; UMKM Bali
-                            </span>
-                            <x-ui.commodity-icon name="sayur" size="sm" />
-                        </div>
-
-                        <h2 class="mt-4 font-display text-2xl font-black text-tinta sm:text-3xl">
-                            Terhubung dengan dapur hotel &amp; restoran cukup lewat WhatsApp
-                        </h2>
-
-                        <p class="mt-3 text-sm leading-relaxed text-tinta/85">
-                            Pemasok lokal tidak perlu mengunduh aplikasi baru atau membuat akun rumit. Pendaftaran komoditas dan penerimaan pesanan dilakukan langsung dari percakapan WhatsApp biasa:
-                        </p>
-
-                        <div class="mt-4 space-y-2.5 rounded-2xl border border-garis bg-kertas p-4 text-xs sm:text-sm">
-                            <div class="rounded-xl bg-santan px-3.5 py-2.5">
-                                <p class="font-semibold text-abu">1. Pemasok mengirim chat pendaftaran:</p>
-                                <p class="mt-0.5 font-mono font-bold text-tinta">DAFTAR telur ayam 120 kg seminggu Tabanan</p>
-                            </div>
-                            <div class="rounded-xl bg-daun-muda px-3.5 py-2.5 text-daun-tua">
-                                <p class="font-semibold">2. Bot merangkum data &amp; meminta konfirmasi:</p>
-                                <p class="mt-0.5">Balas <strong>YA</strong> untuk menyimpan ke direktori pemasok lokal Bali.</p>
-                            </div>
-                            <div class="rounded-xl bg-santan px-3.5 py-2.5">
-                                <p class="font-semibold text-abu">3. Saat ada restoran meminta pasokan rutin:</p>
-                                <p class="mt-0.5 text-tinta">Pemasok cukup membalas <strong>1</strong> (Terima) atau <strong>2</strong> (Belum bisa) langsung dari WhatsApp.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-kunyit/60 pt-4 text-xs text-tinta/80">
-                        <span>Di dalam mode demo tersedia <strong>Simulator WhatsApp</strong> untuk mencoba alur ini secara langsung.</span>
-                        <form method="POST" action="{{ route('demo') }}">
-                            @csrf
-                            <button type="submit" class="font-bold text-daun-tua underline hover:text-tinta cursor-pointer">
-                                Coba simulator WA →
-                            </button>
-                        </form>
-                    </div>
-                </x-ui.card>
+            <div class="mt-16 grid gap-6 lg:grid-cols-12">
+                <p class="font-display text-3xl leading-tight lg:col-span-4">Tiap angka jujur soal buktinya.</p>
+                <ul class="grid gap-4 sm:grid-cols-3 lg:col-span-8">
+                    <li class="border-t-4 border-daun pt-4">
+                        <p class="font-semibold">Terverifikasi</p>
+                        <p class="mt-1 text-sm leading-relaxed text-abu">Pemasok sudah diperiksa admin sebagai produsen di Bali.</p>
+                    </li>
+                    <li class="border-t-4 border-kunyit pt-4">
+                        <p class="font-semibold">Pernyataan pemasok</p>
+                        <p class="mt-1 text-sm leading-relaxed text-abu">Pemasok menyatakan sendiri produknya dari Bali lewat WhatsApp.</p>
+                    </li>
+                    <li class="border-t-4 border-abu/50 pt-4">
+                        <p class="font-semibold">Belum diketahui</p>
+                        <p class="mt-1 text-sm leading-relaxed text-abu">Asal barang belum jelas dan tidak dihitung sebagai lokal.</p>
+                    </li>
+                </ul>
             </div>
         </section>
 
-        <section class="mx-auto max-w-6xl px-4 pb-16">
-            <div class="papan-daun rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[var(--shadow-angkat)]">
-                <div class="grid items-center gap-8 lg:grid-cols-12">
-                    <div class="lg:col-span-8">
-                        <h2 class="font-display text-3xl font-black leading-tight text-kertas sm:text-4xl">
-                            Coba langsung dengan nota contoh di ruang demo mandiri.
-                        </h2>
-                        <p class="mt-3 max-w-2xl text-base leading-relaxed text-kertas/85">
-                            Anda dapat menguji unggah nota contoh, melihat cara AI mengenali istilah pasar Bali, memantau meter kuota Pergub 99/2018, hingga mencoba pengiriman permintaan ke pemasok melalui simulator WhatsApp.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap items-center gap-3 lg:col-span-4 lg:justify-end">
+        <section id="pemasok" class="grid lg:grid-cols-2">
+            <div class="bg-kertas px-4 py-20 sm:px-8 lg:py-28 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-16">
+                <h2 class="font-display text-[clamp(2rem,3.6vw,3.2rem)] leading-[1.05] text-daun-tua">Untuk hotel, restoran, kafe, villa, dan katering</h2>
+                <ul class="mt-10 space-y-5 text-lg leading-relaxed text-tinta/80">
+                    <li class="border-l-2 border-terakota pl-5">Laporan bulanan per kelompok, siap dicetak atau disimpan sebagai PDF.</li>
+                    <li class="border-l-2 border-terakota pl-5">Data usaha Anda terpisah dari usaha lain, dan foto nota tersimpan privat.</li>
+                    <li class="border-l-2 border-terakota pl-5">Tetap bisa dipakai tanpa AI: isian manual selalu tersedia.</li>
+                </ul>
+            </div>
+            <div class="papan-daun px-4 py-20 sm:px-8 lg:py-28 lg:pr-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pl-16">
+                <h2 class="font-display text-[clamp(2rem,3.6vw,3.2rem)] leading-[1.05]">Untuk petani, peternak, dan nelayan Bali</h2>
+                <p class="mt-6 max-w-md text-lg leading-relaxed text-kertas/75">Cukup WhatsApp, tanpa memasang aplikasi. Kirim satu pesan untuk mendaftar, lalu balas 1 atau 2 saat ada permintaan pasokan.</p>
+                <div class="mt-10 max-w-md space-y-3 text-[0.95rem]" aria-label="Contoh percakapan WhatsApp, fiktif">
+                    <p class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-kunyit-muda px-4 py-3 text-tinta">DAFTAR bayam 30 ikat seminggu Tabanan</p>
+                    <p class="w-fit max-w-[85%] rounded-2xl rounded-bl-sm bg-kertas/10 px-4 py-3">Data Anda: Bayam, 30 ikat per minggu, Tabanan. Balas YA bila benar.</p>
+                    <p class="ml-auto w-fit rounded-2xl rounded-br-sm bg-kunyit-muda px-4 py-3 text-tinta">YA</p>
+                </div>
+                <p class="mt-4 text-xs text-kertas/55">Contoh percakapan, bisa dicoba di Simulator WA pada akun demo.</p>
+            </div>
+        </section>
+
+        <div class="poleng h-7" aria-hidden="true"></div>
+
+        <section class="bg-terakota text-kertas">
+            <div class="mx-auto flex max-w-7xl flex-col gap-10 px-4 py-20 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:py-24">
+                <h2 class="max-w-3xl font-display text-[clamp(2.4rem,5vw,4.6rem)] leading-[1]">Coba dulu dengan dapur contoh. Tanpa daftar.</h2>
+                <div class="flex flex-wrap gap-3">
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="rounded-full bg-kertas px-7 py-4 font-semibold text-terakota hover:bg-kunyit-muda">Buka dasbor</a>
+                    @else
                         <form method="POST" action="{{ route('demo') }}">
                             @csrf
-                            <x-ui.button type="submit" variant="kunyit" size="lg">
-                                Coba demo sekarang
-                            </x-ui.button>
+                            <button class="rounded-full bg-kertas px-7 py-4 font-semibold text-terakota hover:bg-kunyit-muda">Coba demo</button>
                         </form>
-                        <a href="{{ route('register') }}" class="rounded-xl border-2 border-kertas/40 px-5 py-3.5 text-sm font-bold text-kertas transition hover:border-kertas hover:bg-kertas/10">
-                            Daftarkan usaha
-                        </a>
-                    </div>
+                        <a href="{{ route('register') }}" class="rounded-full border border-kertas/40 px-7 py-4 font-semibold hover:border-kertas">Daftarkan usaha</a>
+                    @endauth
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-garis bg-kertas py-8 text-xs text-abu">
-        <div class="mx-auto flex max-w-6xl flex-col justify-between gap-4 px-4 sm:flex-row sm:items-center">
-            <p>
-                <strong class="text-tinta">Pasok Bali</strong> · Alat bantu ukur mandiri kepatuhan Pergub Bali No. 99 Tahun 2018. Laporan aplikasi ini bersifat mandiri dan bukan dokumen pengesahan resmi pemerintah.
-            </p>
-            <div class="flex items-center gap-4 font-semibold">
-                <a href="{{ route('login') }}" class="hover:text-tinta">Masuk</a>
-                <a href="{{ route('register') }}" class="hover:text-tinta">Daftar</a>
-            </div>
+    <footer class="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 text-sm text-abu sm:px-8 md:flex-row md:items-center md:justify-between">
+        <x-ui.logo :size="32" />
+        <p class="max-w-xl leading-relaxed">Alat ukur mandiri untuk usaha, bukan alat pengawasan pemerintah. Peragaan Bali DigiFest 2026; semua contoh usaha, nota, dan pemasok adalah data fiktif.</p>
+        <div class="flex gap-5">
+            <a href="{{ route('login') }}" class="hover:text-tinta">Masuk</a>
+            <a href="{{ route('register') }}" class="hover:text-tinta">Daftar</a>
         </div>
     </footer>
 </body>

@@ -18,18 +18,20 @@
         ['simulator.index', 'Simulator WA', 'simulator.*'],
     ])
 
+    <div class="tridatu h-1" aria-hidden="true"></div>
+
     @if ($business?->is_demo)
-        <div class="bg-kunyit px-4 py-2 text-center text-sm font-medium text-tinta">
+        <div class="bg-kunyit-muda px-4 py-2 text-center text-sm font-medium text-tinta">
             Akun demo berisi data contoh fiktif dan akan dihapus otomatis {{ $business->demo_expires_at?->diffForHumans() }}.
         </div>
     @endif
 
     <header class="border-b border-garis bg-kertas" x-data="{ buka: false }">
         <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-            <a href="{{ $business ? route('dashboard') : route('home') }}" class="flex items-center gap-2">
-                <span class="grid size-9 place-items-center rounded-xl bg-daun text-lg font-black text-kunyit">P</span>
+            <a href="{{ $business ? route('dashboard') : route('home') }}" class="flex items-center gap-3">
+                <x-ui.logo :size="34" :wordmark="false" />
                 <span class="leading-tight">
-                    <span class="block font-display text-lg font-extrabold text-daun-tua">Pasok Bali</span>
+                    <span class="block font-display text-xl text-daun-tua">Pasok Bali</span>
                     @if ($business)
                         <span class="block max-w-48 truncate text-xs text-abu">{{ $business->name }}</span>
                     @endif
