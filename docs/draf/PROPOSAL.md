@@ -64,7 +64,7 @@ Merekap nota secara manual di lembar kerja (*spreadsheet*) memakan waktu, rawan 
 
 ## 4. AI Implementation
 
-Pasok Bali menggunakan **Google Gemini (`gemini-flash-latest`)** melalui endpoint kompatibel OpenAI sebagai model utama, dengan cadangan opsional **Anthropic Claude (`claude-haiku-5-5`)**. AI hanya bertugas membaca gambar, mengelompokkan teks yang belum dikenal, dan menyusun draf kalimat; **perhitungan kilogram dan persentase kuota dilakukan 100% secara deterministik**.
+Pasok Bali menggunakan **Google Gemini (`gemini-3.5-flash-lite`)**, dengan cadangan otomatis `gemini-flash-lite-latest` dan `gemini-3.6-flash` saat server sibuk, melalui endpoint kompatibel OpenAI sebagai model utama, dengan cadangan opsional **Anthropic Claude (`claude-haiku-5-5`)**. AI hanya bertugas membaca gambar, mengelompokkan teks yang belum dikenal, dan menyusun draf kalimat; **perhitungan kilogram dan persentase kuota dilakukan 100% secara deterministik**.
 
 | Tahap | Layanan Kode | Peran AI & Masukan | Cadangan Tanpa AI (*Fallback*) |
 |---|---|---|---|
@@ -141,7 +141,7 @@ Pasok Bali menjembatani kesenjangan antara aturan kuota Pergub Bali No. 99/2018 
 - **Potensi Skala Lanjutan:** Kamus produk dan aturan kuota dirancang fleksibel di basis data sehingga siap diperluas ke koperasi pemasok, bumdes, maupun asosiasi perhotelan/kuliner di Bali.
 
 ### Keterbatasan Saat Ini (*Known Limitations*)
-- **Data Fiktif & Belum Diuji Lapangan:** Seluruh usaha, pemasok, dan 10 nota contoh di repositori/mode demo adalah **data fiktif**. Aplikasi belum diuji dengan nota usaha sungguhan dan akurasi pembacaan AI belum diukur secara formal.
+- **Data Fiktif & Belum Diuji Lapangan:** Seluruh usaha, pemasok, dan 10 nota contoh di repositori/mode demo adalah **data fiktif**. Aplikasi belum diuji dengan nota usaha sungguhan. Uji internal pada 10 nota demo fiktif (gambar digital) menghasilkan 69/69 baris terbaca benar; akurasi pada foto kamera asli belum diukur.
 - **Verifikasi Regulasi & Asal Barang:** Angka kuota bawaan (30% pertanian/peternakan/perikanan, 20% industri lokal) perlu dicocokkan dengan teks resmi Pergub Bali No. 99/2018 sebelum dipakai untuk laporan resmi. Status *pernyataan pemasok* berasal dari pengakuan mandiri pemasok sampai diverifikasi admin.
 - **Perkiraan Berat & Kualitas Foto:** Satuan non-baku (*ikat*, *sisir*, *ekor*) memakai berat rata-rata kamus; foto tulisan tangan yang buram tetap memerlukan koreksi manual; pengiriman WA nyata membutuhkan akun Fonnte (tanpa itu digunakan Simulator WA).
 
@@ -154,7 +154,7 @@ Selaras dengan [`docs/DISCLOSURE.md`](../DISCLOSURE.md), berikut pengungkapan le
 | Komponen | Keterangan |
 |---|---|
 | **Framework & Stack** | Backend: PHP 8.3+, Laravel 13. Frontend: Blade, Tailwind CSS 4, Alpine.js 3, Vite 8. Database: SQLite / MySQL / MariaDB. Pengujian: Pest 5 (27 tes, 171 *assertions*). |
-| **Model & Metode AI** | Google Gemini `gemini-flash-latest` via endpoint kompatibel OpenAI (*vision* + JSON Schema); cadangan opsional Anthropic Claude `claude-haiku-5-5`. Perhitungan kuota dan rekomendasi bersifat deterministik (bukan AI). |
+| **Model & Metode AI** | Google Gemini `gemini-3.5-flash-lite` (cadangan otomatis `gemini-flash-lite-latest`, `gemini-3.6-flash`) via endpoint kompatibel OpenAI (*vision* + JSON Schema); cadangan opsional Anthropic Claude `claude-haiku-5-5`. Perhitungan kuota dan rekomendasi bersifat deterministik (bukan AI). |
 | **Dataset & Aset** | Kamus 124 produk & 511 alias (`ProductSeeder.php`, `database/data/produk.json`), 19 satuan (`satuan.json`), 10 nota fiktif + `kunci.json` (`database/data/nota-demo/`). Huruf lokal Bricolage Grotesque dan Plus Jakarta Sans dari @fontsource (SIL OFL 1.1). Ilustrasi & diagram SVG buatan tim. |
 | **Komponen Pra-eksisting** | Pola *gateway* AI (pembatas anggaran, log `ai_calls`, *driver* OpenAI/Anthropic) dan pengirim WA Fonnte diadaptasi dari proyek tim sebelumnya (**Harlok**). Seluruh fitur Pasok Bali lainnya dibangun baru untuk kompetisi ini. |
 | **AI Coding Assistant** | Claude Code (Anthropic, Claude Opus 5.5) dan Google Gemini (Antigravity) digunakan membantu penulisan kode, tes, desain, data demo, dan dokumentasi, seluruhnya diuji dan ditinjau tim. |

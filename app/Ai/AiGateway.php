@@ -113,7 +113,7 @@ class AiGateway
 
             $this->driver = match (true) {
                 $key === '' || $model === '' => false,
-                $name === 'openai' => new OpenAiCompatibleDriver($key, (string) config('pasok.ai.base_url'), $model, $timeout),
+                $name === 'openai' => new OpenAiCompatibleDriver($key, (string) config('pasok.ai.base_url'), $model, $timeout, (array) config('pasok.ai.fallback_models')),
                 $name === 'anthropic' => new AnthropicDriver($key, $model, $timeout),
                 default => false,
             };

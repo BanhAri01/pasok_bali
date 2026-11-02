@@ -36,7 +36,7 @@ Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat peng
 | Frontend | Blade, Tailwind CSS 4, Alpine.js 3, Vite |
 | Backend | PHP 8.3+, Laravel 13 |
 | Database | SQLite (lokal) / MySQL atau MariaDB (produksi) |
-| AI | Google Gemini (`gemini-flash-latest`) lewat endpoint kompatibel OpenAI; cadangan opsional Anthropic Claude (`claude-haiku-5-5`) |
+| AI | Google Gemini (`gemini-3.5-flash-lite`, cadangan otomatis `gemini-flash-lite-latest` dan `gemini-3.6-flash` saat server sibuk) lewat endpoint kompatibel OpenAI; cadangan opsional Anthropic Claude (`claude-haiku-5-5`) |
 | WhatsApp | Fonnte (opsional; tanpa token, pesan dicatat ke log dan dapat dicoba lewat Simulator WA) |
 | Pengujian | Pest 5 |
 | Hosting | [ISI ARI] |
@@ -105,6 +105,8 @@ Variabel lingkungan penting (lihat `.env.example`):
 | `PASOK_AI_KEY` | Kunci API Gemini (atau Anthropic bila `PASOK_AI_DRIVER=anthropic`). Tanpa kunci, aplikasi tetap jalan dengan isian manual. |
 | `PASOK_AI_DRIVER` | `openai` (Gemini lewat endpoint kompatibel OpenAI) atau `anthropic` |
 | `PASOK_AI_MODEL` | Opsional, mengganti model bawaan |
+| `PASOK_AI_FALLBACK_MODELS` | Opsional, daftar model cadangan dipisah koma (bawaan `gemini-flash-lite-latest,gemini-3.6-flash`) |
+| `PASOK_CA_BUNDLE` | Opsional, path berkas sertifikat CA bila PHP lokal (mis. XAMPP di Windows) gagal membuka HTTPS |
 | `PASOK_WA_DRIVER` | `log` (bawaan) atau `fonnte` |
 | `FONNTE_TOKEN`, `FONNTE_DEVICE` | Kredensial Fonnte bila memakai WhatsApp sungguhan |
 | `PASOK_WEBHOOK_SECRET` | Rahasia di URL webhook `/webhook/wa/{rahasia}` |
@@ -129,7 +131,7 @@ Tidak perlu akun. Klik **Coba demo** di halaman depan untuk membuat sandbox prib
 
 ## Known Limitations
 
-- Semua data di repositori dan mode demo adalah **data fiktif**. Aplikasi belum diuji dengan nota atau usaha sungguhan, dan akurasi pembacaan nota oleh AI belum diukur secara formal.
+- Semua data di repositori dan mode demo adalah **data fiktif**. Aplikasi belum diuji dengan nota atau usaha sungguhan. Uji internal 3 Nov 2026 pada 10 nota demo fiktif (gambar digital, bukan foto kamera) dengan `gemini-3.5-flash-lite`: 10/10 nota terbaca dan 69/69 baris benar (nama, jumlah, satuan, harga, produk kamus), rata-rata ±2,7 detik per nota. Akurasi pada foto nota asli yang miring, buram, atau kusut belum diukur.
 - Angka kuota mengikuti pengaturan admin (bawaan 30% untuk pertanian, peternakan, dan perikanan, serta 20% untuk industri lokal) dan perlu dicocokkan dengan teks resmi Pergub Bali No. 99/2018 sebelum dipakai untuk pelaporan resmi.
 - Status "lokal" bergantung pada data pemasok: label *pernyataan* berarti berdasarkan pengakuan pemasok, belum diverifikasi di lapangan.
 - Konversi satuan non-baku (ikat, sisir, ekor) memakai perkiraan berat rata-rata dari kamus.

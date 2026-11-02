@@ -1,13 +1,16 @@
 <?php
 
 return [
+    'ca_bundle' => env('PASOK_CA_BUNDLE'),
+
     'ai' => [
         'driver' => env('PASOK_AI_DRIVER') ?: 'openai',
         'api_key' => env('PASOK_AI_KEY', ''),
         'base_url' => env('PASOK_AI_BASE_URL') ?: 'https://generativelanguage.googleapis.com/v1beta/openai',
         'model' => env('PASOK_AI_MODEL'),
-        'models' => ['openai' => 'gemini-flash-latest', 'anthropic' => 'claude-haiku-5-5'],
-        'timeout' => (int) env('PASOK_AI_TIMEOUT', 60),
+        'models' => ['openai' => 'gemini-3.5-flash-lite', 'anthropic' => 'claude-haiku-5-5'],
+        'fallback_models' => array_values(array_filter(array_map('trim', explode(',', (string) (env('PASOK_AI_FALLBACK_MODELS') ?: 'gemini-flash-lite-latest,gemini-3.6-flash'))))),
+        'timeout' => (int) env('PASOK_AI_TIMEOUT', 30),
         'daily_per_business' => (int) env('PASOK_AI_DAILY_PER_BUSINESS', 80),
         'daily_global' => (int) env('PASOK_AI_DAILY_GLOBAL', 1500),
     ],
