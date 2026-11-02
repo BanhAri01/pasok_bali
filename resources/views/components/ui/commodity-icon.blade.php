@@ -41,7 +41,6 @@
 <span {{ $attributes->class(['inline-grid shrink-0 place-items-center', $sizeClass, $toneClass]) }} aria-hidden="true">
     @switch($normalized)
         @case('telur')
-            {{-- Ilustrasi Telur & Krat Pasar Bali --}}
             <svg viewBox="0 0 32 32" fill="none" class="{{ $svgSize }}">
                 <path d="M11.5 22C8.7 22 7 19.6 7 16.5C7 12.4 9.6 7.5 11.5 7.5C13.4 7.5 16 12.4 16 16.5C16 19.6 14.3 22 11.5 22Z" fill="#FFFDF7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                 <path d="M20.5 22C17.7 22 16 19.6 16 16.5C16 12.4 18.6 7.5 20.5 7.5C22.4 7.5 25 12.4 25 16.5C25 19.6 23.3 22 20.5 22Z" fill="#FEF0C2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -51,7 +50,6 @@
             @break
 
         @case('ikan')
-            {{-- Ilustrasi Ikan Segar Pesisir Bali --}}
             <svg viewBox="0 0 32 32" fill="none" class="{{ $svgSize }}">
                 <path d="M4 16C7.5 10.5 13.5 8.5 20.5 10.5C23.5 11.4 26 13.5 28 16C26 18.5 23.5 20.6 20.5 21.5C13.5 23.5 7.5 21.5 4 16Z" fill="#1B663A" fill-opacity="0.18" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                 <path d="M4 16L2 11.5L6.5 13.5M4 16L2 20.5L6.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -62,7 +60,6 @@
             @break
 
         @case('beras')
-            {{-- Ilustrasi Bulir Padi & Beras Subak Bali --}}
             <svg viewBox="0 0 32 32" fill="none" class="{{ $svgSize }}">
                 <path d="M16 27V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                 <path d="M16 11C12.5 11 10 8.8 10 6C13.5 6 16 8.2 16 11Z" fill="#F0B400" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -75,7 +72,6 @@
             @break
 
         @case('kopi')
-            {{-- Ilustrasi Biji Kopi & Olahan Lokal Bali --}}
             <svg viewBox="0 0 32 32" fill="none" class="{{ $svgSize }}">
                 <ellipse cx="13" cy="16.5" rx="6.5" ry="8.5" transform="rotate(-18 13 16.5)" fill="#B84320" fill-opacity="0.22" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M10.5 9.2C12.5 13 11.2 18.2 14.8 23.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -85,7 +81,6 @@
             @break
 
         @case('nota')
-            {{-- Ilustrasi Secarik Nota Belanja Pasar --}}
             <svg viewBox="0 0 32 32" fill="none" class="{{ $svgSize }}">
                 <path d="M7 5L9.5 6.8L12 5L14.5 6.8L17 5L19.5 6.8L22 5L25 6.8V27L22 25.2L19.5 27L17 25.2L14.5 27L12 25.2L9.5 27L7 25.2V5Z" fill="#FFFFFF" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                 <path d="M11 11.5H21M11 16H18M11 20.5H15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -94,7 +89,6 @@
             @break
 
         @default
-            {{-- Ilustrasi Sayur & Daun Pisang Bali --}}
             <svg viewBox="0 0 32 32" fill="none" class="{{ $svgSize }}">
                 <path d="M7 24C6.5 14.5 13 7 25 6C24.5 17.5 18 24.5 7 24Z" fill="#1B663A" fill-opacity="0.22" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                 <path d="M7 24C12.5 18.5 18 13 25 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>

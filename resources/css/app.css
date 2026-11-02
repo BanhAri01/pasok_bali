@@ -59,7 +59,6 @@
 }
 
 @layer components {
-    /* Styled native <progress> following modern-web-guidance 'progress' pattern */
     progress.ui-progress {
         --progress-bar-radius: 9999px;
         --progress-bar-track: var(--color-santan);
@@ -100,7 +99,6 @@
         }
     }
 
-    /* Elemen khas: secarik nota belanja pasar dengan gerigi perforasi halus */
     .nota-pasar {
         position: relative;
         background-color: var(--color-kertas);
@@ -114,7 +112,6 @@
         box-shadow: var(--shadow-angkat);
     }
 
-    /* Papan pasar hijau daun pisang tua */
     .papan-daun {
         background-color: var(--color-daun-tua);
         background-image:

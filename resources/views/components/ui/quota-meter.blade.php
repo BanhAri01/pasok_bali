@@ -52,7 +52,7 @@
 @endphp
 
 <article {{ $attributes->class(['rounded-2xl border border-garis bg-kertas p-5 shadow-[var(--shadow-kartu)]']) }}>
-    <div class="flex items-start justify-between gap-3">
+    <div class="flex flex-wrap items-start justify-between gap-2">
         <div class="flex items-center gap-3">
             <x-ui.commodity-icon :name="$iconKey" size="sm" />
             <h3 class="font-display text-base font-bold leading-snug text-tinta">{{ $title }}</h3>
@@ -67,7 +67,6 @@
         <span class=" font-sans text-sm sm:text-base font-semibold text-abu">lokal dari kuota {{ $fmt($targetQuota) }}%</span>
     </p>
 
-    {{-- Progress semantik aksesibel + visual dua lapis bukti (terverifikasi vs pernyataan) & batas kuota --}}
     <div class="mt-3.5">
         <progress
             class="ui-progress sr-only"

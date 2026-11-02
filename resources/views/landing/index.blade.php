@@ -9,12 +9,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-santan font-sans text-tinta antialiased selection:bg-kunyit selection:text-tinta">
-    {{-- Pita keterbukaan data demo --}}
     <div class="border-b border-garis bg-kunyit-muda px-4 py-2 text-center text-xs sm:text-sm font-medium text-tinta">
         Peragaan <strong>Bali DigiFest 2026</strong> · Seluruh contoh nota, usaha, dan pemasok di mode demo adalah <strong>data fiktif</strong>.
     </div>
 
-    {{-- Navigasi utama --}}
     <header class="sticky top-0 z-30 border-b border-garis bg-santan/95 backdrop-blur-sm" x-data="{ menuTerbuka: false }">
         <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
@@ -86,10 +84,8 @@
     </header>
 
     <main>
-        {{-- Bagian Hero + Elemen Khas: Secarik Nota Pasar ke Papan Serapan --}}
         <section class="mx-auto max-w-6xl px-4 pt-8 pb-14 sm:pt-12 sm:pb-20">
             <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-8">
-                {{-- Kolom Kiri: Pesan Utama & Aksi --}}
                 <div class="lg:col-span-6 lg:pt-2">
                     <span class="inline-flex items-center gap-2 rounded-full border border-daun/25 bg-daun-muda px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-daun-tua">
                         <span class="size-2 rounded-full bg-daun"></span>
@@ -134,7 +130,6 @@
                         Sekali klik <strong>Coba demo</strong> membuat ruang uji mandiri berisi nota dan pemasok contoh fiktif selama 48 jam — tanpa perlu mengisi formulir pendaftaran.
                     </p>
 
-                    {{-- Pita Ilustrasi 5 Komoditas Hasil Bumi Bali --}}
                     <div class="mt-8 rounded-2xl border border-garis bg-kertas p-4 shadow-[var(--shadow-kartu)]">
                         <p class="text-xs font-semibold text-abu">Mengenali istilah pasar tradisional &amp; mengonversi satuan ke kilogram:</p>
                         <div class="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-5">
@@ -177,7 +172,6 @@
                     </div>
                 </div>
 
-                {{-- Kolom Kanan: SATU ELEMEN KHAS — "Secarik Nota Pasar ke Papan Serapan Lokal" --}}
                 <div class="lg:col-span-6">
                     <div class="papan-daun rounded-3xl p-4 sm:p-6 shadow-[var(--shadow-angkat)]">
                         <div class="flex flex-wrap items-center justify-between gap-2 pb-4">
@@ -190,7 +184,6 @@
                             </span>
                         </div>
 
-                        {{-- Bagian 1: Kertas Nota Belanja Pasar --}}
                         <div class="nota-pasar rounded-2xl border border-garis p-4 sm:p-5 text-tinta">
                             <div class="flex items-start justify-between gap-3 border-b border-dashed border-garis pb-3">
                                 <div>
@@ -236,17 +229,15 @@
                             </ul>
                         </div>
 
-                        {{-- Panah Penghubung Alur --}}
                         <div class="my-3 flex items-center justify-center gap-2 text-xs font-semibold text-kunyit-muda">
                             <span class="h-px flex-1 bg-kertas/20"></span>
                             <span>Dihitung otomatis ke meter kuota Pergub 99/2018</span>
                             <span class="h-px flex-1 bg-kertas/20"></span>
                         </div>
 
-                        {{-- Bagian 2: Cuplikan Meter Kuota --}}
                         <div class="grid gap-3 sm:grid-cols-2">
                             <x-ui.quota-meter
-                                label="Pangan, hortikultura & kebun"
+                                label="Pertanian"
                                 commodity="sayur"
                                 :percent="42"
                                 :verifiedPercent="28"
@@ -266,7 +257,6 @@
                             />
                         </div>
 
-                        {{-- Bagian 3: Rekomendasi & Sambungan WA --}}
                         <div class="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-2 border-kunyit bg-kunyit-muda px-4 py-3 text-tinta">
                             <div class="min-w-0 flex-1">
                                 <p class="font-display text-sm font-bold text-tinta">
@@ -288,7 +278,6 @@
             </div>
         </section>
 
-        {{-- Bagian Masalah: Mengapa Pergub 99/2018 sulit diukur di lapangan --}}
         <section id="masalah" class="border-y border-garis bg-kertas py-14 sm:py-20">
             <div class="mx-auto max-w-6xl px-4">
                 <div class="max-w-3xl">
@@ -335,7 +324,6 @@
             </div>
         </section>
 
-        {{-- Bagian Cara Kerja 3 Langkah --}}
         <section id="cara-kerja" class="mx-auto max-w-6xl px-4 py-14 sm:py-20">
             <div class="max-w-3xl">
                 <p class="text-sm font-semibold text-daun">Alur kerja sederhana &amp; terkendali</p>
@@ -416,7 +404,6 @@
             </ol>
         </section>
 
-        {{-- Bagian Kuota Pergub Bali 99/2018 & Tingkat Bukti --}}
         <section id="kuota-pergub" class="border-y border-garis bg-kertas py-14 sm:py-20">
             <div class="mx-auto max-w-6xl px-4">
                 <div class="grid items-end justify-between gap-6 lg:grid-cols-12">
@@ -511,12 +498,11 @@
                             </p>
                         </div>
                         <p class="mt-4 border-t border-garis pt-2.5 text-[11px] text-abu">
-                            *Bawaan 20% volume (beberapa sumber menyebut 30%; dapat diubah admin).
+                            *Angka kuota mengikuti pengaturan admin; cocokkan selalu dengan teks resmi Pergub Bali No. 99 Tahun 2018.
                         </p>
                     </x-ui.card>
                 </div>
 
-                {{-- Penjelasan Jujur Tingkat Bukti --}}
                 <div class="mt-8 rounded-2xl border border-garis bg-santan p-5 sm:p-6">
                     <div class="grid items-center gap-6 lg:grid-cols-12">
                         <div class="lg:col-span-5">
@@ -552,10 +538,8 @@
             </div>
         </section>
 
-        {{-- Bagian Dua Sisi: Untuk Restoran/Hotel & Untuk Pemasok Lokal --}}
         <section id="untuk-siapa" class="mx-auto max-w-6xl px-4 py-14 sm:py-20">
             <div class="grid gap-8 lg:grid-cols-2">
-                {{-- Kartu Untuk Usaha Kuliner & Akomodasi --}}
                 <x-ui.card padding="lg" as="article" class="flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between gap-3">
@@ -598,7 +582,6 @@
                     </div>
                 </x-ui.card>
 
-                {{-- Kartu Untuk Pemasok Lokal Bali (Petani, Peternak, Nelayan) --}}
                 <x-ui.card variant="kunyit" padding="lg" as="article" class="flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between gap-3">
@@ -645,7 +628,6 @@
             </div>
         </section>
 
-        {{-- Bagian Ajakan Penutup --}}
         <section class="mx-auto max-w-6xl px-4 pb-16">
             <div class="papan-daun rounded-3xl p-6 sm:p-10 lg:p-12 shadow-[var(--shadow-angkat)]">
                 <div class="grid items-center gap-8 lg:grid-cols-12">
