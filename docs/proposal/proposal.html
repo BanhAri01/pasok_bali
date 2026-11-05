@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Proposal Pasok Bali — AI Web Innovation Challenge 2026</title>
+<style>
+@font-face { font-family: 'Cormorant'; font-weight: 500; font-style: normal; src: url('fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 500; font-style: italic; src: url('fonts/cormorant-garamond-latin-500-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant'; font-weight: 600; font-style: normal; src: url('fonts/cormorant-garamond-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jakarta'; font-weight: 200 800; src: url('fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2-variations'); }
+
+:root {
+  --santan: #f4f6f0; --kertas: #ffffff; --tinta: #20241f; --abu: #687064; --garis: #dde2d6;
+  --daun: #3d7350; --daun-tua: #1d3a2f; --daun-muda: #e6eedf; --prada: #b8913f; --prada-muda: #f3ead6;
+  --kunyit: #d7a136; --terakota: #ad4a31; --terakota-muda: #f5e1da; --taum: #2d5546;
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { background: #8a9187; font-family: 'Jakarta', sans-serif; color: var(--tinta); font-size: 8.9pt; line-height: 1.5; }
+.page { width: 210mm; height: 297mm; margin: 0 auto 8mm; background: var(--santan); position: relative; overflow: hidden; padding: 15mm 15mm 14mm; page-break-after: always; display: flex; flex-direction: column; }
+@media print { body { background: none; } .page { margin: 0; } }
+
+.terasering { position: absolute; inset: auto 0 0 0; height: 120mm; pointer-events: none; }
+.terasering path { fill: none; stroke: var(--daun); stroke-opacity: .13; stroke-width: 1; }
+
+.kepala { display: flex; align-items: center; justify-content: space-between; padding-bottom: 4mm; margin-bottom: 6mm; border-bottom: 1px solid var(--garis); font-size: 7.6pt; color: var(--abu); }
+.kepala .merek { display: flex; align-items: center; gap: 2mm; font-family: 'Cormorant'; font-weight: 600; font-size: 12.5pt; color: var(--daun-tua); }
+.kaki { margin-top: auto; padding-top: 3mm; display: flex; justify-content: space-between; font-size: 7.2pt; color: var(--abu); border-top: 1px solid var(--garis); position: relative; }
+
+h2 { font-family: 'Cormorant'; font-weight: 600; font-size: 19pt; line-height: 1.1; color: var(--daun-tua); display: flex; align-items: baseline; gap: 3mm; margin-bottom: 2.6mm; }
+h2 .no { font-style: italic; font-weight: 500; color: var(--prada); font-size: 22pt; min-width: 7mm; }
+h3 { font-family: 'Cormorant'; font-weight: 600; font-size: 12.5pt; color: var(--daun-tua); margin-bottom: 1.2mm; line-height: 1.2; }
+p + p { margin-top: 1.6mm; }
+.lead { font-size: 9.6pt; line-height: 1.55; }
+.muted { color: var(--abu); }
+.kecil { font-size: 7.6pt; line-height: 1.45; }
+b, strong { font-weight: 650; }
+em.bali { font-family: 'Cormorant'; font-style: italic; font-size: 1.12em; color: var(--daun-tua); }
+section + section { margin-top: 5.5mm; }
+
+.kartu { background: var(--kertas); border: 1px solid var(--garis); border-radius: 4mm; padding: 4mm 4.4mm; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5mm; }
+.pil { display: inline-block; border-radius: 99px; padding: .4mm 2.4mm; font-size: 6.9pt; font-weight: 650; }
+.pil.hijau { background: var(--daun-muda); color: var(--daun-tua); }
+.pil.emas { background: var(--prada-muda); color: #6d5420; }
+.pil.merah { background: var(--terakota-muda); color: var(--terakota); }
+
+table { width: 100%; border-collapse: collapse; font-size: 7.9pt; line-height: 1.4; }
+th { text-align: left; font-weight: 650; color: var(--abu); font-size: 7.2pt; padding: 1.6mm 2.2mm; border-bottom: 1px solid var(--garis); background: var(--santan); }
+td { padding: 1.7mm 2.2mm; border-bottom: 1px solid var(--garis); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+.tabel { background: var(--kertas); border: 1px solid var(--garis); border-radius: 4mm; overflow: hidden; }
+td.nama { font-weight: 650; color: var(--daun-tua); white-space: nowrap; }
+code { white-space: nowrap; font-family: 'Jakarta'; font-size: .92em; background: var(--daun-muda); color: var(--daun-tua); padding: 0 1mm; border-radius: 1mm; }
+
+.cover { background: var(--daun-tua); color: var(--kertas); padding: 0; }
+.cover .atas { padding: 17mm 17mm 0; position: relative; z-index: 1; }
+.cover .terasering path { stroke: #e6eedf; stroke-opacity: .16; }
+.cover h1 { font-family: 'Cormorant'; font-weight: 600; font-size: 62pt; line-height: .95; letter-spacing: -.5pt; margin-top: 24mm; }
+.cover .tagline { font-family: 'Cormorant'; font-style: italic; font-weight: 500; font-size: 21pt; line-height: 1.15; color: #e8d7ac; margin-top: 4mm; max-width: 130mm; }
+.cover .desk { margin-top: 7mm; max-width: 118mm; font-size: 10pt; line-height: 1.6; color: #dfe7da; }
+.cover .lomba { font-size: 8.4pt; color: #cbd6c6; display: flex; align-items: center; gap: 2.5mm; }
+.cover .lomba span { width: 7mm; height: 1px; background: var(--prada); display: inline-block; }
+.cover .layar { position: absolute; right: -26mm; top: 134mm; width: 150mm; border-radius: 4mm; overflow: hidden; box-shadow: 0 6mm 16mm rgba(0,0,0,.35); border: 1.5mm solid #2a4a3d; z-index: 1; }
+.cover .layar img { display: block; width: 100%; height: 80mm; object-fit: cover; object-position: top left; }
+.cover .identitas { position: absolute; left: 17mm; right: 17mm; bottom: 17mm; z-index: 2; display: grid; grid-template-columns: 1.15fr 1fr; gap: 6mm; background: var(--santan); color: var(--tinta); border-radius: 4mm; padding: 6mm 7mm; }
+.cover .identitas dt { font-size: 7.2pt; color: var(--abu); }
+.cover .identitas dd { font-size: 9.6pt; font-weight: 600; margin-bottom: 2.6mm; color: var(--daun-tua); }
+.cover .identitas dd:last-child { margin-bottom: 0; }
+.isi-ari { background: var(--prada-muda); color: #6d5420; border-radius: 1mm; padding: 0 1.2mm; }
+
+.nota { font-family: 'Cormorant'; font-size: 11.5pt; }
+.nota-baris { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 1.2mm 0; border-bottom: 1px dashed var(--garis); }
+.nota-baris:last-child { border-bottom: none; }
+.nota-baris .hasil { font-family: 'Jakarta'; font-size: 7.4pt; text-align: right; line-height: 1.3; }
+.nota-baris .hasil .luar { color: var(--terakota); }
+.nota-baris .hasil .lokal { color: var(--daun); }
+
+.kuota { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin-top: 3mm; }
+.kuota div { background: var(--kertas); border: 1px solid var(--garis); border-radius: 3mm; padding: 2.6mm 3mm; }
+.kuota strong { font-family: 'Cormorant'; font-size: 20pt; font-weight: 600; color: var(--daun-tua); display: block; line-height: 1; }
+
+.langkah { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2mm; counter-reset: l; }
+.langkah li { list-style: none; background: var(--kertas); border: 1px solid var(--garis); border-radius: 3mm; padding: 3mm 2.6mm; font-size: 7.6pt; line-height: 1.4; position: relative; }
+.langkah li::before { counter-increment: l; content: counter(l); font-family: 'Cormorant'; font-style: italic; font-size: 17pt; color: var(--prada); display: block; line-height: 1; margin-bottom: 1mm; }
+.langkah li b { display: block; color: var(--daun-tua); margin-bottom: .6mm; font-size: 8pt; }
+
+.wa { background: #e9e3d6; border-radius: 4mm; padding: 3mm; display: flex; flex-direction: column; gap: 1.6mm; font-size: 7.6pt; line-height: 1.38; }
+.wa .b { max-width: 82%; padding: 1.6mm 2.6mm; border-radius: 2.4mm; white-space: pre-line; box-shadow: 0 .3mm .4mm rgba(0,0,0,.08); }
+.wa .masuk { align-self: flex-end; background: #d8f2c8; }
+.wa .bot { align-self: flex-start; background: #fff; }
+.wa-kepala { background: var(--taum); color: #fff; border-radius: 4mm 4mm 0 0; padding: 2.4mm 3.4mm; font-size: 8pt; font-weight: 650; display: flex; justify-content: space-between; }
+.wa-kepala span { font-weight: 400; opacity: .8; font-size: 7pt; }
+.wa-bingkai .wa { border-radius: 0 0 4mm 4mm; }
+
+.layar-kecil { border-radius: 3mm; overflow: hidden; border: 1px solid var(--garis); background: var(--kertas); }
+.layar-kecil img { display: block; width: 100%; object-fit: cover; object-position: top left; }
+.keterangan { font-size: 7pt; color: var(--abu); margin-top: 1.4mm; }
+
+.prinsip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.prinsip div { border-left: 2px solid var(--prada); padding: .4mm 0 .4mm 3mm; font-size: 7.8pt; line-height: 1.45; }
+.prinsip b { display: block; color: var(--daun-tua); font-size: 8.2pt; }
+
+.angka { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+.angka div { background: var(--daun-tua); color: #dfe7da; border-radius: 3.5mm; padding: 3.2mm 3.4mm; font-size: 7.4pt; line-height: 1.35; }
+.angka strong { display: block; font-family: 'Cormorant'; font-weight: 600; font-size: 22pt; line-height: 1; color: #f0dfb4; margin-bottom: 1mm; }
+
+.fitur { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.fitur div { background: var(--kertas); border: 1px solid var(--garis); border-radius: 3.5mm; padding: 3.2mm 3.4mm; font-size: 7.8pt; line-height: 1.42; }
+.fitur b { display: block; font-family: 'Cormorant'; font-size: 12pt; color: var(--daun-tua); line-height: 1.15; margin-bottom: 1mm; font-weight: 600; }
+
+.tautan td:first-child { width: 42mm; }
+.tautan a { color: var(--daun); font-weight: 650; text-decoration: none; }
+.dua-kolom { display: grid; grid-template-columns: 1.05fr 1fr; gap: 6mm; }
+ul.titik { padding-left: 3.6mm; }
+ul.titik li { margin-bottom: 1mm; }
+ul.titik li::marker { color: var(--prada); }
+.lampiran-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.lampiran-grid .layar-kecil img { height: 96mm; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="page cover">
+  <svg class="terasering" viewBox="0 0 800 460" preserveAspectRatio="none"><path d="M-20 60C120 30 230 90 380 62S640 10 820 48"/><path d="M-20 105C130 75 245 140 395 106S655 55 820 92"/><path d="M-20 152C140 122 260 190 410 152S670 100 820 138"/><path d="M-20 202C150 172 275 242 425 200S685 148 820 186"/><path d="M-20 255C160 225 290 298 440 252S700 198 820 236"/><path d="M-20 310C170 280 305 356 455 306S715 250 820 288"/><path d="M-20 368C180 338 320 416 470 362S730 304 820 342"/><path d="M-20 428C190 398 335 478 485 420S745 360 820 398"/></svg>
+  <div class="atas">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <svg width="46" height="46" viewBox="0 0 48 48" aria-label="Logo Pasok Bali"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#f4f6f0"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#f4f6f0" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <p class="lomba"><span></span>Proposal Solusi &amp; MVP AI Web, Bali DigiFest 2026</p>
+    </div>
+    <h1>Pasok Bali</h1>
+    <p class="tagline">Dari nota belanja dapur, sampai kuota produk lokal Bali.</p>
+    <p class="desk">Aplikasi web berbasis AI yang membaca foto nota belanja hotel, restoran, kafe, villa, dan katering untuk mengukur sendiri kepatuhan Pergub Bali No. 99/2018, lalu menghubungkan kekurangannya dengan petani, peternak, nelayan, dan UMKM Bali lewat WhatsApp.</p>
+  </div>
+  <div class="layar"><img src="../screenshots/02-dasbor.png" alt="Dasbor kepatuhan Pasok Bali"></div>
+  <dl class="identitas">
+    <div>
+      <dt>Kategori</dt><dd>AI Web Innovation Challenge, kategori <span class="isi-ari">[Mahasiswa / Umum]</span></dd>
+      <dt>Nama tim</dt><dd><span class="isi-ari">[Nama tim]</span></dd>
+      <dt>Anggota</dt><dd><span class="isi-ari">I Dewa Made Arisantika (ketua)</span><br><span class="isi-ari">[Anggota 2, Anggota 3]</span></dd>
+    </div>
+    <div>
+      <dt>Asal instansi</dt><dd><span class="isi-ari">[Kampus / instansi]</span></dd>
+      <dt>Kontak</dt><dd><span class="isi-ari">[Email · nomor telepon]</span></dd>
+      <dt>Coba langsung</dt><dd>pasokbali.arisantika.tech</dd>
+    </div>
+  </dl>
+</div>
+
+<!-- HALAMAN 1 -->
+<div class="page">
+  <div class="kepala"><span class="merek"><svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#1d3a2f"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#1d3a2f" stroke-width="2.4" stroke-linecap="round"/></svg>Pasok Bali</span><span>Masalah dan pengguna</span></div>
+
+  <section>
+    <h2><span class="no">1</span>Masalah dan latar belakang</h2>
+    <div class="dua-kolom">
+      <div>
+        <p class="lead"><b>Peraturan Gubernur Bali No. 99 Tahun 2018</b> meminta hotel, restoran, dan katering menyerap produk pertanian, peternakan, perikanan, dan industri lokal Bali dengan kuota volume minimal per kelompok. Aturannya jelas, tetapi mengukurnya di dapur tidak mudah.</p>
+        <p>Bukti belanja harian datang dalam bentuk struk toko, nota kios pasar tulisan tangan, dan faktur pemasok. Isinya memakai singkatan dan istilah Bali (<em class="bali">kesuna</em>, <em class="bali">taluh</em>, <em class="bali">be siap</em>, <em class="bali">migor</em>) dengan satuan campur: ikat, krat, ekor, sisir, liter. Padahal kuota dihitung dari <b>berat</b>, dan asal barang (lokal atau luar Bali) tidak tertulis di nota.</p>
+        <p>Rekap manual di spreadsheet memakan waktu, rawan salah konversi, tidak membedakan klaim asal barang dari yang terverifikasi, dan berhenti di angka. Saat kuota kurang, staf belanja tidak tahu petani atau peternak lokal mana yang siap memasok. Di sisi lain, produsen lokal hidup di WhatsApp dan enggan memasang aplikasi baru.</p>
+      </div>
+      <div class="kartu nota" style="padding:4mm 5mm">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5mm"><h3 style="margin:0">Nota Dagang Men Sari</h3><span class="kecil muted" style="font-family:Jakarta">nota contoh fiktif</span></div>
+        <div class="nota-baris"><span><em>kesuna</em> 2 kg</span><span class="hasil">Bawang putih, 2 kg<br><span class="luar">Dari luar Bali</span></span></div>
+        <div class="nota-baris"><span><em>bawang barak</em> 3 kg</span><span class="hasil">Bawang merah, 3 kg<br><span class="lokal">Lokal, Bangli</span></span></div>
+        <div class="nota-baris"><span><em>taluh</em> 1 krat</span><span class="hasil">Telur ayam ras, 1,8 kg<br><span class="lokal">Lokal, Tabanan</span></span></div>
+        <div class="nota-baris"><span><em>be siap</em> 6 ekor</span><span class="hasil">Daging ayam, 7,2 kg<br><span class="luar">Dari luar Bali</span></span></div>
+        <div class="nota-baris"><span><em>migor</em> 5 liter</span><span class="hasil">Minyak goreng sawit, 4,5 kg<br><span class="luar">Dari luar Bali</span></span></div>
+        <p class="kecil muted" style="font-family:Jakarta;margin-top:2mm">Kiri: tulisan di nota. Kanan: yang dibutuhkan untuk menghitung kuota, yaitu produk baku, berat, dan asal barang.</p>
+      </div>
+    </div>
+    <div class="kuota">
+      <div><strong>30%</strong>Pertanian: pangan, hortikultura, perkebunan</div>
+      <div><strong>30%</strong>Peternakan</div>
+      <div><strong>30%</strong>Perikanan</div>
+      <div><strong>20%</strong>Industri lokal Bali</div>
+    </div>
+    <p class="kecil muted" style="margin-top:1.6mm">Kuota minimal volume yang dipakai sebagai angka bawaan. Angka disimpan di basis data dan dapat diubah admin bila berbeda dengan naskah resmi di JDIH Provinsi Bali.</p>
+  </section>
+
+  <section>
+    <h2><span class="no">2</span>Pengguna sasaran</h2>
+    <div class="grid3">
+      <div class="kartu"><span class="pil hijau">Pengguna utama</span><h3 style="margin-top:2mm">Usaha kuliner dan akomodasi kecil–menengah</h3><p>Pemilik dan staf belanja restoran, warung, kafe, hotel, villa, dan katering di 9 kabupaten/kota Bali.</p><p class="muted kecil">Butuh tahu posisi kuota tanpa rekap manual, dan tahu harus membeli dari siapa agar kuota terpenuhi.</p></div>
+      <div class="kartu"><span class="pil emas">Pengguna pendamping</span><h3 style="margin-top:2mm">Petani, peternak, nelayan, dan UMKM Bali</h3><p>Produsen lokal yang ingin menjual rutin ke hotel dan restoran.</p><p class="muted kecil">Butuh cara mendaftar dan menerima pesanan yang sesederhana chat WhatsApp, dalam bahasa sehari-hari.</p></div>
+      <div class="kartu"><span class="pil merah">Pengelola</span><h3 style="margin-top:2mm">Admin platform</h3><p>Memverifikasi pemasok, menambah pemasok yang mendaftar lewat kunjungan, dan menyesuaikan angka kuota.</p><p class="muted kecil">Butuh membedakan klaim asal barang dari pemasok yang sudah diperiksa.</p></div>
+    </div>
+  </section>
+
+  <div class="kaki"><span>Proposal Pasok Bali, AI Web Innovation Challenge 2026</span><span>1</span></div>
+</div>
+
+<!-- HALAMAN 2 -->
+<div class="page">
+  <div class="kepala"><span class="merek"><svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#1d3a2f"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#1d3a2f" stroke-width="2.4" stroke-linecap="round"/></svg>Pasok Bali</span><span>Solusi dan alur pengguna</span></div>
+
+  <section>
+    <h2><span class="no">3</span>Solusi yang ditawarkan</h2>
+    <p class="lead"><b>Pasok Bali</b> membantu usaha kuliner dan akomodasi <b>mengukur sendiri</b> serapan produk lokalnya dari foto nota, lalu menutup kekurangan kuota dengan pemasok lokal lewat WhatsApp. Pasok Bali adalah alat bantu internal usaha, bukan alat pengawasan pemerintah.</p>
+
+    <h3 style="margin-top:4mm">Alur usaha di web</h3>
+    <ol class="langkah">
+      <li><b>Foto nota</b>Unggah foto nota atau pilih 1 dari 10 nota contoh fiktif.</li>
+      <li><b>AI membaca</b>Pemasok, tanggal, barang, jumlah, satuan, harga, dan istilah Bali.</li>
+      <li><b>Periksa</b>Pengguna mengoreksi baris bertanda kuning, lalu menyetujui nota.</li>
+      <li><b>Dasbor kuota</b>Persentase lokal per kelompok, berlabel tingkat bukti.</li>
+      <li><b>Rekomendasi</b>Pemasok lokal, simulasi kenaikan persen, draf pesan WA.</li>
+      <li><b>Laporan</b>Rekap bulanan dengan ringkasan AI, siap cetak atau PDF.</li>
+    </ol>
+  </section>
+
+  <section style="display:grid;grid-template-columns:1fr 78mm;gap:6mm">
+    <div>
+      <h3>Dasbor berlabel bukti</h3>
+      <p>Setiap kilogram dipisah menurut tingkat bukti: <span class="pil hijau">lokal terverifikasi</span> <span class="pil emas">pernyataan pemasok</span> <span class="pil merah">luar Bali</span> dan asal belum diketahui. Garis tipis emas menandai batas kuota, dan kartu "Langkah paling berdampak" menunjukkan pembelian mana yang paling cepat menaikkan persentase.</p>
+      <div class="layar-kecil" style="margin-top:3mm;height:88mm"><img src="../screenshots/02-dasbor.png" alt="Dasbor kepatuhan" style="width:131.8%;max-width:none;margin-left:-14.2%;margin-top:-17.6%"></div>
+      <p class="keterangan">Dasbor akun demo di pasokbali.arisantika.tech, November 2026. Semua data fiktif.</p>
+    </div>
+    <div>
+      <h3>Alur pemasok di WhatsApp</h3>
+      <p style="margin-bottom:2.4mm">Pemasok tidak perlu akun atau aplikasi. Chat dibuka dengan kata <b>PASOK</b>, lalu boleh dicicil dalam bahasa sehari-hari.</p>
+      <div class="wa-bingkai">
+        <div class="wa-kepala">Pasok Bali <span>uji dengan AI, 5 Nov 2026, dipersingkat</span></div>
+        <div class="wa">
+          <div class="b masuk">ada telur 50 krat</div>
+          <div class="b bot">Di kabupaten mana lokasi produksinya? Cukup balas nama kabupatennya, misalnya Tabanan.</div>
+          <div class="b masuk">bangli</div>
+          <div class="b bot">Mohon dicek:
+Lokasi: Bangli
+- Telur ayam ras: 50 krat/minggu (produksi Bali)
+Balas YA untuk simpan, BATAL untuk membatalkan, atau tulis koreksinya.</div>
+          <div class="b masuk">harganya 48rb</div>
+          <div class="b bot">- Telur ayam ras: 50 krat/minggu, Rp48.000/krat (produksi Bali)</div>
+          <div class="b masuk">ya</div>
+          <div class="b bot">Tersimpan, suksma! Jika hotel/restoran mengirim permintaan, balas 1 untuk terima, 2 untuk tolak.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="kaki"><span>Proposal Pasok Bali, AI Web Innovation Challenge 2026</span><span>2</span></div>
+</div>
+
+<!-- HALAMAN 3 -->
+<div class="page">
+  <div class="kepala"><span class="merek"><svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#1d3a2f"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#1d3a2f" stroke-width="2.4" stroke-linecap="round"/></svg>Pasok Bali</span><span>Implementasi AI</span></div>
+
+  <section>
+    <h2><span class="no">4</span>Implementasi AI</h2>
+    <p class="lead">AI dipakai di tempat aturan biasa gagal: membaca tulisan tangan, memahami istilah pasar Bali, dan mengerti chat bebas petani. Model utama <b>Google Gemini <code>gemini-3.5-flash-lite</code></b> (vision dan keluaran JSON), dengan cadangan otomatis <code>gemini-flash-lite-latest</code> dan <code>gemini-3.6-flash</code> saat server sibuk. <b>Perhitungan kilogram, persentase kuota, dan rekomendasi tidak memakai AI</b>, tetapi aturan pasti yang bisa diperiksa ulang.</p>
+
+    <div class="tabel" style="margin-top:3.5mm">
+      <table>
+        <thead><tr><th style="width:27mm">Tugas AI</th><th>Masukan → keluaran</th><th style="width:44mm">Mengapa perlu AI</th><th style="width:40mm">Bila AI gagal</th></tr></thead>
+        <tbody>
+          <tr><td class="nama">Baca nota</td><td>Foto nota + daftar produk kamus → JSON pemasok, tanggal, baris barang (nama, jumlah, satuan, harga, keyakinan)</td><td>Nota pasar ditulis tangan dan formatnya tidak seragam</td><td>Nota ditandai perlu dicek, diisi lewat formulir</td></tr>
+          <tr><td class="nama">Kelompokkan barang</td><td>Nama barang mentah → produk kamus, kelompok kuota Pergub, berat per satuan</td><td>Istilah Bali dan singkatan tak terbatas (<em class="bali">tabia krinyi</em>, <em class="bali">bw mrh</em>)</td><td>Kamus 124 produk dan 511 alias; sisanya ditandai</td></tr>
+          <tr><td class="nama">Daftar pemasok WA</td><td>Chat bebas, boleh dicicil → nama, kabupaten, produk, kapasitas per minggu, harga, asal produksi</td><td>"Sehari 10 ekor", "3 kwintal", "di Kintamani" harus dipahami dan dikonversi</td><td>Pengurai pola untuk kabupaten, angka, satuan, harga</td></tr>
+          <tr><td class="nama">Asisten WA</td><td>Pertanyaan pemasok + data pemasok itu sendiri → jawaban singkat, atau niat daftar diteruskan ke pendaftaran</td><td>Petani bertanya dengan kalimatnya sendiri, bukan perintah baku</td><td>Teks bantuan baku</td></tr>
+          <tr><td class="nama">Draf pesan</td><td>Data usaha, produk, jumlah → pesan permintaan pasokan sopan dengan salam Bali</td><td>Pesan personal lebih mungkin dibalas</td><td>Templat pesan</td></tr>
+          <tr><td class="nama">Ringkasan laporan</td><td>Angka kuota yang sudah dihitung → 3–5 kalimat tanpa angka baru</td><td>Pemilik usaha butuh inti laporan, bukan tabel</td><td>Ringkasan berbasis aturan</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Hasil uji internal</h3>
+    <div class="angka">
+      <div><strong>10/10</strong>nota demo terbaca, 3 Nov 2026</div>
+      <div><strong>69/69</strong>baris benar: nama, jumlah, satuan, harga, produk</div>
+      <div><strong>±2,7 dtk</strong>rata-rata waktu baca per nota</div>
+      <div><strong>1,4 dtk</strong>jawaban asisten WA di nomor asli, 5 Nov 2026</div>
+    </div>
+    <p class="kecil muted" style="margin-top:1.6mm">Uji memakai 10 gambar nota fiktif digital, bukan foto kamera. Akurasi pada foto nota asli yang miring, buram, atau kusut belum diukur.</p>
+  </section>
+
+  <section>
+    <h3>Tata kelola AI</h3>
+    <div class="prinsip">
+      <div><b>Keluaran divalidasi</b>Setiap jawaban AI dicek terhadap skema JSON di server. Teks nota dan chat diperlakukan sebagai data, bukan perintah.</div>
+      <div><b>Manusia memutuskan</b>Hasil baca nota wajib diperiksa sebelum dihitung. Pendaftaran WA baru tersimpan setelah pemasok membalas YA.</div>
+      <div><b>Belajar dari koreksi</b>Istilah yang dikoreksi pengguna disimpan sebagai alias usaha itu, sehingga nota berikutnya tidak perlu AI.</div>
+      <div><b>Biaya terkendali</b>Maksimal 80 panggilan per usaha per hari, 1.500 per hari untuk semua, dan 20 pertanyaan WA per nomor per hari.</div>
+      <div><b>Privasi</b>Log AI hanya menyimpan fitur, model, durasi, dan status, tanpa isi nota atau pesan. Foto nota dihapus 30 hari setelah disetujui.</div>
+      <div><b>Topik dibatasi</b>Asisten WA hanya menjawab seputar Pasok Bali dan Pergub, tidak mengarang harga atau nama hotel, dan tidak membuka data pemasok lain.</div>
+    </div>
+  </section>
+
+  <div class="kaki"><span>Proposal Pasok Bali, AI Web Innovation Challenge 2026</span><span>3</span></div>
+</div>
+
+<!-- HALAMAN 4 -->
+<div class="page">
+  <div class="kepala"><span class="merek"><svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#1d3a2f"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#1d3a2f" stroke-width="2.4" stroke-linecap="round"/></svg>Pasok Bali</span><span>MVP dan arsitektur</span></div>
+
+  <section>
+    <h2><span class="no">5</span>MVP dan fitur utama</h2>
+    <p style="margin-bottom:3mm">Semua fitur berikut sudah berjalan di <b>pasokbali.arisantika.tech</b> dan bisa dicoba juri tanpa mendaftar lewat tombol <b>Coba demo</b>, yang membuat ruang uji pribadi berisi data fiktif selama 48 jam.</p>
+    <div class="fitur">
+      <div><b>Baca nota dengan AI</b>Unggah JPG, PNG, atau WEBP sampai 8 MB, atau pakai 10 nota contoh fiktif. Diproses di latar belakang.</div>
+      <div><b>Kamus produk Bali</b>124 produk, 511 istilah pasar dan bahasa Bali, konversi satuan pasar ke kilogram, dan layar koreksi.</div>
+      <div><b>Dasbor 4 kelompok kuota</b>Pertanian, peternakan, perikanan, industri lokal, masing-masing dengan label tingkat bukti.</div>
+      <div><b>Rekomendasi dan simulasi</b>Pemasok lokal pengganti, termasuk alternatif sejenis, simulasi persen baru, dan draf pesan WA dari AI.</div>
+      <div><b>Bot WhatsApp pemasok</b>Daftar, tanya jawab, dan jawab permintaan (1/2) di nomor asli, plus Simulator WA di web untuk juri.</div>
+      <div><b>Laporan dan panel admin</b>Laporan bulanan siap cetak dengan ringkasan AI. Admin memverifikasi pemasok, menambah pemasok, dan mengatur kuota.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">6</span>Arsitektur teknis</h2>
+    <div class="kartu" style="padding:3mm 4mm">
+      <svg viewBox="0 0 720 268" width="100%" role="img" aria-label="Diagram alur: pengguna, frontend, backend, database, AI, hasil" style="font-family:Jakarta">
+        <defs><marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b8913f"/></marker></defs>
+        <g font-size="10.5" fill="#20241f">
+          <rect x="4" y="34" width="112" height="76" rx="12" fill="#f4f6f0" stroke="#dde2d6"/>
+          <text x="60" y="62" text-anchor="middle" font-weight="700" fill="#1d3a2f">Pengguna usaha</text><text x="60" y="79" text-anchor="middle" font-size="9.5" fill="#687064">peramban, HP atau</text><text x="60" y="92" text-anchor="middle" font-size="9.5" fill="#687064">laptop</text>
+          <rect x="146" y="34" width="120" height="76" rx="12" fill="#ffffff" stroke="#dde2d6"/>
+          <text x="206" y="58" text-anchor="middle" font-weight="700" fill="#1d3a2f">Frontend</text><text x="206" y="75" text-anchor="middle" font-size="9.5" fill="#687064">Blade, Tailwind 4,</text><text x="206" y="88" text-anchor="middle" font-size="9.5" fill="#687064">Alpine.js, Vite</text>
+          <rect x="296" y="20" width="178" height="132" rx="14" fill="#1d3a2f"/>
+          <text x="385" y="44" text-anchor="middle" font-weight="700" fill="#f0dfb4">Backend Laravel 13</text>
+          <text x="312" y="66" font-size="9.5" fill="#dfe7da">ReceiptPipeline: baca, cocokkan,</text><text x="312" y="79" font-size="9.5" fill="#dfe7da">konversi satuan ke kg</text>
+          <text x="312" y="99" font-size="9.5" fill="#dfe7da">ComplianceCalculator dan</text><text x="312" y="112" font-size="9.5" fill="#dfe7da">RecommendationEngine (tanpa AI)</text>
+          <text x="312" y="132" font-size="9.5" fill="#dfe7da">SupplierBot dan asisten WA</text>
+          <rect x="504" y="20" width="102" height="62" rx="12" fill="#ffffff" stroke="#dde2d6"/>
+          <text x="555" y="44" text-anchor="middle" font-weight="700" fill="#1d3a2f">Basis data</text><text x="555" y="60" text-anchor="middle" font-size="9.5" fill="#687064">MariaDB, terpisah</text><text x="555" y="72" text-anchor="middle" font-size="9.5" fill="#687064">per usaha</text>
+          <rect x="504" y="98" width="102" height="62" rx="12" fill="#f3ead6" stroke="#b8913f"/>
+          <text x="555" y="122" text-anchor="middle" font-weight="700" fill="#6d5420">AI / API</text><text x="555" y="138" text-anchor="middle" font-size="9.5" fill="#6d5420">Gemini via</text><text x="555" y="150" text-anchor="middle" font-size="9.5" fill="#6d5420">AiGateway</text>
+          <rect x="632" y="34" width="84" height="112" rx="12" fill="#e6eedf" stroke="#3d7350"/>
+          <text x="674" y="62" text-anchor="middle" font-weight="700" fill="#1d3a2f">Hasil</text><text x="674" y="80" text-anchor="middle" font-size="9.5" fill="#1d3a2f">Dasbor kuota</text><text x="674" y="94" text-anchor="middle" font-size="9.5" fill="#1d3a2f">Rekomendasi</text><text x="674" y="108" text-anchor="middle" font-size="9.5" fill="#1d3a2f">Laporan</text><text x="674" y="122" text-anchor="middle" font-size="9.5" fill="#1d3a2f">Balasan WA</text>
+          <rect x="4" y="196" width="112" height="62" rx="12" fill="#f4f6f0" stroke="#dde2d6"/>
+          <text x="60" y="222" text-anchor="middle" font-weight="700" fill="#1d3a2f">Pemasok lokal</text><text x="60" y="238" text-anchor="middle" font-size="9.5" fill="#687064">WhatsApp</text>
+          <rect x="146" y="196" width="120" height="62" rx="12" fill="#ffffff" stroke="#dde2d6"/>
+          <text x="206" y="222" text-anchor="middle" font-weight="700" fill="#1d3a2f">Fonnte</text><text x="206" y="238" text-anchor="middle" font-size="9.5" fill="#687064">webhook rahasia</text>
+        </g>
+        <g stroke="#b8913f" stroke-width="1.6" fill="none" marker-end="url(#p)">
+          <path d="M116 72H142"/><path d="M266 72H292"/><path d="M474 51H500"/><path d="M474 129H500"/><path d="M606 51H628"/><path d="M606 129H628"/>
+          <path d="M116 227H142"/><path d="M266 227H330V156"/>
+          <path d="M440 152V227H272" stroke-dasharray="4 3"/>
+        </g>
+        <text x="346" y="244" font-size="9" fill="#687064" font-family="Jakarta">balasan bot dikirim lewat Fonnte</text>
+      </svg>
+    </div>
+    <div class="grid2" style="margin-top:3.5mm">
+      <p><b>Alur utama.</b> Foto nota disimpan di penyimpanan privat, lalu diproses di latar belakang: AI membaca, kamus dan pengelompok AI mencocokkan barang, satuan dikonversi ke kilogram. Setelah pengguna menyetujui, kuota dan rekomendasi dihitung langsung dari basis data.</p>
+      <p><b>Keamanan.</b> Data tiap usaha dipisah dengan <i>global scope</i> per usaha dan diuji otomatis. Webhook WA memakai alamat rahasia dan dibatasi laju per nomor. 46 tes otomatis (Pest) dijalankan dan lulus sebelum setiap deploy.</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>Cara juri menguji dalam 3 menit</h3>
+    <ol class="langkah">
+      <li><b>Coba demo</b>Klik tombol di halaman depan, tanpa daftar.</li>
+      <li><b>Nota contoh</b>Di menu Nota, pilih salah satu dari 10 nota contoh.</li>
+      <li><b>Periksa</b>Lihat hasil baca AI, lalu klik Setujui nota.</li>
+      <li><b>Dasbor</b>Persentase kuota berubah sesuai nota baru.</li>
+      <li><b>Rekomendasi</b>Susun draf pesan WA dengan AI, lalu kirim.</li>
+      <li><b>Simulator WA</b>Balas 1 sebagai pemasok, atau daftar dengan PASOK DAFTAR.</li>
+    </ol>
+  </section>
+
+  <div class="kaki"><span>Proposal Pasok Bali, AI Web Innovation Challenge 2026</span><span>4</span></div>
+</div>
+
+<!-- HALAMAN 5 -->
+<div class="page">
+  <div class="kepala"><span class="merek"><svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#1d3a2f"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#1d3a2f" stroke-width="2.4" stroke-linecap="round"/></svg>Pasok Bali</span><span>Pembeda, dampak, dan tautan</span></div>
+
+  <section>
+    <h2><span class="no">7</span>Inovasi dan pembeda</h2>
+    <div class="tabel">
+      <table>
+        <thead><tr><th style="width:34mm">Aspek</th><th>Rekap manual di spreadsheet</th><th>Pasok Bali</th></tr></thead>
+        <tbody>
+          <tr><td class="nama">Pencatatan nota</td><td>Ketik ulang baris demi baris</td><td>Foto nota dibaca AI, pengguna tinggal memeriksa</td></tr>
+          <tr><td class="nama">Istilah dan satuan</td><td>Diseragamkan dan dikonversi sendiri</td><td>511 istilah Bali dikenali, satuan pasar otomatis jadi kg, dan belajar dari koreksi</td></tr>
+          <tr><td class="nama">Tingkat bukti</td><td>Klaim dan bukti tercampur</td><td>Terverifikasi, pernyataan pemasok, dan belum diketahui dipisah</td></tr>
+          <tr><td class="nama">Saat kuota kurang</td><td>Berhenti di angka</td><td>Pemasok lokal pengganti, simulasi kenaikan persen, pesan WA siap kirim</td></tr>
+          <tr><td class="nama">Produsen lokal</td><td>Tidak terhubung</td><td>Daftar dan menerima pesanan cukup lewat chat WhatsApp</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="dua-kolom">
+    <div>
+      <h2><span class="no">8</span>Dampak dan potensi</h2>
+      <ul class="titik">
+        <li><b>Usaha</b> memantau serapan produk lokal tiap bulan tanpa rekap manual, dan tahu langkah yang paling berdampak.</li>
+        <li><b>Produsen lokal</b> mendapat jalur permintaan langsung dari hotel dan restoran lewat WhatsApp, tanpa aplikasi baru.</li>
+        <li><b>Skala lanjut:</b> kamus dan kuota ada di basis data, siap dipakai koperasi pemasok, BUMDes, atau asosiasi perhotelan. Rencana berikutnya: acuan harga wajar petani dan rekap anonim per kabupaten.</li>
+      </ul>
+      <h3 style="margin-top:3mm">Keterbatasan saat ini</h3>
+      <ul class="titik kecil">
+        <li>Semua usaha, pemasok, dan nota demo adalah data fiktif. Belum diuji dengan nota usaha sungguhan.</li>
+        <li>Angka kuota bawaan perlu dicocokkan dengan naskah resmi Pergub sebelum dipakai untuk laporan resmi.</li>
+        <li>Status pernyataan pemasok adalah pengakuan mandiri sampai diverifikasi admin. Berat satuan ikat, sisir, dan ekor memakai rata-rata kamus.</li>
+      </ul>
+    </div>
+    <div>
+      <h2><span class="no">9</span>Pengungkapan teknologi</h2>
+      <div class="tabel">
+        <table>
+          <tbody>
+            <tr><td class="nama">Stack</td><td>PHP 8.3+, Laravel 13, Blade, Tailwind CSS 4, Alpine.js 3, Vite 8, MariaDB/SQLite, Pest</td></tr>
+            <tr><td class="nama">AI</td><td>Google Gemini (lihat bagian 4), cadangan opsional Anthropic Claude <code>claude-haiku-5-5</code></td></tr>
+            <tr><td class="nama">Layanan</td><td>Fonnte WhatsApp API, hosting cPanel dengan HTTPS</td></tr>
+            <tr><td class="nama">Data</td><td>Kamus produk dan istilah disusun tim. Semua data demo fiktif</td></tr>
+            <tr><td class="nama">Pra-eksisting</td><td>Pola gateway AI dan pengirim WA Fonnte diadaptasi dari proyek tim sebelumnya, Harlok</td></tr>
+            <tr><td class="nama">Asisten koding</td><td>Claude Code (Anthropic) dan Google Gemini (Antigravity); seluruh kode diuji dan ditinjau tim</td></tr>
+            <tr><td class="nama">Aset</td><td>Huruf Cormorant Garamond dan Plus Jakarta Sans (SIL OFL 1.1); logo dan ilustrasi buatan tim</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="kecil muted" style="margin-top:1.4mm">Rincian lengkap di <b>docs/DISCLOSURE.md</b> pada repository.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">10</span>Tautan pengumpulan</h2>
+    <div class="tabel tautan">
+      <table>
+        <tbody>
+          <tr><td class="nama">Website MVP</td><td><a href="https://pasokbali.arisantika.tech">https://pasokbali.arisantika.tech</a></td></tr>
+          <tr><td class="nama">Repository GitHub</td><td><span class="isi-ari">[link GitHub, tag v1.0-submission]</span></td></tr>
+          <tr><td class="nama">Cara mencoba</td><td>Klik <b>Coba demo</b> di halaman depan, tanpa daftar. Bot WA: kirim <b>PASOK</b> ke 0851-3364-2784.</td></tr>
+          <tr><td class="nama">Video demo</td><td><span class="isi-ari">[link video, bila diminta]</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="kaki"><span>Proposal Pasok Bali, AI Web Innovation Challenge 2026</span><span>5</span></div>
+</div>
+
+<!-- LAMPIRAN -->
+<div class="page">
+  <div class="kepala"><span class="merek"><svg width="20" height="20" viewBox="0 0 48 48"><path d="M24 3.5C17 8.8 10.6 16.6 7.5 26.5h33C37.4 16.6 31 8.8 24 3.5Z" fill="#1d3a2f"/><ellipse cx="24" cy="18.5" rx="3.2" ry="4" fill="#b8913f"/><path d="M9 29h30M13.5 29v15M34.5 29v15M11.5 37.5h25" stroke="#1d3a2f" stroke-width="2.4" stroke-linecap="round"/></svg>Pasok Bali</span><span>Lampiran</span></div>
+  <h2>Lampiran: tampilan aplikasi</h2>
+  <p class="muted" style="margin-bottom:4mm">Tangkapan layar dari pasokbali.arisantika.tech dengan akun demo, November 2026. Semua data fiktif.</p>
+  <div class="lampiran-grid">
+    <div><div class="layar-kecil"><img src="../screenshots/01-landing.png" alt=""></div><p class="keterangan">Halaman depan dengan contoh nota yang dibaca</p></div>
+    <div><div class="layar-kecil"><img src="../screenshots/04-koreksi-nota.png" alt=""></div><p class="keterangan">Layar periksa nota hasil baca AI</p></div>
+    <div><div class="layar-kecil"><img src="../screenshots/05-rekomendasi.png" alt=""></div><p class="keterangan">Rekomendasi pemasok lokal dan draf pesan WA</p></div>
+    <div><div class="layar-kecil"><img src="../screenshots/07-laporan.png" alt=""></div><p class="keterangan">Laporan bulanan dengan ringkasan AI</p></div>
+  </div>
+  <div class="kaki"><span>Proposal Pasok Bali, AI Web Innovation Challenge 2026</span><span>Lampiran</span></div>
+</div>
+
+</body>
+</html>
