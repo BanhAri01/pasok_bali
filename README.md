@@ -23,11 +23,11 @@ Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat peng
 - **Pengelompokan barang dan konversi satuan**: nama barang mentah dicocokkan ke kamus produk (124 produk, 511 istilah termasuk istilah pasar dan bahasa Bali), lalu satuan dikonversi ke kg. Koreksi yang disetujui pengguna disimpan sebagai istilah khusus usaha itu, sehingga nota berikutnya dikenali tanpa memanggil AI.
 - **Dasbor kepatuhan**: persentase lokal per kelompok (pertanian, peternakan, perikanan, industri lokal) dibandingkan kuota, dengan **label tingkat bukti**: terverifikasi admin, pernyataan pemasok, atau asal belum diketahui ([dasbor kepatuhan](docs/screenshots/02-dasbor.png)).
 - **Rekomendasi pemasok lokal**: produk luar Bali yang paling banyak dibeli, pemasok lokal yang cocok, simulasi kenaikan persentase, dan draf pesan WhatsApp yang ditulis AI ([rekomendasi & draf WA](docs/screenshots/05-rekomendasi.png)).
-- **Pendaftaran pemasok lewat WhatsApp**: pemasok mengetik `PASOK DAFTAR …` dengan bahasa bebas. Percakapan dibuka dengan kata PASOK dan berlaku 30 menit; selama itu pertanyaan bebas seputar Pasok Bali dijawab AI (dibatasi per nomor per hari), SELESAI menutupnya, AI menyusun datanya, lalu pemasok mengonfirmasi dengan `YA`. Pemasok menjawab permintaan pasokan dengan `1` (terima) atau `2` (tolak).
+- **Bot WhatsApp pemasok** (nomor asli 0851-3364-2784 lewat Fonnte): percakapan dibuka dengan kata `PASOK` dan berlaku 30 menit. Pemasok mendaftar dengan bahasa bebas, boleh dicicil ("ada telur 50 krat", lalu "bangli", lalu "harganya 48rb"); AI menyusun datanya dan pemasok mengonfirmasi dengan `YA`. Pertanyaan bebas seputar Pasok Bali dijawab asisten AI (maks. 20 per nomor per hari). Pemasok menjawab permintaan pasokan dengan `1` (terima) atau `2` (tolak); `SELESAI` menutup percakapan.
 - **Simulator WA**: mencoba alur pemasok langsung dari web tanpa nomor WhatsApp sungguhan ([simulator WA](docs/screenshots/06-simulator-wa.png)).
 - **Laporan bulanan**: tabel per kelompok dan ringkasan AI, siap dicetak atau disimpan sebagai PDF lewat browser ([laporan bulanan](docs/screenshots/07-laporan.png)).
 - **Akun demo sekali klik**: sandbox per pengunjung berisi data fiktif, dihapus otomatis setelah 48 jam ([halaman depan](docs/screenshots/01-landing.png)).
-- **Panel admin**: verifikasi pemasok dan pengaturan angka kuota.
+- **Panel admin**: verifikasi pemasok, menambah pemasok yang mendaftar lewat kunjungan atau telepon, dan pengaturan angka kuota.
 
 ### Tangkapan layar (data demo fiktif)
 
@@ -59,7 +59,8 @@ Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat peng
 |---|---|---|---|
 | Baca nota | Model vision mengekstrak pemasok, tanggal, dan baris barang ke JSON terstruktur | Foto nota + daftar produk kamus | Nota ditandai *perlu dicek*, isian manual |
 | Kelompokkan barang | Memetakan nama mentah (termasuk istilah Bali/pasar) ke produk kamus dan kelompok Pergub, beserta konversi satuan | Nama barang yang tidak ditemukan di kamus | Barang dibiarkan tanpa produk dan ditandai untuk dikoreksi |
-| Pendaftaran pemasok | Mengurai pesan WhatsApp bebas menjadi nama, kabupaten, produk, kapasitas, harga, dan asal produksi | Teks pesan pemasok | Pengurai pola sederhana (regex) |
+| Pendaftaran pemasok | Mengurai pesan WhatsApp bebas (boleh dicicil dan dikoreksi) menjadi nama, kabupaten, produk, kapasitas, harga, dan asal produksi | Teks pesan pemasok | Pengurai pola sederhana (regex) |
+| Asisten WA | Menjawab pertanyaan pemasok seputar Pasok Bali dan Pergub, atau mengenali niat mendaftar | Pertanyaan + data pemasok si pengirim | Teks bantuan baku |
 | Draf pesan pasokan | Menulis pesan WhatsApp sopan dengan salam Bali | Nama usaha, pemasok, produk, jumlah per minggu | Templat pesan baku |
 | Ringkasan laporan | Merangkum angka kepatuhan bulanan menjadi 3–5 kalimat | Angka hasil perhitungan saja | Ringkasan otomatis berbasis aturan |
 
@@ -159,4 +160,4 @@ Lihat [docs/DISCLOSURE.md](docs/DISCLOSURE.md) untuk daftar lengkap teknologi, m
 
 | Nama | Peran |
 |---|---|
-| [ISI ARI] | [ISI ARI] |
+| I Dewa Made Arisantika (Primakara University, Sistem Informasi) | Peserta individu: produk, backend, frontend, AI, deployment |
