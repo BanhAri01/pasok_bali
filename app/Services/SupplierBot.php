@@ -13,7 +13,28 @@ use Illuminate\Support\Facades\DB;
 
 class SupplierBot
 {
-    public const HELP = "Halo, ini Pasok Bali. Kami menghubungkan petani, peternak, nelayan, dan UMKM Bali dengan hotel dan restoran.\n\nCara daftar sebagai pemasok, kirim misalnya:\nDAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari\n\nJika ada permintaan dari hotel/restoran, balas 1 untuk terima atau 2 untuk tolak.";
+    public const HELP = "Halo, ini Pasok Bali. Kami menghubungkan petani, peternak, nelayan, dan UMKM Bali dengan hotel dan restoran.\n\nCara daftar sebagai pemasok, kirim misalnya:\nPASOK DAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari\n\nJika ada permintaan dari hotel/restoran, balas 1 untuk terima atau 2 untuk tolak.";
+
+    public const EXAMPLE = 'PASOK DAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari';
+
+    public static function stripKeyword(string $text): string
+    {
+        return trim((string) preg_replace('/^\s*pasok(?:\s*bali)?\b[\s:,.\-]*/iu', '', $text));
+    }
+
+    public function claims(string $phone, string $text): bool
+    {
+        if (preg_match('/^\s*pasok\b/iu', $text)) {
+            return true;
+        }
+
+        if (WaConversation::query()->where('phone', $phone)->where('expires_at', '>', now())->exists()) {
+            return true;
+        }
+
+        return in_array(Text::key($text), ['1', '2'], true)
+            && SupplyRequest::query()->where('status', SupplyRequest::WAITING)->whereHas('supplier', fn ($query) => $query->where('phone', $phone))->exists();
+    }
 
     public function __construct(
         private Messenger $messenger,
@@ -23,7 +44,7 @@ class SupplierBot
 
     public function handle(string $phone, string $text, ?int $ownerBusinessId = null): array
     {
-        $text = trim($text);
+        $text = self::stripKeyword($text);
         $key = Text::key($text);
         $supplier = Supplier::query()->where('phone', $phone)->first();
         $conversation = WaConversation::query()->where('phone', $phone)->where('expires_at', '>', now())->first();
@@ -48,11 +69,11 @@ class SupplierBot
         $parsed = $this->parser->parse($text);
 
         if (! $parsed) {
-            return ["Maaf, data belum terbaca. Contoh pesan:\nDAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari"];
+            return ["Data belum terbaca. Tulis produk, jumlah per minggu, dan kabupaten, contohnya:\n".self::EXAMPLE];
         }
 
         if ($parsed['regency'] === null) {
-            return ['Mohon sebutkan kabupaten/kota lokasi produksi Anda (misalnya Tabanan, Bangli, Buleleng). Kirim ulang pesan DAFTAR lengkap dengan kabupatennya.'];
+            return ['Mohon sebutkan kabupaten/kota lokasi produksi Anda (misalnya Tabanan, Bangli, Buleleng). Kirim ulang pesan PASOK DAFTAR lengkap dengan kabupatennya.'];
         }
 
         WaConversation::query()->updateOrCreate(
@@ -120,7 +141,7 @@ class SupplierBot
     {
         $conversation->delete();
 
-        return ['Dibatalkan. Kirim ulang pesan DAFTAR kapan saja.'];
+        return ['Dibatalkan. Kirim ulang pesan PASOK DAFTAR kapan saja.'];
     }
 
     private function respond(Supplier $supplier, bool $accept): array
@@ -133,7 +154,7 @@ class SupplierBot
             ->first();
 
         if (! $request) {
-            return ['Belum ada permintaan yang menunggu jawaban. Ketik DAFTAR untuk memperbarui produk Anda.'];
+            return ['Belum ada permintaan yang menunggu jawaban. Ketik PASOK DAFTAR untuk memperbarui produk Anda.'];
         }
 
         $request->update([

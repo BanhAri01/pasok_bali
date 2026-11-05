@@ -43,8 +43,14 @@
 
     <aside class="mt-8 bg-daun-tua p-6 text-kertas">
         <h2 class="font-display text-xl font-semibold text-kunyit">Ajak pemasok Anda bergabung</h2>
-        <p class="mt-1">Pemasok cukup mengirim WhatsApp ke nomor Pasok Bali, misalnya:</p>
-        <p class="mt-2 rounded-full bg-daun-tua px-4 py-3 font-mono text-sm">DAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari</p>
-        <a href="{{ route('simulator.index') }}" class="mt-3 inline-block font-bold text-kunyit underline">Coba alurnya di Simulator WA →</a>
+        @php($botNumber = \App\Support\Phone::normalize(config('pasok.whatsapp.device')))
+        <p class="mt-1">Pemasok cukup mengirim WhatsApp ke nomor Pasok Bali{{ $botNumber ? ' '.\App\Support\Phone::display($botNumber) : '' }}, misalnya:</p>
+        <p class="mt-2 rounded-2xl bg-kertas/10 px-4 py-3 font-mono text-sm">PASOK DAFTAR telur ayam 200 krat seminggu, Tabanan, Rp52.000/krat, nama Peternakan Sari</p>
+        <div class="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+            @if ($botNumber)
+                <a href="https://wa.me/{{ $botNumber }}?text={{ rawurlencode('PASOK DAFTAR ') }}" target="_blank" rel="noopener" class="font-bold text-kunyit underline">Buka chat pendaftaran WA</a>
+            @endif
+            <a href="{{ route('simulator.index') }}" class="font-bold text-kunyit underline">Coba alurnya di Simulator WA</a>
+        </div>
     </aside>
 </x-app.layout>

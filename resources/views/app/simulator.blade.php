@@ -12,7 +12,7 @@
                 @forelse ($messages->get($phone, collect()) as $message)
                     <div @class(['max-w-[85%] whitespace-pre-line px-3 py-2 text-sm', 'ml-auto bg-daun-muda' => $message->direction === 'in', 'bg-kertas' => $message->direction === 'out'])>{{ $message->body }}</div>
                 @empty
-                    <p class="text-center text-sm text-abu">Belum ada pesan. Contoh: <em>DAFTAR sayur kangkung 50 ikat seminggu, Gianyar, nama Tani Mekar</em></p>
+                    <p class="text-center text-sm text-abu">Belum ada pesan. Contoh: <em>PASOK DAFTAR sayur kangkung 50 ikat seminggu, Gianyar, nama Tani Mekar</em></p>
                 @endforelse
             </div>
             <form method="POST" action="{{ route('simulator.send') }}" class="flex gap-2 border-t border-garis p-3">

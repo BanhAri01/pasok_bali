@@ -198,7 +198,7 @@
                     <p class="mt-6 max-w-md leading-[1.75] text-kertas/75">Satu pesan untuk mendaftar. Saat hotel atau restoran meminta pasokan, balas 1 untuk terima atau 2 untuk tolak. Tanpa aplikasi baru.</p>
                 </div>
                 <div class="max-w-md space-y-3 lg:col-span-5 lg:col-start-8" aria-label="Contoh percakapan WhatsApp, fiktif">
-                    <p class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-daun-muda px-4 py-3 text-daun-tua">DAFTAR bayam 30 ikat seminggu Tabanan</p>
+                    <p class="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-daun-muda px-4 py-3 text-daun-tua">PASOK DAFTAR bayam 30 ikat seminggu Tabanan</p>
                     <p class="w-fit max-w-[85%] rounded-2xl rounded-bl-md bg-kertas px-4 py-3 text-tinta">Data Anda: Bayam, 30 ikat per minggu, Tabanan. Balas YA bila benar.</p>
                     <p class="ml-auto w-fit rounded-2xl rounded-br-md bg-daun-muda px-4 py-3 text-daun-tua">YA</p>
                     <p class="pt-3 text-sm text-kertas/60">Contoh percakapan. Bisa dicoba di Simulator WA pada akun demo.</p>

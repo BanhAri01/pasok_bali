@@ -25,6 +25,7 @@ Route::post('/demo', [AuthController::class, 'demo'])->middleware('throttle:6,1'
 Route::post('/keluar', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::post('/webhook/wa/{secret}', WhatsAppWebhookController::class)->middleware('throttle:120,1')->name('webhook.wa');
+Route::post('/webhook/wa/{secret}/teruskan', [WhatsAppWebhookController::class, 'forward'])->middleware('throttle:240,1')->name('webhook.wa.forward');
 
 Route::middleware(['auth', 'usaha'])->group(function () {
     Route::get('/dasbor', DashboardController::class)->name('dashboard');
@@ -54,6 +55,7 @@ Route::middleware(['auth', 'usaha'])->group(function () {
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::post('/pemasok', [AdminController::class, 'storeSupplier'])->name('suppliers.store');
     Route::put('/pemasok/{supplier}', [AdminController::class, 'verify'])->name('suppliers.verify');
     Route::put('/kuota', [AdminController::class, 'quotas'])->name('quotas');
 });

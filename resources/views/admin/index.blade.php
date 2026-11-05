@@ -42,6 +42,68 @@
         </div>
     </section>
 
+    <section class="mt-8" id="tambah-pemasok">
+        <h2 class="font-display text-xl font-semibold">Tambah pemasok</h2>
+        <p class="mt-1 max-w-2xl text-sm text-abu">Untuk pemasok yang mendaftar lewat telepon, kunjungan, atau kelompok tani. Pemasok juga bisa daftar sendiri dengan mengirim PASOK DAFTAR ke nomor WA bot.</p>
+        @if ($errors->any())
+            <div class="mt-3 rounded-2xl border border-terakota/40 bg-terakota/5 p-3 text-sm text-terakota">
+                @foreach ($errors->all() as $error)<p>{{ $error }}</p>@endforeach
+            </div>
+        @endif
+        <form method="POST" action="{{ route('admin.suppliers.store') }}" class="mt-3 space-y-4 rounded-2xl border border-garis bg-kertas p-4 sm:p-5">
+            @csrf
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <label class="block text-sm">Nama usaha/pemasok
+                    <input name="name" required maxlength="120" value="{{ old('name') }}" class="mt-1 w-full rounded-lg border border-garis px-3 py-2">
+                </label>
+                <label class="block text-sm">Nomor WA
+                    <input name="phone" inputmode="tel" maxlength="40" value="{{ old('phone') }}" placeholder="08…" class="mt-1 w-full rounded-lg border border-garis px-3 py-2">
+                </label>
+                <label class="block text-sm">Kabupaten/kota
+                    <select name="regency" required class="mt-1 w-full rounded-lg border border-garis px-3 py-2">
+                        <option value="">Pilih…</option>
+                        @foreach ($regencies as $regency)
+                            <option value="{{ $regency }}" @selected(old('regency') === $regency)>{{ $regency }}</option>
+                        @endforeach
+                    </select>
+                </label>
+                <label class="block text-sm">Status
+                    <select name="verification" class="mt-1 w-full rounded-lg border border-garis px-3 py-2">
+                        <option value="terverifikasi" @selected(old('verification', 'terverifikasi') === 'terverifikasi')>Terverifikasi</option>
+                        <option value="pernyataan" @selected(old('verification') === 'pernyataan')>Pernyataan</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="space-y-2">
+                <p class="text-sm font-semibold">Produk</p>
+                @for ($i = 0; $i < 3; $i++)
+                    <div class="grid gap-2 rounded-xl bg-santan p-3 sm:grid-cols-[2fr_1fr_1fr_1fr_1.2fr]">
+                        <select name="products[{{ $i }}][product_id]" @required($i === 0) aria-label="Produk {{ $i + 1 }}" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm">
+                            <option value="">{{ $i === 0 ? 'Pilih produk…' : 'Produk lain (opsional)' }}</option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}" @selected((string) old("products.$i.product_id") === (string) $product->id)>{{ $product->name }} ({{ $product->base_unit }})</option>
+                            @endforeach
+                        </select>
+                        <input name="products[{{ $i }}][capacity]" type="number" min="0" step="any" value="{{ old("products.$i.capacity") }}" placeholder="Jumlah/minggu" aria-label="Jumlah per minggu produk {{ $i + 1 }}" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm">
+                        <input name="products[{{ $i }}][unit]" maxlength="20" value="{{ old("products.$i.unit") }}" placeholder="Satuan" aria-label="Satuan produk {{ $i + 1 }}" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm">
+                        <input name="products[{{ $i }}][price]" type="number" min="0" value="{{ old("products.$i.price") }}" placeholder="Harga Rp" aria-label="Harga per satuan produk {{ $i + 1 }}" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm">
+                        <select name="products[{{ $i }}][origin]" aria-label="Asal produk {{ $i + 1 }}" class="rounded-lg border border-garis bg-kertas px-3 py-2 text-sm">
+                            <option value="bali" @selected(old("products.$i.origin", 'bali') === 'bali')>Produksi Bali</option>
+                            <option value="luar" @selected(old("products.$i.origin") === 'luar')>Dari luar Bali</option>
+                        </select>
+                    </div>
+                @endfor
+                <p class="text-xs text-abu">Satuan kosong memakai satuan dasar produk. Harga dihitung per satuan yang sama.</p>
+            </div>
+
+            <label class="block text-sm">Catatan (opsional)
+                <input name="notes" maxlength="255" value="{{ old('notes') }}" class="mt-1 w-full rounded-lg border border-garis px-3 py-2">
+            </label>
+            <button class="rounded-full bg-daun-tua px-5 py-2 text-sm font-bold text-kertas">Simpan pemasok</button>
+        </form>
+    </section>
+
     <section class="mt-8">
         <div class="flex flex-wrap items-end justify-between gap-3">
             <h2 class="font-display text-xl font-semibold">Verifikasi pemasok</h2>
