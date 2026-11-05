@@ -25,7 +25,7 @@ class ComplianceCalculator
     public function forMonth(int $businessId, CarbonImmutable $month): array
     {
         $rows = $this->baseQuery($businessId, $month)
-            ->selectRaw('receipt_items.category, receipt_items.origin, receipt_items.evidence, sum(receipt_items.quantity_kg) as kg, sum(receipt_items.total_price) as rupiah, count(*) as lines, sum(case when receipt_items.quantity_kg is null then 1 else 0 end) as unmeasured')
+            ->selectRaw('receipt_items.category, receipt_items.origin, receipt_items.evidence, sum(receipt_items.quantity_kg) as kg, sum(receipt_items.total_price) as rupiah, count(*) as line_count, sum(case when receipt_items.quantity_kg is null then 1 else 0 end) as unmeasured')
             ->groupBy('receipt_items.category', 'receipt_items.origin', 'receipt_items.evidence')
             ->toBase()
             ->get();
