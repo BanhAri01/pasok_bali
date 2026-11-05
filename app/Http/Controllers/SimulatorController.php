@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
 use App\Models\SupplyRequest;
 use App\Models\WaMessage;
 use App\Services\Messenger;
@@ -28,13 +27,10 @@ class SimulatorController extends Controller
             ->limit(10)
             ->get();
 
-        $phones = $requests->pluck('supplier.phone')->filter()->push($phone)->unique()->values();
-
         return view('app.simulator', [
             'phone' => $phone,
             'requests' => $requests,
-            'messages' => WaMessage::query()->whereIn('phone', $phones)->where('created_at', '>=', now()->subDays(2))->oldest('id')->limit(200)->get()->groupBy('phone'),
-            'suppliers' => Supplier::query()->whereIn('phone', $phones)->pluck('name', 'phone'),
+            'messages' => WaMessage::query()->where('phone', $phone)->where('created_at', '>=', now()->subDays(2))->oldest('id')->limit(200)->get(),
         ]);
     }
 
@@ -50,7 +46,7 @@ class SimulatorController extends Controller
         return redirect()->route('simulator.index', ['#chat']);
     }
 
-    public function reply(Request $request, SupplyRequest $supplyRequest, SupplierBot $bot, Messenger $messenger): RedirectResponse
+    public function reply(Request $request, SupplyRequest $supplyRequest, SupplierBot $bot): RedirectResponse
     {
         $data = $request->validate(['answer' => ['required', Rule::in(['1', '2'])]]);
         $this->throttle($request);
@@ -60,8 +56,7 @@ class SimulatorController extends Controller
 
         abort_unless($phone !== '' && (Phone::channel($phone) === 'contoh' || $supplyRequest->supplier->owner_business_id === $business->id), 404);
 
-        $messenger->record($phone, $data['answer']);
-        $bot->handle($phone, $data['answer'], $business->id);
+        $bot->answer($supplyRequest, $data['answer'] === '1');
 
         return redirect()->route('simulator.index')->with('status', 'Balasan pemasok terkirim lewat simulator.');
     }

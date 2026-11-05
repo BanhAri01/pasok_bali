@@ -9,7 +9,7 @@
                 <p class="text-xs opacity-80">Anda berperan sebagai petani/peternak yang mengirim WA ke Pasok Bali</p>
             </header>
             <div class="flex-1 space-y-2 overflow-y-auto bg-santan p-4" style="max-height: 28rem">
-                @forelse ($messages->get($phone, collect()) as $message)
+                @forelse ($messages as $message)
                     <div @class(['max-w-[85%] whitespace-pre-line px-3 py-2 text-sm', 'ml-auto bg-daun-muda' => $message->direction === 'in', 'bg-kertas' => $message->direction === 'out'])>{{ $message->body }}</div>
                 @empty
                     <p class="text-center text-sm text-abu">Belum ada pesan. Contoh: <em>PASOK DAFTAR sayur kangkung 50 ikat seminggu, Gianyar, nama Tani Mekar</em></p>
@@ -27,16 +27,17 @@
             <p class="text-sm text-abu">Balas sebagai pemasok contoh untuk melihat status permintaan berubah.</p>
             <div class="mt-3 space-y-3">
                 @forelse ($requests as $request)
-                    @php($thread = $messages->get($request->supplier->phone, collect()))
+
                     <article class="border border-garis bg-kertas p-4 rounded-2xl">
                         <div class="flex items-start justify-between gap-2">
                             <p class="font-semibold">{{ $request->supplier->name }}</p>
                             <span @class(['rounded-full px-2.5 py-0.5 text-xs font-semibold', 'bg-daun text-kertas' => $request->status === 'diterima', 'bg-terakota-muda text-terakota' => $request->status === 'ditolak', 'bg-kunyit-muda' => $request->status === 'menunggu'])>{{ ucfirst($request->status) }}</span>
                         </div>
                         <div class="mt-2 space-y-2 rounded-lg bg-santan p-3">
-                            @foreach ($thread->take(-4) as $message)
-                                <div @class(['max-w-[90%] whitespace-pre-line px-3 py-2 text-xs', 'bg-kertas' => $message->direction === 'out', 'ml-auto bg-daun-muda' => $message->direction === 'in'])>{{ $message->body }}</div>
-                            @endforeach
+                            <div class="max-w-[90%] whitespace-pre-line bg-kertas px-3 py-2 text-xs">{{ $request->message }}</div>
+                            @if ($request->status !== 'menunggu')
+                                <div class="ml-auto w-fit bg-daun-muda px-3 py-2 text-xs">{{ $request->status === 'diterima' ? '1' : '2' }}</div>
+                            @endif
                         </div>
                         @if ($request->status === 'menunggu')
                             <div class="mt-3 flex gap-2">

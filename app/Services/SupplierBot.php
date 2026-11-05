@@ -205,6 +205,24 @@ class SupplierBot
             return ['Belum ada permintaan yang menunggu jawaban. Ketik DAFTAR untuk memperbarui produk Anda.'];
         }
 
+        return $this->decide($request, $accept);
+    }
+
+    public function answer(SupplyRequest $request, bool $accept): array
+    {
+        $phone = (string) $request->supplier?->phone;
+
+        if ($request->status !== SupplyRequest::WAITING || $phone === '') {
+            return [];
+        }
+
+        $this->messenger->record($phone, $accept ? '1' : '2');
+
+        return $this->send($phone, $this->decide($request->loadMissing(['product:id,name', 'business:id,name']), $accept));
+    }
+
+    private function decide(SupplyRequest $request, bool $accept): array
+    {
         $request->update([
             'status' => $accept ? SupplyRequest::ACCEPTED : SupplyRequest::REJECTED,
             'responded_at' => now(),

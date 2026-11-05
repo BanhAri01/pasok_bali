@@ -85,3 +85,27 @@ it('validasi produk menolak id yang tidak ada', function () {
         'items' => [['name' => 'x', 'product_id' => Product::query()->max('id') + 100, 'quantity' => 1, 'unit' => 'kg', 'total_price' => 1]],
     ])->assertSessionHasErrors('items.0.product_id');
 });
+
+it('membalas di simulator hanya mengubah permintaan milik usaha sendiri dan tidak menampilkan pesan usaha lain', function () {
+    $a = owner(['name' => 'Usaha A']);
+    $b = owner(['name' => 'Usaha B']);
+    $offer = SupplierProduct::query()->where('origin', 'bali')->where('supplier_id', fn ($query) => $query->select('id')->from('suppliers')->where('phone', 'like', \App\Support\Phone::SAMPLE_PREFIX.'%')->limit(1))->first();
+
+    inBusiness($b->business_id);
+    $older = SupplyRequest::query()->create(['supplier_id' => $offer->supplier_id, 'product_id' => $offer->product_id, 'quantity_per_week' => 5, 'unit' => 'kg', 'message' => 'Rahasia Usaha B']);
+    inBusiness(null);
+    app(\App\Services\Messenger::class)->send($offer->supplier->phone, 'Rahasia Usaha B');
+
+    $this->travel(1)->minutes();
+
+    inBusiness($a->business_id);
+    $mine = SupplyRequest::query()->create(['supplier_id' => $offer->supplier_id, 'product_id' => $offer->product_id, 'quantity_per_week' => 3, 'unit' => 'kg', 'message' => 'Permintaan Usaha A']);
+    inBusiness(null);
+
+    $this->actingAs($a)->post(route('simulator.reply', $mine), ['answer' => '1'])->assertRedirect();
+
+    expect($mine->fresh()->status)->toBe(SupplyRequest::ACCEPTED)
+        ->and($older->fresh()->status)->toBe(SupplyRequest::WAITING);
+
+    $this->actingAs($a)->get(route('simulator.index'))->assertOk()->assertSee('Permintaan Usaha A')->assertDontSee('Rahasia Usaha B');
+});
