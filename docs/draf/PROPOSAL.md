@@ -165,7 +165,7 @@ Selaras dengan [`docs/DISCLOSURE.md`](../DISCLOSURE.md), berikut pengungkapan le
 
 | Komponen Pengumpulan | Tautan / Akses |
 |---|---|
-| **Deployment URL (Live Web App)** | `[ISI ARI]` |
+| **Deployment URL (Live Web App)** | https://pasokbali.arisantika.tech |
 | **GitHub Repository URL** | `[ISI ARI]` |
 | **Demo Video URL** | `[ISI ARI]` |
 | **Akun Demo / Cara Mencoba** | Tanpa login: klik **"Coba demo"** di halaman depan untuk masuk ke *sandbox* 48 jam berisi data fiktif, 10 nota contoh, dan Simulator WA. |

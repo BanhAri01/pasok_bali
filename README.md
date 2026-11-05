@@ -39,7 +39,7 @@ Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat peng
 | AI | Google Gemini (`gemini-3.5-flash-lite`, cadangan otomatis `gemini-flash-lite-latest` dan `gemini-3.6-flash` saat server sibuk) lewat endpoint kompatibel OpenAI; cadangan opsional Anthropic Claude (`claude-haiku-5-5`) |
 | WhatsApp | Fonnte (opsional; tanpa token, pesan dicatat ke log dan dapat dicoba lewat Simulator WA) |
 | Pengujian | Pest 5 |
-| Hosting | [ISI ARI] |
+| Hosting | Shared hosting cPanel (Rapidplex), PHP 8.5, MariaDB, HTTPS AutoSSL |
 
 ## AI Implementation
 
@@ -123,7 +123,7 @@ php artisan test
 
 ## Deployment URL
 
-[ISI ARI]
+https://pasokbali.arisantika.tech
 
 ## Demo Account
 
