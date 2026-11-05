@@ -22,7 +22,7 @@ it('mendaftarkan pemasok lewat WA dengan konfirmasi YA dan memperbarui asal nota
     expect(ReceiptItem::query()->sole()->origin)->toBe(ReceiptItem::UNKNOWN);
 
     $bot = app(SupplierBot::class);
-    $replies = $bot->handle($phone, 'DAFTAR kangkung 50 ikat seminggu Gianyar');
+    $replies = $bot->handle($phone, 'PASOK DAFTAR kangkung 50 ikat seminggu Gianyar');
 
     expect($replies[0])->toContain('Kangkung')->toContain('Gianyar')->toContain('Balas YA');
 
@@ -45,7 +45,7 @@ it('memakai hasil AI untuk pesan pendaftaran bebas dan menandai produk luar Bali
     ]]]);
 
     $bot = app(SupplierBot::class);
-    $bot->handle($phone, 'Daftar kami jual udang vaname dari Banyuwangi 100kg/minggu harga 90rb');
+    $bot->handle($phone, 'Pasok daftar kami jual udang vaname dari Banyuwangi 100kg/minggu harga 90rb');
     $bot->handle($phone, 'YA');
 
     $supplier = Supplier::query()->where('phone', $phone)->sole();
@@ -60,7 +60,7 @@ it('mengenali produk dari kamus walau AI menambah kata seperti sayur tanpa meman
         ['product_name' => 'sayur kangkung', 'capacity_per_week' => 50, 'unit' => 'ikat', 'price' => 0, 'price_unit' => '', 'produced_in_bali' => true],
     ]]]);
 
-    $replies = app(SupplierBot::class)->handle($phone, 'DAFTAR sayur kangkung 50 ikat seminggu, Gianyar, nama Kebun Sari');
+    $replies = app(SupplierBot::class)->handle($phone, 'PASOK DAFTAR sayur kangkung 50 ikat seminggu, Gianyar, nama Kebun Sari');
 
     expect($replies[0])->toContain('Kangkung')->toContain('Balas YA')
         ->and($ai->count('kelompok'))->toBe(0);
@@ -109,8 +109,8 @@ it('webhook WA memeriksa rahasia, mengabaikan grup, dan menolak pesan ganda', fu
     $this->post('/webhook/wa/salah', ['sender' => '6281234567890', 'message' => 'halo'])->assertNotFound();
     $this->post('/webhook/wa/rahasia-webhook', ['sender' => '120363@g.us', 'message' => 'halo', 'isgroup' => true])->assertJson(['reason' => 'group']);
 
-    $this->post('/webhook/wa/rahasia-webhook', ['sender' => '081234567890', 'message' => 'halo', 'inboxid' => '77'])->assertJson(['status' => 'accepted']);
-    $this->post('/webhook/wa/rahasia-webhook', ['sender' => '081234567890', 'message' => 'halo', 'inboxid' => '77'])->assertJson(['reason' => 'duplicate']);
+    $this->post('/webhook/wa/rahasia-webhook', ['sender' => '081234567890', 'message' => 'PASOK', 'inboxid' => '77'])->assertJson(['status' => 'accepted']);
+    $this->post('/webhook/wa/rahasia-webhook', ['sender' => '081234567890', 'message' => 'PASOK', 'inboxid' => '77'])->assertJson(['reason' => 'duplicate']);
 
     expect(WaMessage::query()->where('phone', '6281234567890')->where('direction', 'in')->count())->toBe(1)
         ->and(WaMessage::query()->where('phone', '6281234567890')->where('direction', 'out')->first()->body)->toContain('Cara daftar');
@@ -118,7 +118,7 @@ it('webhook WA memeriksa rahasia, mengabaikan grup, dan menolak pesan ganda', fu
 
 it('simulator di akun demo bisa mendaftar pemasok yang hanya terlihat oleh usaha itu', function () {
     $this->post(route('demo'));
-    $this->post(route('simulator.send'), ['text' => 'DAFTAR bayam 30 ikat seminggu Tabanan']);
+    $this->post(route('simulator.send'), ['text' => 'PASOK DAFTAR bayam 30 ikat seminggu Tabanan']);
     $this->post(route('simulator.send'), ['text' => 'ya']);
 
     $supplier = Supplier::query()->where('phone', 'like', 'sim%')->sole();

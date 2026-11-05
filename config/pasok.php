@@ -23,6 +23,8 @@ return [
         'webhook_secret' => env('PASOK_WEBHOOK_SECRET'),
         'daily_outbound_limit' => (int) env('PASOK_DAILY_OUTBOUND_LIMIT', 500),
         'per_minute' => 12,
+        'session_minutes' => (int) env('PASOK_WA_SESSION_MINUTES', 30),
+        'ai_per_phone' => (int) env('PASOK_WA_AI_PER_PHONE', 20),
     ],
 
     'demo' => [

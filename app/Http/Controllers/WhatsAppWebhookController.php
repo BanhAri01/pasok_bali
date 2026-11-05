@@ -23,19 +23,6 @@ class WhatsAppWebhookController extends Controller
         return $this->accept($messenger, ...$inbound);
     }
 
-    public function forward(Request $request, string $secret, Messenger $messenger, SupplierBot $bot): JsonResponse
-    {
-        $inbound = $this->inbound($request, $secret);
-
-        if ($inbound instanceof JsonResponse || ! $bot->claims($inbound[0], $inbound[1])) {
-            return response()->json(['claimed' => false]);
-        }
-
-        $this->accept($messenger, ...$inbound);
-
-        return response()->json(['claimed' => true]);
-    }
-
     private function inbound(Request $request, string $secret): array|JsonResponse
     {
         $expected = (string) config('pasok.whatsapp.webhook_secret');

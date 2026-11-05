@@ -27,6 +27,7 @@ class FakeAiDriver implements AiDriver
             in_array('products', $schema['required'] ?? [], true) => 'daftar',
             in_array('summary', $schema['required'] ?? [], true) => 'ringkasan',
             in_array('message', $schema['required'] ?? [], true) => 'pesan',
+            in_array('intent', $schema['required'] ?? [], true) => 'tanya',
             default => 'kelompok',
         };
 
