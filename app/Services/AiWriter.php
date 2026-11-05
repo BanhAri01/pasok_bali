@@ -92,7 +92,7 @@ class AiWriter
         }
 
         $done = $groups->where('status', 'patuh')->pluck('label')->implode(', ');
-        $short = $groups->where('status', 'kurang')->map(fn ($group) => "{$group['label']} ({$group['percent']}% dari kuota {$group['quota']}%, kurang ".$this->number($group['gap_kg']).' kg)')->implode('; ');
+        $short = $groups->where('status', 'kurang')->map(fn ($group) => "{$group['label']} (".$this->number($group['percent'])."% dari kuota {$group['quota']}%, kurang ".$this->number($group['gap_kg']).' kg)')->implode('; ');
 
         return trim(($done ? "Sudah memenuhi kuota: {$done}. " : '').($short ? "Belum memenuhi: {$short}." : 'Semua kelompok yang tercatat sudah memenuhi kuota.'));
     }

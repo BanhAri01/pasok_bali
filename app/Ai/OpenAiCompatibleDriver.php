@@ -11,6 +11,8 @@ class OpenAiCompatibleDriver implements AiDriver
 {
     private const RETRYABLE = [404, 408, 429, 500, 502, 503, 504];
 
+    private const THINKING_HEADROOM = 2048;
+
     private string $used;
 
     public function __construct(private string $apiKey, private string $baseUrl, private string $model, private float $timeout, private array $fallbacks = [])
@@ -56,6 +58,10 @@ class OpenAiCompatibleDriver implements AiDriver
                 continue;
             }
 
+            if ($response->successful() && $response->json('choices.0.finish_reason') === 'length' && $model !== end($models)) {
+                continue;
+            }
+
             if ($response->successful() || ! in_array($response->status(), self::RETRYABLE, true)) {
                 break;
             }
@@ -86,7 +92,7 @@ class OpenAiCompatibleDriver implements AiDriver
             ->connectTimeout(8)
             ->post(rtrim($this->baseUrl, '/').'/chat/completions', [
                 'model' => $model,
-                'max_tokens' => $maxTokens,
+                'max_tokens' => $maxTokens + self::THINKING_HEADROOM,
                 'temperature' => 0,
                 'response_format' => ['type' => 'json_object'],
                 'messages' => $messages,

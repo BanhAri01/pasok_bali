@@ -54,6 +54,18 @@ it('memakai hasil AI untuk pesan pendaftaran bebas dan menandai produk luar Bali
         ->and($supplier->products()->sole()->origin)->toBe('luar');
 });
 
+it('mengenali produk dari kamus walau AI menambah kata seperti sayur tanpa memanggil AI lagi', function () {
+    $phone = '6281222222222';
+    $ai = fakeAi(['daftar' => ['name' => 'Kebun Sari', 'regency' => 'Gianyar', 'products' => [
+        ['product_name' => 'sayur kangkung', 'capacity_per_week' => 50, 'unit' => 'ikat', 'price' => 0, 'price_unit' => '', 'produced_in_bali' => true],
+    ]]]);
+
+    $replies = app(SupplierBot::class)->handle($phone, 'DAFTAR sayur kangkung 50 ikat seminggu, Gianyar, nama Kebun Sari');
+
+    expect($replies[0])->toContain('Kangkung')->toContain('Balas YA')
+        ->and($ai->count('kelompok'))->toBe(0);
+});
+
 it('pemasok menjawab permintaan dengan 1 atau 2', function () {
     $user = owner();
     $offer = SupplierProduct::query()->where('origin', 'bali')->with('supplier')->first();

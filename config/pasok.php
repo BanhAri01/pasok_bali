@@ -56,6 +56,28 @@ return [
         'industri' => 'Industri lokal',
     ],
 
+    'substitutes' => [
+        'Minyak goreng sawit' => ['Minyak kelapa'],
+        'Gula pasir' => ['Gula aren'],
+        'Tepung terigu' => ['Tepung beras', 'Tepung tapioka'],
+        'Telur ayam ras' => ['Telur ayam kampung', 'Telur bebek'],
+        'Daging ayam' => ['Ayam kampung'],
+        'Ayam kampung' => ['Daging ayam'],
+        'Cabai merah keriting' => ['Cabai merah besar'],
+        'Cabai merah besar' => ['Cabai merah keriting'],
+        'Beras' => ['Beras merah'],
+        'Ikan tuna' => ['Ikan cakalang', 'Ikan tongkol'],
+        'Ikan cakalang' => ['Ikan tongkol', 'Ikan tuna'],
+        'Ikan tongkol' => ['Ikan cakalang', 'Ikan lemuru'],
+        'Ikan kakap' => ['Ikan kerapu'],
+        'Ikan kerapu' => ['Ikan kakap'],
+        'Ikan nila' => ['Ikan lele', 'Ikan gurame'],
+        'Jeruk' => ['Jeruk limau'],
+        'Jeruk nipis' => ['Jeruk limau'],
+        'Sawi hijau' => ['Sawi putih'],
+        'Sawi putih' => ['Sawi hijau'],
+    ],
+
     'quota_groups' => [
         'pertanian' => ['label' => 'Pertanian (pangan, hortikultura, perkebunan)', 'categories' => ['tanaman_pangan', 'hortikultura', 'perkebunan'], 'percent' => 30],
         'peternakan' => ['label' => 'Peternakan', 'categories' => ['peternakan'], 'percent' => 30],

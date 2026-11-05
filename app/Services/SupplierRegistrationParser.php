@@ -55,12 +55,13 @@ PROMPT;
         }
 
         $rows = collect($data['products'])->take(5)->values();
-        $known = $this->catalog->lookup(0, $rows->pluck('product_name')->all());
-        $unknown = $rows->reject(fn ($row) => isset($known[Text::key($row['product_name'])]))->map(fn ($row) => ['name' => $row['product_name'], 'unit' => $row['unit']])->all();
+        $catalog = $this->catalog->lookup(0, $rows->flatMap(fn ($row) => $this->variants((string) $row['product_name']))->unique()->values()->all());
+        $known = $rows->map(fn ($row) => collect($this->variants((string) $row['product_name']))->map(fn ($name) => $catalog[Text::key($name)] ?? null)->first(fn ($product) => $product !== null));
+        $unknown = $rows->filter(fn ($row, $index) => $known[$index] === null)->map(fn ($row) => ['name' => $row['product_name'], 'unit' => $row['unit']])->all();
         $classified = $unknown !== [] && $this->ai->available() ? $this->classifier->classify(0, $unknown) : [];
 
         $products = $rows->map(function ($row, $index) use ($known, $classified) {
-            $product = $known[Text::key($row['product_name'])] ?? $this->catalog->find($classified[$index]['product_id'] ?? null);
+            $product = $known[$index] ?? $this->catalog->find($classified[$index]['product_id'] ?? null);
 
             if (! $product) {
                 return null;
@@ -88,6 +89,19 @@ PROMPT;
             'regency' => $regency,
             'products' => $products,
         ];
+    }
+
+    private function variants(string $name): array
+    {
+        $words = array_values(array_filter(explode(' ', Text::key($name))));
+        $variants = [$name];
+
+        for ($i = 1; $i < count($words); $i++) {
+            $variants[] = implode(' ', array_slice($words, $i));
+            $variants[] = implode(' ', array_slice($words, 0, count($words) - $i));
+        }
+
+        return $variants;
     }
 
     private function fallback(string $text): ?array

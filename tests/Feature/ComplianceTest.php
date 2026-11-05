@@ -85,7 +85,23 @@ it('memberi rekomendasi pemasok lokal beserta simulasi kenaikan dan alternatif b
     $minyak = $result['industri']['items'][0];
     expect($minyak['candidates'])->not->toBeEmpty()
         ->and($minyak['candidates'][0]['alternative'])->toBeTrue()
-        ->and(collect($minyak['candidates'])->pluck('offer.product.category')->unique()->all())->toBe(['industri']);
+        ->and(collect($minyak['candidates'])->pluck('offer.product.name')->unique()->all())->toBe(['Minyak kelapa']);
+});
+
+it('tidak menyarankan pengganti yang tidak sejenis', function () {
+    $user = owner();
+    approved($user, 'Grosir Sumber Makmur (contoh)', now()->toDateString(), [['Tepung terigu', 10, 'kg'], ['Gula pasir', 8, 'kg']]);
+
+    $items = collect(app(RecommendationEngine::class)->forMonth($user->business, CarbonImmutable::now()->startOfMonth())['industri']['items'])->keyBy('product.name');
+
+    expect(collect($items['Gula pasir']['candidates'])->pluck('offer.product.name')->unique()->all())->toBe(['Gula aren'])
+        ->and(collect($items['Tepung terigu']['candidates'])->pluck('offer.product.name')->diff(['Tepung beras', 'Tepung tapioka'])->all())->toBe([]);
+});
+
+it('semua nama di daftar pengganti ada di katalog produk', function () {
+    $names = collect(config('pasok.substitutes'))->flatMap(fn ($list, $name) => [$name, ...$list])->unique();
+
+    expect($names->diff(Product::query()->pluck('name'))->values()->all())->toBe([]);
 });
 
 it('menampilkan semua halaman utama untuk akun demo', function () {

@@ -49,7 +49,7 @@ class RecommendationEngine
 
                 $exact = $offers->where('product_id', $product->id);
                 $alternative = $exact->isEmpty();
-                $pool = $alternative ? $offers->where('product.category', $product->category) : $exact;
+                $pool = $alternative ? $offers->whereIn('product.name', (array) config("pasok.substitutes.{$product->name}", [])) : $exact;
 
                 $candidates = $pool
                     ->sortBy(fn (SupplierProduct $offer) => [
