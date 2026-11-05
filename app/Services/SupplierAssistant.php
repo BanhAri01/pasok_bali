@@ -41,11 +41,11 @@ PROMPT;
 
     public function __construct(private AiGateway $ai) {}
 
-    public function reply(string $phone, string $text, ?Supplier $supplier): ?array
+    public function reply(string $phone, string $text, ?Supplier $supplier, ?string $draft = null): ?array
     {
         $data = $this->ai->json(
             'asisten_wa',
-            self::SYSTEM."\n\nDATA:\n".$this->context($supplier),
+            self::SYSTEM."\n\nDATA:\n".$this->context($supplier, $draft),
             mb_substr($text, 0, 600),
             [
                 'type' => 'object',
@@ -73,7 +73,7 @@ PROMPT;
         return ['intent' => $data['intent'], 'answer' => mb_substr($answer, 0, 1000)];
     }
 
-    private function context(?Supplier $supplier): string
+    private function context(?Supplier $supplier, ?string $draft): string
     {
         $rules = Cache::remember('pasok:kuota', 600, fn () => QuotaRule::query()->pluck('min_percent', 'group')->all());
 
@@ -82,6 +82,10 @@ PROMPT;
             ->implode("\n");
 
         $lines = ["Kuota Pergub 99/2018 yang dipakai Pasok Bali:\n{$quota}"];
+
+        if ($draft !== null) {
+            $lines[] = "Pengirim sedang mengisi pendaftaran pemasok. Pesan pendaftaran yang sudah dikirim:\n{$draft}\nJika pesan baru melengkapi atau mengoreksi pendaftaran itu (misalnya hanya nama kabupaten/desa, produk, jumlah, harga, atau nama usaha), intent = daftar.";
+        }
 
         if (! $supplier) {
             $lines[] = 'Pengirim belum terdaftar sebagai pemasok.';

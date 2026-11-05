@@ -26,6 +26,8 @@ class SupplierBot
 
     private const CONFIRMING = 'konfirmasi_daftar';
 
+    private const DRAFTING = 'lengkapi_daftar';
+
     public static function stripKeyword(string $text): string
     {
         return trim((string) preg_replace('/^\s*pasok(?:\s*bali)?\b[\s:,.\-]*/iu', '', $text));
@@ -53,15 +55,16 @@ class SupplierBot
 
         $conversation = $this->keepAlive($phone, $conversation, $ownerBusinessId);
         $confirming = $conversation->state === self::CONFIRMING;
+        $draft = in_array($conversation->state, [self::CONFIRMING, self::DRAFTING], true) ? ($conversation->payload['source'] ?? null) : null;
 
         return $this->send($phone, match (true) {
             in_array($key, ['selesai', 'stop', 'keluar', 'tutup'], true) => $this->end($conversation),
             $confirming && in_array($key, ['ya', 'iya', 'y', 'ok', 'oke', 'benar'], true) => $this->confirm($phone, $conversation, $ownerBusinessId),
-            $confirming && in_array($key, ['batal', 'tidak', 'salah'], true) => $this->cancel($conversation),
+            $draft !== null && in_array($key, ['batal', 'tidak', 'salah'], true) => $this->cancel($conversation),
             $answering => $this->respond($supplier, $key === '1'),
-            str_starts_with($key, 'daftar') || str_starts_with($key, 'jual') => $this->register($phone, $text, $ownerBusinessId),
+            str_starts_with($key, 'daftar') || str_starts_with($key, 'jual') => $this->register($phone, $this->merge($draft, $text), $ownerBusinessId),
             $key === '' || in_array($key, ['menu', 'bantuan', 'help', 'halo', 'hai', 'mulai'], true) => [self::HELP],
-            default => $this->ask($phone, $text, $supplier, $ownerBusinessId),
+            default => $this->ask($phone, $text, $supplier, $ownerBusinessId, $draft),
         });
     }
 
@@ -102,32 +105,46 @@ class SupplierBot
         return [self::ENDED];
     }
 
-    private function ask(string $phone, string $text, ?Supplier $supplier, ?int $ownerBusinessId): array
+    private function ask(string $phone, string $text, ?Supplier $supplier, ?int $ownerBusinessId, ?string $draft): array
     {
-        $reply = $this->assistant->reply($phone, $text, $supplier);
+        $reply = $this->assistant->reply($phone, $text, $supplier, $draft);
+        $registering = $reply === null ? $draft !== null : $reply['intent'] === SupplierAssistant::DAFTAR;
 
         return match (true) {
+            $registering => $this->register($phone, $this->merge($draft, $text), $ownerBusinessId),
             $reply === null => ["Maaf, pertanyaan belum bisa kami jawab sekarang.\n\n".self::HELP],
-            $reply['intent'] === SupplierAssistant::DAFTAR => $this->register($phone, $text, $ownerBusinessId),
             default => [$reply['answer']],
         };
+    }
+
+    private function merge(?string $draft, string $text): string
+    {
+        $merged = trim(($draft !== null ? $draft."\n" : '').$text);
+
+        return mb_substr($merged, max(0, mb_strlen($merged) - 800));
     }
     private function register(string $phone, string $text, ?int $ownerBusinessId): array
     {
         $parsed = $this->parser->parse($text);
-
-        if (! $parsed) {
-            return ["Data belum terbaca. Tulis produk, jumlah per minggu, dan kabupaten, contohnya:\n".self::EXAMPLE];
-        }
-
-        if ($parsed['regency'] === null) {
-            return ['Mohon sebutkan kabupaten/kota lokasi produksi Anda (misalnya Tabanan, Bangli, Buleleng). Kirim ulang pesan DAFTAR lengkap dengan kabupatennya.'];
-        }
+        $complete = $parsed !== null && $parsed['regency'] !== null;
 
         WaConversation::query()->updateOrCreate(
             ['phone' => $phone],
-            ['state' => self::CONFIRMING, 'payload' => $parsed, 'business_id' => $ownerBusinessId, 'expires_at' => now()->addMinutes(30)],
+            [
+                'state' => $complete ? self::CONFIRMING : self::DRAFTING,
+                'payload' => ($complete ? $parsed : []) + ['source' => $text],
+                'business_id' => $ownerBusinessId,
+                'expires_at' => now()->addMinutes((int) config('pasok.whatsapp.session_minutes', 30)),
+            ],
         );
+
+        if (! $parsed) {
+            return ['Produk apa yang ingin Anda jual, dan kira-kira berapa banyak per minggu? Contohnya: telur ayam 200 krat seminggu.'];
+        }
+
+        if (! $complete) {
+            return ['Di kabupaten mana lokasi produksinya? Cukup balas nama kabupatennya, misalnya Tabanan.'];
+        }
 
         $lines = collect($parsed['products'])->map(function ($product) use ($parsed) {
             $capacity = $product['capacity_per_week'] ? Rupiah::number($product['capacity_per_week']).' '.$product['unit'].'/minggu' : 'jumlah belum disebut';
@@ -140,7 +157,7 @@ class SupplierBot
         $name = $parsed['name'] ?: 'Pemasok '.$this->suffix($phone);
         $regency = $parsed['regency'] === 'luar_bali' ? 'Luar Bali' : $parsed['regency'];
 
-        return ["Mohon dicek:\nNama: {$name}\nLokasi: {$regency}\n{$lines}\n\nBalas YA untuk simpan, atau BATAL bila salah."];
+        return ["Mohon dicek:\nNama: {$name}\nLokasi: {$regency}\n{$lines}\n\nBalas YA untuk simpan, BATAL untuk membatalkan, atau tulis koreksinya (misalnya: harganya 32 ribu)."];
     }
 
     private function confirm(string $phone, WaConversation $conversation, ?int $ownerBusinessId): array

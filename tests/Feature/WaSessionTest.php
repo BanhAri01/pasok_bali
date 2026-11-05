@@ -91,3 +91,38 @@ it('webhook asli memproses pesan PASOK dari nomor WA', function () {
 
     expect(WaMessage::query()->where('phone', '6281200000006')->where('direction', 'out')->sole()->body)->toContain('Cara daftar');
 });
+
+it('mengingat pendaftaran yang dicicil lalu menggabungkannya', function () {
+    $ai = fakeAi([
+        'tanya' => ['intent' => 'daftar', 'answer' => ''],
+        'daftar' => fn ($input) => ['name' => '', 'regency' => str_contains(strtolower($input), 'bangli') ? 'Bangli' : '', 'products' => [
+            ['product_name' => 'telur ayam', 'capacity_per_week' => 50, 'unit' => 'krat', 'price' => str_contains($input, '32') ? 32000 : 0, 'price_unit' => 'krat', 'produced_in_bali' => true],
+        ]],
+    ]);
+    $phone = '6281200000007';
+    $bot = app(SupplierBot::class);
+
+    $bot->handle($phone, 'PASOK');
+    expect($bot->handle($phone, 'ada telur 50 krat')[0])->toContain('kabupaten mana');
+    expect($bot->handle($phone, 'bangli')[0])->toContain('Bangli')->toContain('50 krat');
+    expect($bot->handle($phone, 'harganya 32 ribu')[0])->toContain('Rp32.000');
+
+    expect(end($ai->calls)['input'])->toBe("ada telur 50 krat\nbangli\nharganya 32 ribu");
+
+    $bot->handle($phone, 'ya');
+
+    $offer = Supplier::query()->where('phone', $phone)->sole()->products()->sole();
+    expect($offer->price_per_unit)->toBe(32000)
+        ->and(Supplier::query()->where('phone', $phone)->sole()->regency)->toBe('Bangli');
+});
+
+it('menanyakan produk bila yang dikirim hanya nama kabupaten', function () {
+    fakeAi(['tanya' => ['intent' => 'daftar', 'answer' => ''], 'daftar' => ['name' => '', 'regency' => 'Tabanan', 'products' => []]]);
+    $phone = '6281200000008';
+    $bot = app(SupplierBot::class);
+
+    $bot->handle($phone, 'PASOK');
+
+    expect($bot->handle($phone, 'tabanan')[0])->toContain('Produk apa')
+        ->and(WaConversation::query()->where('phone', $phone)->sole()->payload['source'])->toBe('tabanan');
+});
