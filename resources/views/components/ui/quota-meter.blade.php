@@ -28,9 +28,9 @@
     $resolvedStatus = $status ?? ($data['status'] ?? ($pct === null ? 'kosong' : ($numericPct >= $targetQuota ? 'patuh' : 'kurang')));
 
     [$pctTextColor, $badgeClass, $statusText] = match ($resolvedStatus) {
-        'patuh' => ['text-daun-tua', 'border-2 border-tinta bg-daun text-kertas', 'Memenuhi kuota'],
-        'kurang' => ['text-terakota', 'border-2 border-tinta bg-terakota-muda text-terakota', 'Belum memenuhi'],
-        default => ['text-abu', 'border-2 border-tinta bg-santan text-abu', 'Belum ada data'],
+        'patuh' => ['text-daun-tua', 'border border-garis bg-daun text-kertas', 'Memenuhi kuota'],
+        'kurang' => ['text-terakota', 'border border-garis bg-terakota-muda text-terakota', 'Belum memenuhi'],
+        default => ['text-abu', 'border border-garis bg-santan text-abu', 'Belum ada data'],
     };
 
     $iconKey = $commodity ?? ($data['key'] ?? match (true) {
@@ -51,13 +51,13 @@
     $unmeasuredCount = $unmeasured ?: ($data['unmeasured'] ?? 0);
 @endphp
 
-<article {{ $attributes->class(['rounded border-2 border-tinta bg-kertas p-5']) }}>
+<article {{ $attributes->class(['rounded-lg border border-garis bg-kertas p-5']) }}>
     <div class="flex flex-wrap items-start justify-between gap-2">
         <div class="flex items-center gap-3">
             <x-ui.commodity-icon :name="$iconKey" size="sm" />
             <h3 class="font-display text-lg leading-snug text-tinta">{{ $title }}</h3>
         </div>
-        <span class="shrink-0 rounded px-2.5 py-0.5 text-xs font-semibold {{ $badgeClass }}">
+        <span class="shrink-0 rounded-lg px-2.5 py-0.5 text-xs font-semibold {{ $badgeClass }}">
             {{ $statusText }}
         </span>
     </div>
@@ -76,13 +76,13 @@
         ></progress>
 
         <div
-            class="relative h-3.5 overflow-hidden border-2 border-tinta bg-santan"
+            class="relative h-3.5 overflow-hidden border border-garis bg-santan"
             role="img"
             aria-label="{{ $fmt($numericPct) }} persen lokal ({{ $fmt($verifiedPct) }} persen terverifikasi, {{ $fmt($declaredPct) }} persen pernyataan pemasok), batas kuota {{ $fmt($targetQuota) }} persen"
         >
             <div class="absolute inset-y-0 left-0 bg-daun transition-all duration-300" style="width: {{ min(100, max(0, $verifiedPct)) }}%"></div>
             <div class="absolute inset-y-0 bg-kunyit transition-all duration-300" style="left: {{ min(100, max(0, $verifiedPct)) }}%; width: {{ min(100 - min(100, max(0, $verifiedPct)), max(0, $declaredPct)) }}%"></div>
-            <div class="absolute inset-y-0 w-0.5 bg-tinta" style="left: {{ min(100, max(0, $targetQuota)) }}%" title="Batas kuota {{ $fmt($targetQuota) }}%"></div>
+            <div class="absolute inset-y-0 w-0.5 bg-daun-tua" style="left: {{ min(100, max(0, $targetQuota)) }}%" title="Batas kuota {{ $fmt($targetQuota) }}%"></div>
         </div>
 
         <div class="mt-1.5 flex items-center justify-between text-xs text-abu">
@@ -95,7 +95,7 @@
     </div>
 
     @if (! $compact && $totalWeight !== null)
-        <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 border-t-2 border-tinta pt-3 text-sm">
+        <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 border-t border-garis pt-3 text-sm">
             <dt class="text-abu">Total tercatat</dt>
             <dd class="text-right font-semibold angka-tabel">{{ $fmt($totalWeight) }} kg</dd>
             @if ($verifiedWeight !== null)
@@ -118,7 +118,7 @@
     @endif
 
     @if ($resolvedStatus === 'kurang' && $gapWeight !== null && $gapWeight > 0)
-        <p class="mt-3 rounded border-2 border-tinta bg-terakota-muda px-3 py-2 text-sm text-terakota">
+        <p class="mt-3 rounded-lg border border-garis bg-terakota-muda px-3 py-2 text-sm text-terakota">
             Perlu tambahan sekitar <strong>{{ $fmt($gapWeight) }} kg</strong> produk lokal Bali bulan ini.
         </p>
     @endif

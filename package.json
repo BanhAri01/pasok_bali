@@ -17,7 +17,7 @@
         "@laravel/multiplex": "^0.4.1"
     },
     "dependencies": {
-        "@fontsource-variable/bricolage-grotesque": "^5.2.10",
+        "@fontsource/cormorant-garamond": "^5.2.8",
         "alpinejs": "^3.14.9"
     }
 }

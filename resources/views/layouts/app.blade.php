@@ -18,20 +18,18 @@
         ['simulator.index', 'Simulator WA', 'simulator.*'],
     ])
 
-    <div class="tridatu h-1" aria-hidden="true"></div>
-
     @if ($business?->is_demo)
-        <div class="bg-kunyit-muda px-4 py-2 text-center text-sm font-medium text-tinta">
+        <div class="bg-daun-tua px-4 py-2 text-center text-xs text-kertas/85">
             Akun demo berisi data contoh fiktif dan akan dihapus otomatis {{ $business->demo_expires_at?->diffForHumans() }}.
         </div>
     @endif
 
     <header class="border-b border-garis bg-kertas" x-data="{ buka: false }">
-        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
             <a href="{{ $business ? route('dashboard') : route('home') }}" class="flex items-center gap-3">
-                <x-ui.logo :size="34" :wordmark="false" />
+                <x-ui.logo :size="32" :wordmark="false" />
                 <span class="leading-tight">
-                    <span class="block font-display text-xl text-daun-tua">Pasok Bali</span>
+                    <span class="block font-display text-[1.4rem] font-semibold leading-none text-daun-tua">Pasok Bali</span>
                     @if ($business)
                         <span class="block max-w-48 truncate text-xs text-abu">{{ $business->name }}</span>
                     @endif
@@ -41,7 +39,7 @@
             @if ($business)
                 <nav class="hidden items-center gap-1 lg:flex">
                     @foreach ($nav as [$route, $label, $pattern])
-                        <a href="{{ route($route) }}" @class(['rounded px-3 py-2 text-sm font-semibold transition', 'bg-kunyit text-tinta' => request()->routeIs($pattern), 'text-abu hover:bg-santan hover:text-tinta' => ! request()->routeIs($pattern)])>{{ $label }}</a>
+                        <a href="{{ route($route) }}" @if (request()->routeIs($pattern)) aria-current="page" @endif @class(['rounded-full px-3.5 py-2 text-sm transition', 'bg-daun-muda font-semibold text-daun-tua' => request()->routeIs($pattern), 'font-medium text-abu hover:text-daun-tua' => ! request()->routeIs($pattern)])>{{ $label }}</a>
                     @endforeach
                 </nav>
             @endif
@@ -50,11 +48,11 @@
                 @auth
                     <form method="POST" action="{{ route('logout') }}" class="hidden sm:block">
                         @csrf
-                        <button class="rounded px-3 py-2 text-sm font-semibold text-abu hover:text-terakota">Keluar</button>
+                        <button class="rounded-lg px-3 py-2 text-sm font-semibold text-abu hover:text-terakota">Keluar</button>
                     </form>
                 @endauth
                 @if ($business)
-                    <button type="button" class="rounded border-2 border-tinta px-3 py-2 text-sm font-semibold lg:hidden" @click="buka = !buka" :aria-expanded="buka">Menu</button>
+                    <button type="button" class="rounded-lg border border-garis px-3 py-2 text-sm font-semibold lg:hidden" @click="buka = !buka" :aria-expanded="buka">Menu</button>
                 @endif
             </div>
         </div>
@@ -62,11 +60,11 @@
         @if ($business)
             <nav class="border-t border-garis px-4 py-2 lg:hidden" x-show="buka" x-cloak>
                 @foreach ($nav as [$route, $label, $pattern])
-                    <a href="{{ route($route) }}" @class(['block rounded px-3 py-2 text-sm font-semibold', 'bg-kunyit text-tinta' => request()->routeIs($pattern)])>{{ $label }}</a>
+                    <a href="{{ route($route) }}" @class(['block rounded-lg px-3 py-2 text-sm font-semibold', 'bg-daun-muda text-daun-tua' => request()->routeIs($pattern)])>{{ $label }}</a>
                 @endforeach
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="block w-full rounded px-3 py-2 text-left text-sm font-semibold text-terakota">Keluar</button>
+                    <button class="block w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-terakota">Keluar</button>
                 </form>
             </nav>
         @endif
@@ -74,11 +72,11 @@
 
     <main class="mx-auto max-w-6xl px-4 py-6 sm:py-8">
         @if (session('status'))
-            <div class="mb-5 rounded border border-daun/30 bg-daun-muda px-4 py-3 text-sm font-medium text-daun-tua" role="status">{{ session('status') }}</div>
+            <div class="mb-5 rounded-lg border border-daun/30 bg-daun-muda px-4 py-3 text-sm font-medium text-daun-tua" role="status">{{ session('status') }}</div>
         @endif
 
         @if ($errors->any())
-            <div class="mb-5 rounded border border-terakota/30 bg-terakota-muda px-4 py-3 text-sm text-terakota" role="alert">
+            <div class="mb-5 rounded-lg border border-terakota/30 bg-terakota-muda px-4 py-3 text-sm text-terakota" role="alert">
                 <ul class="list-inside list-disc space-y-1">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>

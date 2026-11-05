@@ -1,16 +1,16 @@
 <x-app.layout title="Laporan">
     <div class="flex flex-wrap items-end justify-between gap-4 print:hidden">
-        <h1 class="font-display text-3xl font-black text-daun-tua">Laporan bulanan</h1>
+        <h1 class="font-display text-3xl font-semibold text-daun-tua">Laporan bulanan</h1>
         <div class="flex flex-wrap items-center gap-3">
             <x-app.month-picker :month="$month" route="report" />
-            <button type="button" onclick="window.print()" class="rounded bg-tinta px-5 py-2.5 font-bold text-kertas hover:bg-taum">Cetak / simpan PDF</button>
+            <button type="button" onclick="window.print()" class="rounded-full bg-daun-tua px-5 py-2.5 font-bold text-kertas hover:bg-taum">Cetak / simpan PDF</button>
         </div>
     </div>
 
-    <article class="mt-6 border-2 border-tinta bg-kertas p-6 print:border-0 print:p-0">
+    <article class="mt-6 border border-garis bg-kertas p-6 print:border-0 print:p-0 rounded-2xl">
         <header class="border-b border-garis pb-4">
             <p class="text-sm font-semibold text-daun">Laporan mandiri kepatuhan produk lokal · Pergub Bali No. 99 Tahun 2018</p>
-            <h2 class="font-display text-2xl font-black">{{ $business->name }}</h2>
+            <h2 class="font-display text-2xl font-semibold">{{ $business->name }}</h2>
             <p class="text-abu">{{ $business->typeLabel() }} · {{ $business->regency }} · Periode {{ $month->translatedFormat('F Y') }}</p>
             @if ($business->is_demo)
                 <p class="mt-2 inline-block rounded-full bg-kunyit-muda px-3 py-1 text-xs font-bold">DATA CONTOH FIKTIF</p>
@@ -19,7 +19,7 @@
 
         @if ($summary)
             <section class="mt-5">
-                <h3 class="font-display text-lg font-bold">Ringkasan</h3>
+                <h3 class="font-display text-2xl leading-tight font-semibold">Ringkasan</h3>
                 <p class="mt-1 leading-relaxed">{{ $summary['text'] }}</p>
                 <p class="mt-1 text-xs text-abu">{{ $summary['ai'] ? 'Ringkasan ditulis AI dari angka di bawah.' : 'Ringkasan otomatis dari angka di bawah.' }}</p>
             </section>
@@ -55,7 +55,7 @@
         </section>
 
         <section class="mt-8">
-            <h3 class="font-display text-lg font-bold">Rincian per pemasok</h3>
+            <h3 class="font-display text-2xl leading-tight font-semibold">Rincian per pemasok</h3>
             <div class="mt-2 overflow-x-auto">
                 <table class="w-full min-w-[560px] text-sm">
                     <thead class="text-left text-abu">

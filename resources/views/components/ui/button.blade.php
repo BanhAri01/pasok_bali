@@ -6,17 +6,17 @@
 ])
 
 @php
-    $baseClass = 'inline-flex items-center justify-center gap-2 rounded font-semibold transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-taum disabled:pointer-events-none disabled:opacity-50 cursor-pointer';
+    $baseClass = 'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-taum disabled:pointer-events-none disabled:opacity-50 cursor-pointer';
 
     $variantClass = match ($variant) {
         'daun' => 'bg-daun text-kertas hover:bg-daun-tua',
-        'taum' => 'bg-taum text-kertas hover:bg-tinta',
-        'kunyit', 'accent' => 'border-2 border-tinta bg-kunyit text-tinta hover:bg-kunyit-muda',
-        'secondary', 'outline', 'garis' => 'border-2 border-tinta bg-transparent text-tinta hover:bg-tinta hover:text-kertas',
-        'subtle', 'halus' => 'border-2 border-tinta bg-kertas text-tinta hover:bg-santan',
-        'terakota', 'danger' => 'bg-terakota text-kertas hover:bg-tinta',
+        'taum' => 'bg-taum text-kertas hover:bg-daun-tua',
+        'kunyit', 'accent' => 'border border-garis bg-daun-muda text-daun-tua hover:bg-kunyit-muda',
+        'secondary', 'outline', 'garis' => 'border border-garis bg-transparent text-tinta hover:bg-daun-tua hover:text-kertas',
+        'subtle', 'halus' => 'border border-garis bg-kertas text-tinta hover:bg-santan',
+        'terakota', 'danger' => 'bg-terakota text-kertas hover:bg-daun-tua',
         'ghost' => 'bg-transparent text-abu hover:bg-santan hover:text-tinta',
-        default => 'bg-tinta text-kertas hover:bg-taum',
+        default => 'bg-daun-tua text-kertas hover:bg-taum',
     };
 
     $sizeClass = match ($size) {

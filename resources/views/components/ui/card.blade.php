@@ -6,13 +6,13 @@
 
 @php
     $variantClass = match ($variant) {
-        'santan' => 'rounded border-2 border-tinta bg-santan text-tinta',
-        'kunyit', 'sorot' => 'rounded border-2 border-tinta bg-kunyit-muda text-tinta',
-        'terakota' => 'rounded border-2 border-tinta bg-terakota-muda text-tinta',
-        'daun' => 'rounded border-2 border-tinta bg-daun text-kertas',
-        'taum', 'papan' => 'rounded border-2 border-tinta bg-taum text-kertas',
-        'nota' => 'nota-pasar rounded text-tinta',
-        default => 'rounded border-2 border-tinta bg-kertas text-tinta',
+        'santan' => 'rounded-lg border border-garis bg-santan text-tinta',
+        'kunyit', 'sorot' => 'rounded-lg border border-garis bg-kunyit-muda text-tinta',
+        'terakota' => 'rounded-lg border border-garis bg-terakota-muda text-tinta',
+        'daun' => 'rounded-lg border border-garis bg-daun text-kertas',
+        'taum', 'papan' => 'rounded-lg border border-garis bg-taum text-kertas',
+        'nota' => 'nota-pasar rounded-lg text-tinta',
+        default => 'rounded-lg border border-garis bg-kertas text-tinta',
     };
 
     $paddingClass = match ($padding) {

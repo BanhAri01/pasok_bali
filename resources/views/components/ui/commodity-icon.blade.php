@@ -8,7 +8,7 @@
         'sm' => 'size-8 rounded-lg',
         'lg' => 'size-14 rounded-2xl',
         'xl' => 'size-16 rounded-2xl',
-        default => 'size-11 rounded-xl',
+        default => 'size-11 rounded-2xl',
     };
 
     $svgSize = match ($size) {

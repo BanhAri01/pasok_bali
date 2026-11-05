@@ -1,38 +1,37 @@
 @import 'tailwindcss';
 @import './fonts/fonts.css';
-@import '@fontsource-variable/bricolage-grotesque/standard.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/500-italic.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
     --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
-    --font-display: 'Bricolage Grotesque Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
 
-    --color-santan: #f2ece0;
-    --color-kertas: #fffcf5;
-    --color-tinta: #1a1612;
-    --color-abu: #675e51;
-    --color-garis: #d6cbb7;
+    --color-santan: #f4f6f0;
+    --color-kertas: #ffffff;
+    --color-tinta: #20241f;
+    --color-abu: #687064;
+    --color-garis: #dde2d6;
 
-    --color-daun: #3b6a33;
-    --color-daun-tua: #23401e;
-    --color-daun-muda: #dfead0;
+    --color-daun: #3d7350;
+    --color-daun-tua: #1d3a2f;
+    --color-daun-muda: #e6eedf;
 
-    --color-kunyit: #e0a526;
-    --color-kunyit-muda: #f8e4ad;
+    --color-prada: #b8913f;
+    --color-prada-muda: #f3ead6;
 
-    --color-terakota: #c2381f;
-    --color-terakota-muda: #f6d8cd;
+    --color-kunyit: #d7a136;
+    --color-kunyit-muda: #f7ecd2;
 
-    --color-taum: #24305b;
-    --color-taum-muda: #dde1ef;
+    --color-terakota: #ad4a31;
+    --color-terakota-muda: #f6e4dc;
 
-    --radius-kartu: 0.25rem;
-    --radius-tombol: 0.25rem;
-
-    --shadow-kartu: 0 0 0 1.5px var(--color-tinta);
-    --shadow-angkat: 0 0 0 2px var(--color-tinta);
+    --color-taum: #2d5546;
+    --color-taum-muda: #e3ece6;
 }
 
 [x-cloak] {
@@ -45,14 +44,14 @@
     }
 
     .font-display {
-        font-stretch: 78%;
-        font-weight: 760;
-        letter-spacing: -0.025em;
+        font-weight: 500;
+        letter-spacing: -0.012em;
+        font-feature-settings: 'lnum' 1;
     }
 
     :focus-visible {
-        outline: 3px solid var(--color-taum);
-        outline-offset: 2px;
+        outline: 2px solid var(--color-prada);
+        outline-offset: 3px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -73,28 +72,16 @@
     font-variant-numeric: tabular-nums;
 }
 
-@utility tridatu {
-    background-image: linear-gradient(
-        to bottom,
-        var(--color-terakota) 0 33.34%,
-        var(--color-kertas) 33.34% 66.67%,
-        var(--color-tinta) 66.67% 100%
-    );
-}
-
-@utility garis-tebal {
-    border: 2px solid var(--color-tinta);
-}
-
 @layer components {
     progress.ui-progress {
-        --progress-bar-track: var(--color-santan);
+        --progress-bar-track: var(--color-daun-muda);
         --progress-bar-fill: var(--color-daun);
         appearance: none;
         border: 0 solid;
+        border-radius: 999px;
         overflow: clip;
         width: 100%;
-        height: 0.75rem;
+        height: 0.5rem;
         background: var(--progress-bar-track);
     }
 
@@ -110,13 +97,16 @@
         background: var(--progress-bar-fill);
     }
 
-    .nota-pasar {
-        background-color: var(--color-kertas);
-        border: 2px solid var(--color-tinta);
+    .terasering {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='640' viewBox='0 0 1440 640' fill='none' stroke='%233d7350' stroke-opacity='.14' stroke-width='1'%3E%3Cpath d='M-20 120C220 80 380 150 620 118S1060 60 1460 104'/%3E%3Cpath d='M-20 168C230 128 400 200 640 166S1080 108 1460 150'/%3E%3Cpath d='M-20 218C240 178 420 252 660 216S1100 158 1460 198'/%3E%3Cpath d='M-20 270C250 230 440 306 680 268S1120 210 1460 248'/%3E%3Cpath d='M-20 324C260 284 460 362 700 322S1140 264 1460 300'/%3E%3Cpath d='M-20 380C270 340 480 420 720 378S1160 320 1460 354'/%3E%3Cpath d='M-20 438C280 398 500 480 740 436S1180 378 1460 410'/%3E%3Cpath d='M-20 498C290 458 520 542 760 496S1200 438 1460 468'/%3E%3Cpath d='M-20 560C300 520 540 606 780 558S1220 500 1460 528'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
     }
 
-    .papan-daun {
-        background-color: var(--color-taum);
-        color: var(--color-kertas);
+    .nota-pasar {
+        background-color: var(--color-kertas);
+        border: 1px solid var(--color-garis);
+        border-radius: 1rem;
     }
 }
