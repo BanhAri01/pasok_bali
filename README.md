@@ -145,7 +145,7 @@ Tidak perlu akun. Klik **Coba demo** di halaman depan untuk membuat sandbox prib
 ## Known Limitations
 
 - Semua data di repositori dan mode demo adalah **data fiktif**. Aplikasi belum diuji dengan nota atau usaha sungguhan. Uji internal 3 Nov 2026 pada 10 nota demo fiktif (gambar digital, bukan foto kamera) dengan `gemini-3.5-flash-lite`: 10/10 nota terbaca dan 69/69 baris benar (nama, jumlah, satuan, harga, produk kamus), rata-rata ±2,7 detik per nota. Akurasi pada foto nota asli yang miring, buram, atau kusut belum diukur.
-- Angka kuota mengikuti pengaturan admin (bawaan 30% untuk pertanian, peternakan, dan perikanan, serta 20% untuk industri lokal) dan perlu dicocokkan dengan teks resmi Pergub Bali No. 99/2018 sebelum dipakai untuk pelaporan resmi.
+- Angka kuota bawaan (30% pertanian, peternakan, dan perikanan; 20% industri lokal, dihitung dari volume) sesuai Pergub Bali No. 99/2018 Pasal 13 ayat (2) dan sudah dicocokkan dengan naskah resmi; ringkasan pasal ada di [docs/draf/KUOTA-PERGUB.md](docs/draf/KUOTA-PERGUB.md). Persentase di dasbor adalah pengukuran mandiri, bukan penilaian resmi dinas.
 - Status "lokal" bergantung pada data pemasok: label *pernyataan* berarti berdasarkan pengakuan pemasok, belum diverifikasi di lapangan.
 - Konversi satuan non-baku (ikat, sisir, ekor) memakai perkiraan berat rata-rata dari kamus.
 - Kualitas pembacaan bergantung pada kejelasan foto; tulisan tangan yang buram perlu dikoreksi manual.
