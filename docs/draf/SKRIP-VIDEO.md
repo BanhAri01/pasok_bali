@@ -43,7 +43,7 @@
 - **Yang Tampil di Layar:**
   1. Klik tombol **`Coba dengan dapur contoh`**.
   2. Masuk ke halaman **Dasbor** (`/dasbor`). Sorot pita pemberitahuan di bagian atas bahwa akun demo ini berisi data contoh fiktif dan terhapus otomatis setelah 48 jam.
-  3. Arahkan kursor ke 4 kartu meter kuota. Tunjukkan kelompok yang sudah memenuhi kuota (hijau), lalu berhenti di kartu **Peternakan** yang berstatus merah **`Belum memenuhi`** (persentase lokal masih di bawah kuota 30%, misalnya sekitar 18% pada skenario restoran contoh karena sebagian besar telur dan daging ayam masih dibeli dari grosir non-lokal).
+  3. Arahkan kursor ke 4 kartu meter kuota. Tunjukkan kelompok yang sudah memenuhi kuota (hijau), lalu berhenti di kartu **Peternakan** yang berstatus merah **`Belum memenuhi`** (persentase lokal masih di bawah kuota 30%, 13,8% pada data dapur contoh karena sebagian besar telur dan daging ayam masih dibeli dari grosir non-lokal).
   4. Sorot juga perbedaan warna pada batang meter: hijau untuk **Lokal terverifikasi** dan kuning untuk **Lokal pernyataan**.
 - **Narasi Santai:**
   > "Kita langsung coba tanpa perlu daftar akun. Begitu klik *Coba dengan dapur contoh*, kita masuk ke dasbor dapur simulasi. Semua data di sini fiktif untuk peragaan.
