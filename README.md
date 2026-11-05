@@ -19,15 +19,27 @@ Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat peng
 
 ## Key Features
 
-- **Baca nota dengan AI**: unggah foto nota (JPG/PNG/WEBP), AI mengekstrak pemasok, tanggal, dan baris barang (nama, jumlah, satuan, harga) ke layar koreksi. Jika AI tidak tersedia, formulir isian manual tetap bisa dipakai.
+- **Baca nota dengan AI**: unggah foto nota (JPG/PNG/WEBP), AI mengekstrak pemasok, tanggal, dan baris barang (nama, jumlah, satuan, harga) ke layar koreksi ([unggah nota](docs/screenshots/03-unggah-nota.png), [layar koreksi hasil AI](docs/screenshots/04-koreksi-nota.png)). Jika AI tidak tersedia, formulir isian manual tetap bisa dipakai.
 - **Pengelompokan barang dan konversi satuan**: nama barang mentah dicocokkan ke kamus produk (88 produk, 210 istilah termasuk istilah pasar Bali), lalu satuan dikonversi ke kg. Koreksi yang disetujui pengguna disimpan sebagai istilah khusus usaha itu, sehingga nota berikutnya dikenali tanpa memanggil AI.
-- **Dasbor kepatuhan**: persentase lokal per kelompok (pertanian, peternakan, perikanan, industri lokal) dibandingkan kuota, dengan **label tingkat bukti**: terverifikasi admin, pernyataan pemasok, atau asal belum diketahui.
-- **Rekomendasi pemasok lokal**: produk luar Bali yang paling banyak dibeli, pemasok lokal yang cocok, simulasi kenaikan persentase, dan draf pesan WhatsApp yang ditulis AI.
+- **Dasbor kepatuhan**: persentase lokal per kelompok (pertanian, peternakan, perikanan, industri lokal) dibandingkan kuota, dengan **label tingkat bukti**: terverifikasi admin, pernyataan pemasok, atau asal belum diketahui ([dasbor kepatuhan](docs/screenshots/02-dasbor.png)).
+- **Rekomendasi pemasok lokal**: produk luar Bali yang paling banyak dibeli, pemasok lokal yang cocok, simulasi kenaikan persentase, dan draf pesan WhatsApp yang ditulis AI ([rekomendasi & draf WA](docs/screenshots/05-rekomendasi.png)).
 - **Pendaftaran pemasok lewat WhatsApp**: pemasok mengetik `DAFTAR …` dengan bahasa bebas, AI menyusun datanya, lalu pemasok mengonfirmasi dengan `YA`. Pemasok menjawab permintaan pasokan dengan `1` (terima) atau `2` (tolak).
-- **Simulator WA**: mencoba alur pemasok langsung dari web tanpa nomor WhatsApp sungguhan.
-- **Laporan bulanan**: tabel per kelompok dan ringkasan AI, siap dicetak atau disimpan sebagai PDF lewat browser.
-- **Akun demo sekali klik**: sandbox per pengunjung berisi data fiktif, dihapus otomatis setelah 48 jam.
+- **Simulator WA**: mencoba alur pemasok langsung dari web tanpa nomor WhatsApp sungguhan ([simulator WA](docs/screenshots/06-simulator-wa.png)).
+- **Laporan bulanan**: tabel per kelompok dan ringkasan AI, siap dicetak atau disimpan sebagai PDF lewat browser ([laporan bulanan](docs/screenshots/07-laporan.png)).
+- **Akun demo sekali klik**: sandbox per pengunjung berisi data fiktif, dihapus otomatis setelah 48 jam ([halaman depan](docs/screenshots/01-landing.png)).
 - **Panel admin**: verifikasi pemasok dan pengaturan angka kuota.
+
+### Tangkapan layar (data demo fiktif)
+
+| Halaman | Pratinjau |
+|---|---|
+| [01. Halaman depan & simulasi nota interaktif](docs/screenshots/01-landing.png) | ![Halaman depan Pasok Bali](docs/screenshots/01-landing.png) |
+| [02. Dasbor kepatuhan Pergub Bali No. 99/2018](docs/screenshots/02-dasbor.png) | ![Dasbor kepatuhan](docs/screenshots/02-dasbor.png) |
+| [03. Unggah foto nota & pilihan nota contoh](docs/screenshots/03-unggah-nota.png) | ![Unggah nota belanja](docs/screenshots/03-unggah-nota.png) |
+| [04. Layar periksa & koreksi nota hasil bacaan AI](docs/screenshots/04-koreksi-nota.png) | ![Layar koreksi hasil AI](docs/screenshots/04-koreksi-nota.png) |
+| [05. Rekomendasi pemasok lokal & draf WhatsApp AI](docs/screenshots/05-rekomendasi.png) | ![Rekomendasi pemasok dan draf WA](docs/screenshots/05-rekomendasi.png) |
+| [06. Simulator WhatsApp pemasok](docs/screenshots/06-simulator-wa.png) | ![Simulator WhatsApp](docs/screenshots/06-simulator-wa.png) |
+| [07. Laporan mandiri bulanan siap cetak PDF](docs/screenshots/07-laporan.png) | ![Laporan bulanan](docs/screenshots/07-laporan.png) |
 
 ## Tech Stack
 
