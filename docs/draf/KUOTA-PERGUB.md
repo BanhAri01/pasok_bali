@@ -151,10 +151,18 @@ Selain kuota volume pada Pasal 13, terdapat empat pasal penting yang mengikat Ho
 
 ## 7. Kesesuaian dengan Pengaturan di Aplikasi Pasok Bali
 
-Berdasarkan hasil verifikasi naskah resmi di atas, konfigurasi kuota di aplikasi Pasok Bali saat ini (`config/pasok.php` pada kunci `'quota_groups'` dan perhitungan volume dalam satuan kilogram di `ComplianceService`) **sudah tepat dan sesuai 100%** dengan **Pasal 13 ayat (2) Peraturan Gubernur Bali Nomor 99 Tahun 2018**:
+Berdasarkan hasil verifikasi naskah resmi di atas, konfigurasi kuota di aplikasi Pasok Bali saat ini (`config/pasok.php` pada kunci `'quota_groups'` dan perhitungan volume dalam satuan kilogram di `App\Services\ComplianceCalculator`) **sudah sesuai** dengan **Pasal 13 ayat (2) Peraturan Gubernur Bali Nomor 99 Tahun 2018**:
 
 - `pertanian` (`tanaman_pangan`, `hortikultura`, `perkebunan`): **30%** dari volume kebutuhan (Pasal 13 ayat (2) huruf a).
 - `peternakan` (`peternakan`): **30%** dari kebutuhan Hotel/Restoran (Pasal 13 ayat (2) huruf b).
 - `perikanan` (`perikanan`): **30%** dari volume kebutuhan (Pasal 13 ayat (2) huruf c).
 - `industri` (`industri` — Industri lokal Bali): **20%** dari volume kebutuhan (Pasal 13 ayat (2) huruf d).
 - Dasar perhitungan di aplikasi menggunakan **volume/berat terkonversi (`kg`)**, selaras dengan mandat *"dari volume produk yang dibutuhkan"* pada Pasal 13 ayat (2).
+
+### Catatan review Claude (5 Nov 2026)
+
+- Kutipan Pasal 12, 13, 15, 16, 18, 27, dan 29 sudah dicocokkan dengan pindaian PDF resmi distanpangan (gambar halaman 10, 11, 12, 13, 17): sama.
+- Pasal 29 ayat (1) hanya menyebut pelanggaran **Pasal 13 ayat (1)** (wajib mengutamakan produk lokal). Angka kuota pada ayat (2) tidak disebut langsung sebagai dasar sanksi. Karena itu Pasok Bali menyebut angka kuota sebagai **acuan pengukuran mandiri**, bukan penentu sanksi.
+- Huruf b (peternakan) memakai frasa "dari kebutuhan Hotel dan Restoran", tanpa kata "volume" dan tanpa menyebut Katering. Aplikasi memakai volume (kg) juga untuk kelompok ini; ini tafsiran, bukan bunyi harfiah.
+- Kuota 10% untuk industri pengolahan/*meat processing* tidak dipakai di aplikasi karena pengguna sasaran adalah hotel/restoran/katering.
+- Naskah resmi berupa pindaian gambar (tanpa lapisan teks), jadi kutipan di atas diketik ulang dari gambar.
