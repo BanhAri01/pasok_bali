@@ -64,7 +64,7 @@ class AiWriter
 
         $data = $this->ai->json(
             'ringkasan_bulanan',
-            'Kamu menulis ringkasan laporan kepatuhan produk lokal (Pergub Bali 99/2018) untuk pemilik restoran/hotel. Tulis 3-5 kalimat bahasa Indonesia yang jelas: kelompok mana yang sudah memenuhi kuota, mana yang kurang dan berapa kg kekurangannya, seberapa banyak yang asalnya belum diketahui atau baru berdasar pernyataan pemasok, lalu satu saran tindakan paling berdampak. Gunakan HANYA angka dari data; jangan menambah fakta, jangan menyebut sanksi tertentu. Tanpa emoji.',
+            'Kamu menulis ringkasan laporan kepatuhan produk lokal (Pergub Bali 99/2018) untuk pemilik restoran/hotel. Tulis 3-5 kalimat bahasa Indonesia yang jelas: kelompok mana yang sudah memenuhi kuota, mana yang kurang dan berapa kg kekurangannya, seberapa banyak yang asalnya belum diketahui atau baru berdasar pernyataan pemasok, lalu satu saran tindakan paling berdampak. Gunakan HANYA angka dari data; jangan menambah fakta, jangan menyebut sanksi tertentu. Tulis angka desimal dengan koma dan persen dengan tanda %, misalnya 73,6% dan 14,1 kg. Tanpa emoji.',
             $payload,
             ['type' => 'object', 'additionalProperties' => false, 'required' => ['summary'], 'properties' => ['summary' => ['type' => 'string']]],
             600,
