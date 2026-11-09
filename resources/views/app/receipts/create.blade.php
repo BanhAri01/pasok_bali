@@ -21,14 +21,19 @@
         @if ($samples)
             <section class="mt-8">
                 <h2 class="font-display text-2xl leading-tight font-semibold">Tidak punya nota? Pakai nota contoh</h2>
-                <p class="text-sm text-abu">Nota fiktif untuk mencoba pembacaan AI.</p>
+                <p class="text-sm text-abu">Nota fiktif untuk mencoba pembacaan AI. Nota dari pemasok terdaftar langsung mengubah persentase lokal; nota dari kios yang belum terdaftar menunjukkan barang yang asalnya belum diketahui.</p>
                 <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
                     @foreach ($samples as $sample)
-                        <form method="POST" action="{{ route('receipts.sample', $sample) }}">
+                        <form method="POST" action="{{ route('receipts.sample', $sample['file']) }}">
                             @csrf
-                            <button class="group block w-full overflow-hidden rounded-lg border border-garis bg-kertas text-left hover:border-daun">
-                                <img src="{{ route('receipts.sample-image', $sample) }}" alt="Nota contoh {{ $loop->iteration }}" loading="lazy" class="aspect-[3/4] w-full object-cover object-top">
-                                <span class="block px-2 py-1.5 text-xs font-semibold group-hover:text-daun">Pakai contoh {{ $loop->iteration }}</span>
+                            <button class="group flex h-full w-full flex-col overflow-hidden rounded-lg border bg-kertas text-left hover:border-daun {{ $sample['supplier'] ? 'border-daun/50' : 'border-garis' }}">
+                                <img src="{{ route('receipts.sample-image', $sample['file']) }}" alt="Nota contoh {{ $loop->iteration }}" loading="lazy" class="aspect-[3/4] w-full object-cover object-top">
+                                <span class="block px-2 pt-1.5 text-xs font-semibold group-hover:text-daun">Pakai contoh {{ $loop->iteration }}</span>
+                                @if ($sample['supplier'])
+                                    <span class="block px-2 pb-1.5 text-[11px] font-semibold text-daun">Pemasok terdaftar ✓</span>
+                                @else
+                                    <span class="block px-2 pb-1.5 text-[11px] text-abu">Pemasok belum terdaftar</span>
+                                @endif
                             </button>
                         </form>
                     @endforeach

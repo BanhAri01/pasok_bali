@@ -85,7 +85,7 @@
                 @error('demo')
                     <p class="mt-4 font-semibold text-terakota" role="alert">{{ $message }}</p>
                 @enderror
-                <p class="mt-5 text-sm text-abu">Demo tanpa daftar. Isinya data fiktif dan terhapus sendiri setelah 48 jam.</p>
+                <p class="mt-5 text-sm text-abu">Demo tanpa daftar. Isinya data fiktif dan terhapus sendiri setelah {{ config('pasok.demo.ttl_hours') }} jam.</p>
             </div>
 
             <div class="lg:col-span-5">

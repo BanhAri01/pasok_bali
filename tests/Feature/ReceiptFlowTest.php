@@ -12,11 +12,6 @@ beforeEach(function () {
     Storage::fake('local');
 });
 
-function readNota(array $items, string $supplier = 'Peternakan Taluh Mekar', string $date = ''): array
-{
-    return ['legible' => true, 'supplier_name' => $supplier, 'receipt_date' => $date ?: now()->toDateString(), 'items' => $items];
-}
-
 it('membaca nota dengan AI lalu mengelompokkan, mengonversi satuan, dan menentukan asal', function () {
     $user = owner();
     $kangkung = Product::query()->where('name', 'Kangkung')->value('id');

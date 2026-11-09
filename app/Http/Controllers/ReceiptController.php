@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessReceipt;
 use App\Models\Receipt;
+use App\Models\ReceiptItem;
 use App\Models\Supplier;
+use App\Services\ComplianceCalculator;
 use App\Services\ProductCatalog;
 use App\Services\ReceiptPipeline;
+use App\Support\Text;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -39,9 +43,30 @@ class ReceiptController extends Controller
         ]);
     }
 
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('app.receipts.create', ['samples' => self::samples()]);
+        $registered = Supplier::query()
+            ->visibleTo($request->user()->business_id)
+            ->where('active', true)
+            ->pluck('name')
+            ->mapWithKeys(fn ($name) => [Text::key($name) => $name]);
+
+        $key = database_path(self::SAMPLE_DIR.'/kunci.json');
+
+        $suppliers = collect(is_file($key) ? (json_decode((string) file_get_contents($key), true) ?: []) : [])
+            ->filter(fn ($row) => is_array($row) && isset($row['file']))
+            ->mapWithKeys(fn ($row) => [$row['file'] => (string) ($row['supplier_name'] ?? '')]);
+
+        $samples = collect(self::samples())
+            ->map(fn ($file) => [
+                'file' => $file,
+                'supplier' => $registered->get(Text::key($suppliers->get($file))),
+            ])
+            ->sortBy(fn ($sample, $index) => [$sample['supplier'] === null, $index])
+            ->values()
+            ->all();
+
+        return view('app.receipts.create', ['samples' => $samples]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -109,7 +134,7 @@ class ReceiptController extends Controller
         return Storage::disk('local')->response($receipt->image_path, null, ['Cache-Control' => 'private, max-age=600']);
     }
 
-    public function update(Request $request, Receipt $receipt, ReceiptPipeline $pipeline): RedirectResponse
+    public function update(Request $request, Receipt $receipt, ReceiptPipeline $pipeline, ComplianceCalculator $compliance): RedirectResponse
     {
         abort_if($receipt->status === Receipt::PROCESSING, 409, 'Nota masih dibaca AI.');
 
@@ -141,11 +166,37 @@ class ReceiptController extends Controller
             }
         }
 
-        $pipeline->review($receipt, $supplier, $data['receipt_date'], $data['items'], $data['action'] === 'setujui');
+        if ($data['action'] !== 'setujui') {
+            $pipeline->review($receipt, $supplier, $data['receipt_date'], $data['items'], false);
 
-        return $data['action'] === 'setujui'
-            ? redirect()->route('dashboard', ['bulan' => $receipt->receipt_date->format('Y-m')])->with('status', 'Nota disetujui dan sudah dihitung ke kepatuhan bulan '.$receipt->receipt_date->translatedFormat('F Y').'.')
-            : back()->with('status', 'Perubahan disimpan.');
+            return back()->with('status', 'Perubahan disimpan.');
+        }
+
+        $month = CarbonImmutable::parse($data['receipt_date'])->startOfMonth();
+        $before = $compliance->forMonth($receipt->business_id, $month)['groups'];
+
+        $pipeline->review($receipt, $supplier, $data['receipt_date'], $data['items'], true);
+
+        $after = $compliance->forMonth($receipt->business_id, $month)['groups'];
+
+        $impact = collect($after)
+            ->filter(fn ($group, $key) => $group['total_kg'] != ($before[$key]['total_kg'] ?? 0) || $group['percent'] !== ($before[$key]['percent'] ?? null))
+            ->map(fn ($group, $key) => [
+                'label' => $group['label'],
+                'quota' => $group['quota'],
+                'before' => $before[$key]['percent'] ?? null,
+                'after' => $group['percent'],
+                'added_kg' => round($group['total_kg'] - ($before[$key]['total_kg'] ?? 0), 2),
+                'added_local_kg' => round($group['local_kg'] - ($before[$key]['local_kg'] ?? 0), 2),
+            ])
+            ->values()
+            ->all();
+
+        $unknown = $receipt->items()->whereNotNull('category')->where('origin', ReceiptItem::UNKNOWN)->count();
+
+        return redirect()->route('dashboard', ['bulan' => $month->format('Y-m')])
+            ->with('status', 'Nota bertanggal '.$receipt->receipt_date->translatedFormat('j F Y').' disetujui dan dihitung ke bulan '.$month->translatedFormat('F Y').', sesuai tanggal di nota.')
+            ->with('impact', ['month' => $month->format('Y-m'), 'groups' => $impact, 'unknown' => $unknown, 'supplier' => $supplier?->name]);
     }
 
     public function destroy(Receipt $receipt): RedirectResponse

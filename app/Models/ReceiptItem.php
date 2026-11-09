@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['receipt_id', 'business_id', 'name_raw', 'product_id', 'category', 'quantity', 'unit', 'quantity_kg', 'kg_estimated', 'ai_kg_per_unit', 'total_price', 'origin', 'evidence', 'confidence', 'needs_review'])]
+#[Fillable(['receipt_id', 'business_id', 'name_raw', 'product_id', 'match_source', 'category', 'quantity', 'unit', 'quantity_kg', 'kg_estimated', 'ai_kg_per_unit', 'total_price', 'origin', 'evidence', 'confidence', 'needs_review'])]
 class ReceiptItem extends Model
 {
     use BelongsToBusiness;
 
     public const UNKNOWN = 'tidak_diketahui';
+
+    public const MATCH_DICTIONARY = 'kamus';
+
+    public const MATCH_AI = 'ai';
+
+    public const MATCH_USER = 'pengguna';
 
     protected function casts(): array
     {

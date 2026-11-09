@@ -20,7 +20,7 @@
 
     @if ($business?->is_demo)
         <div class="bg-daun-tua px-4 py-2 text-center text-xs text-kertas/85">
-            Akun demo berisi data contoh fiktif dan akan dihapus otomatis {{ $business->demo_expires_at?->diffForHumans() }}.
+            Akun demo berisi data contoh fiktif dan dihapus otomatis {{ config('pasok.demo.ttl_hours') }} jam setelah dibuat, yaitu {{ $business->demo_expires_at?->timezone('Asia/Makassar')->translatedFormat('j F, H.i') }} WITA.
         </div>
     @endif
 

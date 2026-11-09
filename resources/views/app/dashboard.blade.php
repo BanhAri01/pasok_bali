@@ -11,6 +11,37 @@
         </div>
     </div>
 
+    @php($impact = session('impact'))
+    @if ($impact && $impact['month'] === $month->format('Y-m'))
+        <section class="mt-6 rounded-2xl border border-daun/30 bg-kertas p-5" aria-label="Dampak nota yang baru disetujui">
+            <h2 class="font-display text-xl font-semibold">Dampak nota ini ke {{ $month->translatedFormat('F Y') }}</h2>
+            @if ($impact['groups'])
+                <ul class="mt-3 grid gap-2 sm:grid-cols-2">
+                    @foreach ($impact['groups'] as $change)
+                        <li class="rounded-lg bg-santan px-4 py-3 text-sm ring-1 ring-garis">
+                            <span class="font-semibold">{{ $change['label'] }}</span>
+                            <span class="mt-0.5 block">
+                                {{ $change['before'] === null ? 'belum ada data' : \App\Support\Rupiah::number($change['before']).'%' }}
+                                →
+                                <strong class="{{ $change['after'] !== null && $change['after'] >= $change['quota'] ? 'text-daun' : 'text-terakota' }}">{{ $change['after'] === null ? '–' : \App\Support\Rupiah::number($change['after']).'%' }}</strong>
+                                <span class="text-abu">(kuota {{ $change['quota'] }}%)</span>
+                            </span>
+                            <span class="block text-xs text-abu">+{{ \App\Support\Rupiah::number($change['added_kg']) }} kg tercatat, {{ \App\Support\Rupiah::number($change['added_local_kg']) }} kg di antaranya lokal Bali</span>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="mt-2 text-sm text-abu">Nota ini tidak berisi barang yang dihitung kuota.</p>
+            @endif
+            @if ($impact['unknown'])
+                <p class="mt-3 text-sm text-abu">{{ $impact['unknown'] }} barang asalnya belum diketahui karena {{ $impact['supplier'] ? $impact['supplier'].' belum mendaftarkan produk tersebut' : 'toko di nota belum terdaftar di Pasok Bali' }}. Barang ini dihitung sebagai belanja, tetapi belum sebagai produk lokal.</p>
+            @endif
+            @if ($month->format('Y-m') !== now()->format('Y-m'))
+                <a href="{{ route('dashboard') }}" class="mt-3 inline-block text-sm font-semibold text-daun">Kembali ke {{ now()->translatedFormat('F Y') }} →</a>
+            @endif
+        </section>
+    @endif
+
     <section class="mt-6 grid gap-4 md:grid-cols-2">
         @foreach ($report['groups'] as $group)
             <x-app.meter :group="$group" />

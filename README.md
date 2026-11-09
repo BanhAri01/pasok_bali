@@ -26,7 +26,7 @@ Pasok Bali adalah alat bantu pengukuran mandiri untuk usaha, **bukan** alat peng
 - **Bot WhatsApp pemasok** (nomor asli 0851-3364-2784 lewat Fonnte): percakapan dibuka dengan kata `PASOK` dan berlaku 30 menit. Pemasok mendaftar dengan bahasa bebas, boleh dicicil ("ada telur 50 krat", lalu "bangli", lalu "harganya 48rb"); AI menyusun datanya dan pemasok mengonfirmasi dengan `YA`. Pertanyaan bebas seputar Pasok Bali dijawab asisten AI (maks. 20 per nomor per hari). Pemasok menjawab permintaan pasokan dengan `1` (terima) atau `2` (tolak); `SELESAI` menutup percakapan.
 - **Simulator WA**: mencoba alur pemasok langsung dari web tanpa nomor WhatsApp sungguhan ([simulator WA](docs/screenshots/06-simulator-wa.png)).
 - **Laporan bulanan**: tabel per kelompok dan ringkasan AI, siap dicetak atau disimpan sebagai PDF lewat browser ([laporan bulanan](docs/screenshots/07-laporan.png)).
-- **Akun demo sekali klik**: sandbox per pengunjung berisi data fiktif, dihapus otomatis setelah 48 jam ([halaman depan](docs/screenshots/01-landing.png)).
+- **Akun demo sekali klik**: sandbox per pengunjung berisi data fiktif, dihapus otomatis 48 jam setelah dibuat ([halaman depan](docs/screenshots/01-landing.png)).
 - **Panel admin**: verifikasi pemasok, menambah pemasok yang mendaftar lewat kunjungan atau telepon, dan pengaturan angka kuota.
 
 ### Tangkapan layar (data demo fiktif)

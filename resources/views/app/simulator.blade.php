@@ -1,6 +1,6 @@
 <x-app.layout title="Simulator WA">
     <h1 class="font-display text-3xl font-semibold text-daun-tua">Simulator WhatsApp pemasok</h1>
-    <p class="mt-1 text-abu">Coba alur WhatsApp tanpa nomor sungguhan. Pesan di sini tidak dikirim ke WhatsApp mana pun dan dihapus otomatis setelah 2 hari.</p>
+    <p class="mt-1 text-abu">Coba alur WhatsApp tanpa nomor sungguhan. Pesan di sini tidak dikirim ke WhatsApp mana pun. Riwayat simulator hanya ditampilkan untuk 2 hari terakhir{{ request()->attributes->get('business')?->is_demo ? ' dan ikut terhapus bersama akun demo' : '' }}.</p>
 
     <div class="mt-6 grid gap-6 lg:grid-cols-2">
         <section id="chat" class="flex flex-col border border-garis bg-kertas rounded-2xl">

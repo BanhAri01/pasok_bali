@@ -25,8 +25,22 @@
                 'evidence' => $item->evidence,
                 'confidence' => $item->confidence,
                 'needs_review' => $item->needs_review,
+                'match_source' => $item->match_source,
+                'matched_name' => $item->product_id ? $products->firstWhere('id', $item->product_id)['name'] ?? null : null,
+                'ai_kg_per_unit' => $item->ai_kg_per_unit,
             ])->values();
             $initialRows = old('items') ? collect(old('items'))->values() : $rows;
+            $summary = [
+                'kamus' => $receipt->items->where('match_source', \App\Models\ReceiptItem::MATCH_DICTIONARY)->count(),
+                'ai' => $receipt->items->where('match_source', \App\Models\ReceiptItem::MATCH_AI)->count(),
+                'cek' => $receipt->items->where('needs_review', true)->count(),
+                'lokal' => $receipt->items->where('origin', 'bali')->count(),
+                'belum' => $receipt->items->whereNotNull('category')->where('origin', \App\Models\ReceiptItem::UNKNOWN)->count(),
+            ];
+            $origin = [
+                'supplier' => $receipt->supplier?->name,
+                'regency' => $receipt->supplier?->regency,
+            ];
         @endphp
 
         <div class="flex flex-wrap items-end justify-between gap-4">
@@ -35,8 +49,17 @@
                 <h1 class="font-display text-3xl font-semibold text-daun-tua">Periksa nota</h1>
                 <p class="mt-1 text-abu">
                     {{ $receipt->statusLabel() }}
-                    @if ($receipt->ai_used) · dibaca AI, keyakinan rata-rata {{ \App\Support\Rupiah::number(($receipt->ai_confidence ?? 0) * 100) }}%@endif
+                    @if ($receipt->ai_used) · dibaca AI dari foto, {{ $receipt->items->count() }} baris @endif
                 </p>
+                @if ($receipt->ai_used && $receipt->items->isNotEmpty())
+                    <p class="mt-2 flex flex-wrap gap-2 text-xs">
+                        @if ($summary['kamus'])<span class="rounded-full bg-daun-muda px-2.5 py-1 font-semibold text-daun-tua">{{ $summary['kamus'] }} dikenali kamus istilah</span>@endif
+                        @if ($summary['ai'])<span class="rounded-full bg-kunyit-muda px-2.5 py-1 font-semibold ring-1 ring-kunyit">{{ $summary['ai'] }} ditebak AI</span>@endif
+                        @if ($summary['cek'])<span class="rounded-full bg-terakota-muda px-2.5 py-1 font-semibold text-terakota">{{ $summary['cek'] }} perlu dicek</span>@endif
+                        @if ($summary['lokal'])<span class="rounded-full bg-daun px-2.5 py-1 font-semibold text-kertas">{{ $summary['lokal'] }} lokal Bali</span>@endif
+                        @if ($summary['belum'])<span class="rounded-full bg-santan px-2.5 py-1 font-semibold text-abu ring-1 ring-garis">{{ $summary['belum'] }} asal belum diketahui</span>@endif
+                    </p>
+                @endif
             </div>
             <form method="POST" action="{{ route('receipts.destroy', $receipt) }}" x-data @submit="if (! window.confirm('Hapus nota ini?')) $event.preventDefault()">
                 @csrf @method('DELETE')
@@ -61,7 +84,7 @@
             </aside>
 
             <form method="POST" action="{{ route('receipts.update', $receipt) }}" class="min-w-0"
-                  x-data="notaForm(@js($initialRows), @js($products), @js($categories))">
+                  x-data="notaForm(@js($initialRows), @js($products), @js($categories), @js($origin))">
                 @csrf @method('PUT')
 
                 <div class="grid gap-4 border border-garis bg-kertas p-5 sm:grid-cols-2 rounded-2xl">
@@ -132,6 +155,11 @@
                                 <span class="rounded-full px-2.5 py-0.5 font-semibold" :class="badge(row).cls" x-text="badge(row).label"></span>
                                 <span class="text-abu" x-show="row.confidence !== null && row.confidence !== undefined && row.confidence < 0.6">Keyakinan AI rendah, mohon dicek.</span>
                             </div>
+                            <ul class="mt-2 space-y-0.5 text-xs text-abu" x-show="row.id && reasons(row).length">
+                                <template x-for="reason in reasons(row)">
+                                    <li x-text="'• ' + reason"></li>
+                                </template>
+                            </ul>
                         </div>
                     </template>
                 </div>
@@ -153,7 +181,8 @@
         </div>
 
         <script>
-            function notaForm(rows, products, categories) {
+            function notaForm(rows, products, categories, origin) {
+                const angka = (value) => Number(value).toLocaleString('id-ID', { maximumFractionDigits: 3 });
                 let seq = 0;
                 const withKey = (row) => ({ key: ++seq, product_id: '', category: '', ...row, product_id: row.product_id ?? '', category: row.category ?? '' });
 
@@ -176,6 +205,40 @@
                         if (row.origin === 'luar') return { label: 'Luar Bali', cls: 'bg-terakota-muda text-terakota' };
                         if (row.origin === 'campuran') return { label: 'Campuran', cls: 'bg-terakota-muda text-terakota' };
                         return { label: 'Asal belum diketahui', cls: 'bg-santan text-abu ring-1 ring-garis' };
+                    },
+                    reasons(row) {
+                        const list = [];
+                        const name = (row.name || '').trim();
+
+                        if (row.match_source === 'kamus' && row.matched_name) {
+                            list.push(name.toLowerCase() === row.matched_name.toLowerCase()
+                                ? `Cocok langsung dengan katalog: ${row.matched_name}.`
+                                : `Kamus istilah: “${name}” = ${row.matched_name}.`);
+                        } else if (row.match_source === 'ai' && row.matched_name) {
+                            const yakin = row.confidence !== null && row.confidence !== undefined ? `, keyakinan ${Math.round(row.confidence * 100)}%` : '';
+                            list.push(`Tidak ada di kamus, AI menebak “${name}” = ${row.matched_name}${yakin}.`);
+                        } else if (row.match_source === 'pengguna' && row.matched_name) {
+                            list.push(`Dipilih manual: ${row.matched_name}.`);
+                        }
+
+                        const unit = (row.unit || '').toLowerCase();
+                        if (row.quantity_kg !== null && row.quantity_kg !== undefined && unit !== 'kg' && Number(row.quantity) > 0) {
+                            const perUnit = row.quantity_kg / row.quantity;
+                            const sumber = row.kg_estimated ? (row.ai_kg_per_unit ? 'perkiraan AI' : 'perkiraan') : 'tabel satuan';
+                            list.push(`${angka(row.quantity)} ${row.unit} × ${angka(perUnit)} kg = ${angka(row.quantity_kg)} kg (${sumber}).`);
+                        }
+
+                        if (row.origin === 'bali' && origin.supplier) {
+                            list.push(`Lokal karena ${origin.supplier}${origin.regency ? ' (' + origin.regency + ')' : ''} mendaftarkan produk ini sebagai hasil Bali.`);
+                        } else if ((row.origin === 'luar' || row.origin === 'campuran') && origin.supplier) {
+                            list.push(`${origin.supplier} mencatat produk ini dari luar Bali atau campuran.`);
+                        } else if (row.origin === 'tidak_diketahui' && row.category) {
+                            list.push(origin.supplier
+                                ? `${origin.supplier} belum mendaftarkan produk ini, jadi asalnya belum diketahui.`
+                                : 'Toko di nota belum terdaftar di Pasok Bali. Pilih pemasok terdaftar di atas bila sesuai agar asal barang bisa dihitung.');
+                        }
+
+                        return list;
                     },
                 };
             }

@@ -43,3 +43,8 @@ function inBusiness(?int $businessId): void
 {
     app(CurrentBusiness::class)->set($businessId);
 }
+
+function readNota(array $items, string $supplier = 'Peternakan Taluh Mekar', string $date = ''): array
+{
+    return ['legible' => true, 'supplier_name' => $supplier, 'receipt_date' => $date ?: now()->toDateString(), 'items' => $items];
+}

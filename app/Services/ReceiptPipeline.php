@@ -95,6 +95,7 @@ class ReceiptPipeline
                 'unit' => Text::unit($row['unit']),
                 'total_price' => (int) $row['total_price'],
                 'confidence' => $old && $old->product_id === $product?->id ? $old->confidence : 1.0,
+                'match_source' => $product ? ($old && $old->product_id === $product->id ? $old->match_source : ReceiptItem::MATCH_USER) : null,
                 'product_id' => $product?->id,
                 'category' => $category,
                 'ai_kg_per_unit' => $old?->ai_kg_per_unit,
@@ -151,12 +152,14 @@ class ReceiptPipeline
                 $category = $row['category'];
                 $aiKg = $row['ai_kg_per_unit'];
                 $confidence = (float) $row['confidence'];
+                $source = $row['match_source'] ?? null;
                 $ignored = false;
             } elseif ($hit = $known[Text::key($row['name'])] ?? null) {
                 $product = $hit;
                 $category = $hit->category;
                 $aiKg = null;
                 $confidence = (float) $row['confidence'];
+                $source = ReceiptItem::MATCH_DICTIONARY;
                 $ignored = false;
             } else {
                 $guess = $classified[$index] ?? null;
@@ -164,6 +167,7 @@ class ReceiptPipeline
                 $category = $guess['category'] ?? null;
                 $aiKg = $guess['kg_per_unit'] ?? null;
                 $confidence = min((float) $row['confidence'], (float) ($guess['confidence'] ?? 0));
+                $source = $product ? ReceiptItem::MATCH_AI : null;
                 $ignored = (bool) ($guess['ignored'] ?? false);
             }
 
@@ -173,6 +177,7 @@ class ReceiptPipeline
             return [
                 'name_raw' => $row['name'],
                 'product_id' => $product?->id,
+                'match_source' => $source,
                 'category' => $category,
                 'quantity' => (float) $row['quantity'],
                 'unit' => Text::unit($row['unit']),
